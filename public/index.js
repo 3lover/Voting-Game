@@ -37,8 +37,16 @@ elm.adjustColor.addEventListener("change", (e) => {
 });
 
 // page transitions
-function swapPages(open = "pageid", close = "pageid") {
-  for (let opening = 0; opening < 1)
+function swapPages(open = 0, close = 0) {
+  for (let opening = 0; opening < 2; opening++) {
+    switch (opening ? open : close) {
+        // title => hosting
+      case 0: {
+        
+        break;
+      }
+    }
+  }
 }
 
 // lobby hosting
