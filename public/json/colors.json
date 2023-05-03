@@ -9,7 +9,7 @@
   },
   "dark": {
     "--background": "#111111",
-    "--border": "#555555",
+    "--border": "#888888",
     "--text": "#eeeeee",
     "--buttonhover": "#444444",
     "--buttonclick": "#777777",

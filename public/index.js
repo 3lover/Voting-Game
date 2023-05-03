@@ -13,11 +13,7 @@ elm.settingbardropdown.addEventListener("click", (e) => {
 // load color pallets
 let colors = "not ready";
 async function getcolors() {
-  try {
-	colors = await (await fetch("public/json/colors.json")).json();
-  }
-  
-  alert(colors)
+	colors = await (await fetch("./json/colors.json")).json();
 }
 getcolors();
 

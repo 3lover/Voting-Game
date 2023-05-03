@@ -47,7 +47,7 @@
   background-color: var(--buttonhover);
 }
 
-#pageheader {
+.pageheader {
   font-size: 8vmin;
   text-align: center;
   width: 100%;
@@ -79,4 +79,21 @@ select {
 }
 #adjustcolor:hover {
   background-color: var(--buttonhover);
+}
+
+.page {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.centralcontainer {
+  width: 50vw;
+  height: 80vh;
+  border-width: 1vmin;
+  border-color: var(--border);
+  border-style: solid;
+  top: 10vh;
+  left: 25vw;
 }
