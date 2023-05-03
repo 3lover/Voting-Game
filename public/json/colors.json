@@ -3,7 +3,7 @@
     "--background": "#eeeeee",
     "--border": "#111111",
     "--text": "#111111",
-    "--buttonhover": "#cccccc",
+    "--buttonhover": "#dddddd",
     "--buttonclick": "#aaaaaa",
     "--pageselect": "#dddddd"
   },
