@@ -29,8 +29,8 @@
   border-color: var(--border);
   border-width: 0 0 0.5vmin 0;
   width: 100vw;
-  height: 10vh;
-  top: -10vh;
+  height: 40vh;
+  top: -40vh;
   z-index: 5;
 }
 
@@ -38,7 +38,7 @@
   width: 10vw;
   height: 4vh;
   left: 45vw;
-  top: 10vh;
+  top: 40vh;
   border-style: solid;
   border-color: var(--border);
   border-width: 0.5vmin;
@@ -49,6 +49,8 @@
 
 #pageheader {
   font-size: 8vmin;
+  text-align: center;
+  width: 100%;
 }
 
 h1.titletext {
@@ -56,4 +58,23 @@ h1.titletext {
   width: 100vw;
   text-align: center;
   top: 4vh;
+}
+
+button:hover {
+  background-color: var(--buttonhover);
+}
+
+select:hover {
+  background-color: var(--buttonhover);
+  border-width: 1vmin;
+  border-color: var(--border);
+  border-style: solid;
+}
+
+#adjustcolor {
+  width: 40vw;
+  height: 10vh;
+  left: 5vw;
+  top: 10vh;
+  background-color: var(--background);
 }
