@@ -97,3 +97,23 @@ select {
   top: 10vh;
   left: 25vw;
 }
+
+.titlebutton {
+  width: 100%;
+  border-style: none;
+  height: 15vh;
+  font-size: 6vh;
+  margin-top: 0;
+}
+.titlebutton:hover {
+  margin-top: -1vh;
+}
+#hostbutton {
+  top: 20vh;
+}
+#joinbutton {
+  top: 40vh;
+}
+#findbutton {
+  top: 60vh;
+}

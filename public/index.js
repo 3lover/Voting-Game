@@ -35,3 +35,14 @@ elm.adjustColor.addEventListener("change", (e) => {
   localStorage.setItem("adjustcolor", e.target.value);
   remakeColors(e.target.value);
 });
+
+// page transitions
+function swapPages(open = "pageid", close = "pageid") {
+  for (let opening = 0; opening < 1)
+}
+
+// lobby hosting
+elm.hostButton = document.getElementById("hostbutton");
+elm.hostButton.addEventListener("click", () => {
+  
+});
