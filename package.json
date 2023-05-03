@@ -14,7 +14,8 @@
     "cors": "latest",
     "express": "latest",
     "express-ws": "latest",
-    "node-fetch": "^3.2.6"
+    "node-fetch": "^3.3.1",
+    "express-minify": "latest"
   },
   "engines": {
     "node": "16.x"
