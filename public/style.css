@@ -11,7 +11,7 @@
   position: absolute;
   margin: 0;
   padding: 0;
-  transition: 0.5s;
+  transition: 0.5s ease;
   z-index: 0;
   background-color: var(--background);
   box-shadow: none;
@@ -64,9 +64,8 @@ button:hover {
   background-color: var(--buttonhover);
 }
 
-select:hover {
-  background-color: var(--buttonhover);
-  border-width: 1vmin;
+select {
+  border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;
 }
@@ -77,4 +76,7 @@ select:hover {
   left: 5vw;
   top: 10vh;
   background-color: var(--background);
+}
+#adjustcolor:hover {
+  background-color: var(--buttonhover);
 }
