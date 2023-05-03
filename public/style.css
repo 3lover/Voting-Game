@@ -23,6 +23,27 @@
   color: var(--text);
 }
 
+#lefttransitionpanel {
+  left: -60vw;
+  top: 0;
+  width: 50vw;
+  height: 100vh;
+  border-style: solid;
+  border-color: var(--border);
+  border-width: 0 2vmin 0 0;
+  z-index: 999;
+}
+#righttransitionpanel {
+  left: 110vw;
+  top: 0;
+  width: 50vw;
+  height: 100vh;
+  border-style: solid;
+  border-color: var(--border);
+  border-width: 0 0 0 2vmin;
+  z-index: 999;
+}
+
 #settingbar {
   position: fixed;
   border-style: solid;
@@ -86,6 +107,10 @@ select {
   height: 100vh;
   top: 0;
   left: 0;
+}
+
+#gamepage {
+  display: none;
 }
 
 .centralcontainer {

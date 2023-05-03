@@ -37,20 +37,22 @@ elm.adjustColor.addEventListener("change", (e) => {
 });
 
 // page transitions
-function swapPages(open = 0, close = 0) {
-  for (let opening = 0; opening < 2; opening++) {
-    switch (opening ? open : close) {
-        // title => hosting
-      case 0: {
-        
-        break;
-      }
-    }
-  }
+elm.leftSlide = document.getElementById("lefttransitionpanel");
+elm.rightSlide = document.getElementById("righttransitionpanel")
+function swapPages(open = "id", close = "id") {
+  elm.leftSlide.style.left = "0";
+  elm.rightSlide.style.left = "50vw";
+  
+  setTimeout(() => {
+    document.getElementById(open).style.display = "block";
+    document.getElementById(close).style.display = "none";
+    elm.leftSlide.style.left = "-60vw";
+    elm.rightSlide.style.left = "110vw";
+  }, 1000);
 }
 
 // lobby hosting
 elm.hostButton = document.getElementById("hostbutton");
 elm.hostButton.addEventListener("click", () => {
-  
+  swapPages("gamepage", "frontpage")
 });
