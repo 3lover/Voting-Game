@@ -1,0 +1,34 @@
+{
+  "light": {
+    "--background": "#eeeeee",
+    "--border": "#111111",
+    "--text": "#111111",
+    "--buttonhover": "#dddddd",
+    "--buttonclick": "#aaaaaa",
+    "--pageselect": "#dddddd"
+  },
+  "dark": {
+    "--background": "#111111",
+    "--border": "#555555",
+    "--text": "#eeeeee",
+    "--buttonhover": "#444444",
+    "--buttonclick": "#777777",
+    "--pageselect": "#444444"
+  },
+  "contrast": {
+    "--background": "#000000",
+    "--border": "#ffffff",
+    "--text": "#ffffff",
+    "--buttonhover": "#000000",
+    "--buttonclick": "#ffffff",
+    "--pageselect": "#000000"
+  },
+  "pwetty": {
+    "--background": "#ff0000",
+    "--border": "#00ff00",
+    "--text": "#0000ff",
+    "--buttonhover": "#ffff00",
+    "--buttonclick": "#ff00ff",
+    "--pageselect": "#00ffff"
+  }
+}

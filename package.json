@@ -1,27 +1,29 @@
 {
-  "name": "glitch-hello-node",
+  "name": "voting-game",
   "version": "0.1.0",
-  "description": "A simple Node app built on fastify, instantly up and running. Built to be remixed on Glitch.com.",
+  "description": "The voting game, but on the web",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
+  "author": "3love",
+  "license": "ISC",
   "dependencies": {
-    "fastify": "^4.15.0",
-    "handlebars": "^4.7.7",
-    "@fastify/formbody": "^7.4.0",
-    "@fastify/static": "^6.9.0",
-    "@fastify/view": "^7.4.1"
+    "@types/node": "latest",
+    "compression": "latest",
+    "cors": "latest",
+    "express": "latest",
+    "express-ws": "latest",
+    "node-fetch": "^3.2.6"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-hello-node"
   },
-  "license": "MIT",
   "keywords": [
-    "node",
-    "glitch"
+    "voting",
+    "game"
   ]
 }
