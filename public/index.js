@@ -54,5 +54,17 @@ function swapPages(open = "id", close = "id") {
 // lobby hosting
 elm.hostButton = document.getElementById("hostbutton");
 elm.hostButton.addEventListener("click", () => {
-  swapPages("gamepage", "frontpage")
+  swapPages("gamepage", "frontpage");
+});
+
+// lobby joining
+elm.joinButton = document.getElementById("joinbutton");
+elm.joinButton.addEventListener("click", () => {
+  swapPages("gamepage", "frontpage");
+});
+
+// lobby finding
+elm.findButton = document.getElementById("findbutton");
+elm.findButton.addEventListener("click", () => {
+  swapPages("waitingpage", "frontpage");
 });
