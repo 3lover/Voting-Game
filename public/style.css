@@ -173,3 +173,12 @@ select {
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
 }
+.spintext {
+  position: absolute;
+  top: 47.5vh;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 5vh;
+  background-color: transparent;
+}
