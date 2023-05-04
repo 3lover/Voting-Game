@@ -195,3 +195,31 @@ elm.attemptHost.addEventListener("click", () => {
   });
 });
 
+// add the name icons when in lobby
+function createNames(names = []) {
+  for (let n of names) {
+		const box = document.createElement("div");
+    box.classList.add("nameicon");
+    const text = document.createTextNode()
+
+		let textdist = 0;
+		for (let o = 1; o < changelogs[i].length; o++) {
+			let textbox = document.createElement("div");
+			textbox.style.top = ((o - 1) * 4) + "vmin";
+
+			if (changelogs[i][o][0] === "\n") continue;
+			textbox.appendChild(document.createTextNode(changelogs[i][o][0]));
+			if (changelogs[i][o][1][0] !== "n")
+				for (let p of changelogs[i][o][1]) textbox.classList.add(p);
+			textbox.classList.add("changelogtext");
+			textbox.style.position = "static";
+			log.style.display = "block";
+			log.appendChild(textbox);
+		}
+
+		log.classList.add("changelogbubble");
+		log.style.height = (changelogs[i][0] * 4) + "vmin";
+		elm.changelogHolder.appendChild(log);
+		topdist += changelogs[i][0];
+  }
+}

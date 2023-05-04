@@ -100,7 +100,7 @@ body {
 }
 #gamepagesettingbox {
   width: 40vw;
-  height: 90vh;
+  height: 100vh;
   left: 60vw;
   top: 5vh;
   border-style: solid;
@@ -109,14 +109,26 @@ body {
   overflow-y: scroll;
 }
 #gamepagenamebox {
-  width: 40vw;
+  width: 60vw;
   height: 90vh;
-  left: 60vw;
-  top: 5vh;
+  top: 15vh;
   border-style: solid;
   border-color: var(--border);
   border-width: 0.5vmin;
   overflow-y: scroll;
+}
+.nameicon {
+  position: static;
+  display: inline-block;
+  border-style: solid;
+  border-color: var(--border);
+  border-width: 0.5vmin;
+  padding: 1vmin;
+  margin: 1vmin;
+}
+.nameicon:hover {
+  background-color: var(--buttonhover);
+  color: var(--backred);
 }
 
 h1.titletext {
