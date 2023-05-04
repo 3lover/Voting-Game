@@ -37,9 +37,32 @@ elm.adjustColor.addEventListener("change", (e) => {
 });
 
 // page transitions
+let noTransitions = localStorage.getItem("pagetransitions") == "true" ?? false;
+elm.pageTransitions = document.getElementById("pagetransitions");
+elm.pageTransitions.value = noTransitions ? "0" : "1";
+elm.pageTransitions.addEventListener("change", () => {
+  noTransitions = !noTransitions;
+  localStorage.setItem("pagetransitions", noTransitions ? "true" : "false");
+});
+
+// page transitions
 elm.leftSlide = document.getElementById("lefttransitionpanel");
 elm.rightSlide = document.getElementById("righttransitionpanel")
 function swapPages(open = "id", close = "id") {
+  if (settingbarDropped) elm.settingbar.style.top = "-40vh";
+  else elm.settingbar.style.top = "0vh";
+  settingbarDropped = !settingbarDropped;
+  
+  if (noTransitions) {
+    elm.leftSlide.style.transition = "0";
+    elm.rightSlide.style.transition = "0";
+    document.getElementById(open).style.display = "block";
+    document.getElementById(close).style.display = "none";
+    return;
+  }
+  
+  elm.leftSlide.style.transition = "0.5s";
+  elm.rightSlide.style.transition = "0.5s";
   elm.leftSlide.style.left = "0";
   elm.rightSlide.style.left = "50vw";
   
@@ -64,13 +87,16 @@ elm.joinButton.addEventListener("click", () => {
 });
 
 // lobby finding
+let waitingForLobby = false;
 elm.findButton = document.getElementById("findbutton");
 elm.findButton.addEventListener("click", () => {
+  waitingForLobby = true;
   swapPages("waitingpage", "frontpage");
 });
 
 // find page x button
 elm.spinXButton = document.getElementById("spinx");
 elm.spinXButton.addEventListener("click", () => {
+  waitingForLobby = false;
   swapPages("frontpage", "waitingpage");
 });

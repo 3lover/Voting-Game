@@ -107,6 +107,17 @@ select {
   background-color: var(--buttonhover);
 }
 
+#pagetransitions {
+  width: 40vw;
+  height: 10vh;
+  left: 55vw;
+  top: 10vh;
+  background-color: var(--background);
+}
+#pagetransitions:hover {
+  background-color: var(--buttonhover);
+}
+
 .page {
   width: 100vw;
   height: 100vh;
