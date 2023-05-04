@@ -107,7 +107,85 @@ elm.typeXButton.addEventListener("click", () => {
 });
 
 // host info page x button
-elm.hostXButton = document.getElementById("typex");
+elm.hostXButton = document.getElementById("hostinfox");
 elm.hostXButton.addEventListener("click", () => {
   swapPages("frontpage", "hostinfopage");
 });
+
+// our websocket
+class Socket {
+	constructor() {
+		this.socket = new WebSocket("wss://votinggame.glitch.me/ws");
+		this.socket.binaryType = "arraybuffer";
+		this.protocol = (() => {
+			const encoder = new TextEncoder().encode.bind(new TextEncoder());
+			const decoder = new TextDecoder().decode.bind(new TextDecoder());
+			return {
+				encode: (message) => encoder(JSON.stringify(message)).buffer,
+				decode: (message) => JSON.parse(decoder(message.data)),
+			};
+		})();
+
+		this.socket.onopen = () => this.open();
+		this.socket.onmessage = (data) => this.message(data);
+		this.socket.onerror = (error) => this.error(error);
+		this.socket.onclose = (reason) => this.close(reason);
+    
+    this.connected = true;
+	}
+  
+  checkSocketStatus(pingtime, intervalsleft, callbackpositive, callbacknegative, first = true) {
+    if (first) {
+      this.connected = false;
+      this.talk(["you there?"]);
+    }
+    if (this.connected) {
+      callbackpositive();
+      return;
+    }
+    if (intervalsleft <= 0) {
+      callbacknegative();
+      return;
+    }
+    setTimeout(() => {this.checkSocketStatus(pingtime, intervalsleft - 1, callbackpositive, callbacknegative, false)}, pingtime);
+  }
+
+	// send whatever data we need to send, as well as request from the server
+	talk(data) {
+		if (this.socket.readyState !== 1) return;
+		data = this.protocol.encode(data);
+		this.socket.send(data);
+	}
+
+	// whenever we recieve a packet, identify the type and then treat it appropriately 
+	message(packet) {
+		packet = this.protocol.decode(packet);
+		switch (packet.shift()) {
+			
+		}
+	}
+
+	// whenever we open a socket log it
+	open() {
+		console.log("Socket connected");
+	}
+
+	// whenever we get an error log it
+	error(error) {
+		console.error(error);
+	}
+
+	// whenever we get our socket closed for any reason, make sure we log it
+	close(reason) {
+		console.log("Socket closed");
+		console.log(reason);
+	}
+}
+let socket = new Socket();
+
+// attempt to host lobby
+elm.attemptHost = document.getElementById("attempthost");
+elm.attemptHost.addEventListener("click", () => {
+  swapPages("gamepage", "typenamepage");
+});
+
