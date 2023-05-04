@@ -175,56 +175,28 @@ select {
   will-change: transform;
 }
 
-.spinx {
+#spinx {
   position: absolute;
-  top: 50vh;
-  right: 5vh;
+  left: calc(50vw - 10vh);
+  top: 40vh;
   width: 20vh;
   height: 20vh;
-  /*background-color: var(--border);*/
-  opacity: 0.8;
+  opacity: 0.5;
 }
-.spinx:hover {
-  /*background-color: var(--backred);*/
+#spinx:hover {
   opacity: 1;
 }
-.spinx:before, .close:after {
+#spinx:before, #spinx:after {
   position: absolute;
-  left: 5vh;
-  content: ' ';
-  height: 20vh;
-  width: 2vh;
-  background-color: var(--border);
-}
-.spinx:before {
-  transform: rotate(45deg);
-}
-.spinx:after {
-  transform: rotate(-45deg);
-}
-
-.close {
-  position: absolute;
-  right: 45vw;
-  top: 40vh;
-  width: 10vh;
-  height: 10vh;
-  opacity: 0.3;
-}
-.close:hover {
-  opacity: 1;
-}
-.close:before, .close:after {
-  position: absolute;
-  left: 0;
+  left: 9vh;
   content: ' ';
   height: 20vh;
   width: 2vh;
   background-color: var(--backred);
 }
-.close:before {
+#spinx:before {
   transform: rotate(45deg);
 }
-.close:after {
+#spinx:after {
   transform: rotate(-45deg);
 }

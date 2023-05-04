@@ -68,3 +68,9 @@ elm.findButton = document.getElementById("findbutton");
 elm.findButton.addEventListener("click", () => {
   swapPages("waitingpage", "frontpage");
 });
+
+// find page x button
+elm.spinXButton = document.getElementById("spinx");
+elm.spinXButton.addEventListener("click", () => {
+  swapPages("frontpage", "waitingpage");
+});
