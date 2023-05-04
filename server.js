@@ -43,6 +43,16 @@ class Lobby {
   addPlayer(player) {
     this.players.push(player);
   }
+  
+  checkfor(playersocket, removing) {
+    for (let p of this.players) if (p.socket == playersocket) {
+      if (removing) {
+        this.players.splice(this.players.indexOf(p), 1);
+        console.log(`player removed from lobby with id ${this.id}. ${this.players.length} players left`);
+      }
+      return p;
+    }
+  }
 }
 
 class Player {
@@ -125,7 +135,8 @@ const sockets = {
 
 		// when a socket closes, pop the player and all their children before removing them
     close(reason = "Maybe check your internet connection?") {
-      
+      for (let l of lobbies) l.checkfor(this, true);
+      for (let l = lobbies.length - 1; l >= 0; l--) if (lobbies[l].players.length < 1) lobbies.splice(l, 1);
     }
 
 		// send data to a client
@@ -174,6 +185,8 @@ app.get("", (req, res) => {
 
 //go through our lobbies
 function update() {
+  for (let l = lobbies.length - 1; l >= 0; l--) if (lobbies[l].players.length < 1) lobbies.splice(l, 1);
+  
   for (let l of lobbies) {
     let playernames = [];
     for (let p of l.players) playernames.push(p.name);

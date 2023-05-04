@@ -337,7 +337,7 @@ select {
   height: 15vh;
   left: 5vw;
   top: 75vh;
-  padding-top: 6vh;
+  padding-top: 3vh;
   border-width: 1vmin;
   border-color: var(--border);
   border-style: solid;

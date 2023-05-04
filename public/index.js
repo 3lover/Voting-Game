@@ -181,7 +181,12 @@ class Socket {
       case "hoststatus": {
         if (serverdata.host == packet[0]) break;
         serverdata.host = packet[0];
-        if (serverdata.host) 
+        if (serverdata.host) {
+          elm.startGameButton.innerHTML = "Let's Vote!";
+        }
+        else {
+          elm.startGameButton.innerHTML = "Waiting for Host";
+        }
           
         break;
       }
