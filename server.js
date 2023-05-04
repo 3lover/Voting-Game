@@ -16,10 +16,11 @@ class Lobby {
   constructor(host, id) {
     this.players = [host];
     this.id = this.validId(id);
+    console.log(`lobby created with ID ${this.id}`)
   }
   
   validId(preferance) {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-+"; //base64
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let testedid = preferance;
     for (let i = 0; i < 999; i++) {
       for (let l of lobbies) if (l != this && l.id == testedid) {
@@ -28,6 +29,7 @@ class Lobby {
         continue;
       }
     }
+    return testedid;
   }
   
   send(data = []) {
