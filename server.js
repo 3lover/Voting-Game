@@ -10,6 +10,44 @@ const http = require('http');
 const server = http.createServer();
 const port = 3000;
 
+let lobbies = [];
+
+class Lobby {
+  constructor(host, id) {
+    this.players = [host];
+    this.id = this.validId(id);
+  }
+  
+  validId(preferance) {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-+"; //base64
+    let testedid = preferance;
+    for (let i = 0; i < 999; i++) {
+      for (let l of lobbies) if (l != this && l.id == testedid) {
+	      testedid = "";
+		    for (let i = 0; i < 4; i++) testedid += chars.charAt(Math.floor(Math.random() * chars.length));
+        continue;
+      }
+    }
+  }
+  
+  send(data = []) {
+    for (let p of this.players) p.talk()
+  }
+}
+
+class Player {
+  constructor(socket, name) {
+    this.socket = socket;
+    this.name = name;
+    this.color = 0;
+    this.points = 0;
+  }
+  
+  talk(data = []) {
+    this.socket.talk
+  }
+}
+
 // setup the websockets we will be using in order to send data from the server to client
 const sockets = {
   tally: 1,
@@ -42,6 +80,11 @@ const sockets = {
         case "connectionCheck": {
           this.talk(["connectionConfirmed"]);
 					break;
+        }
+        case "host": {
+          let p = new Player(this, packet[1]);
+          lobbies.push(new Lobby(p, packet[0]));
+          break;
         }
       }
     }
@@ -94,3 +137,12 @@ app.use(express.static("public"));
 app.get("", (req, res) => {
 	res.sendFile(__dirname + "/public/index.html");
 });
+
+//go through our lobbies
+function update() {
+  for (let l of lobbies) {
+    for (let p of l.players) {
+      p.send();
+    }
+  }
+}

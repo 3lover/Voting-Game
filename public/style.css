@@ -127,7 +127,6 @@ body {
   margin: 1vmin;
 }
 .nameicon:hover {
-  background-color: var(--buttonhover);
   color: var(--backred);
 }
 
