@@ -175,8 +175,9 @@ function update() {
     for (let p of l.players) playernames.push(p.name);
     
     l.send(["gameupdate", {
-      players: playernames
+      players: playernames,
     }]);
+    l.hd()
   }
 }
 setInterval(update, 200);

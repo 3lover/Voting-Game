@@ -1,5 +1,6 @@
 const serverdata = {
-  players: []
+  players: [],
+  host: false
 }
 const elm = {};
 
@@ -174,6 +175,10 @@ class Socket {
         }
         break;
       }
+      case "hoststatus": {
+        serverdata.host = true;
+        break;
+      }
 		}
 	}
 
@@ -197,9 +202,14 @@ let socket = new Socket();
 
 // attempt to host lobby
 elm.hostGameID = document.getElementById("hostgameid");
+elm.hostGameID.value = localStorage.getItem("gameid") ?? "";
 elm.hostGameNickname =  document.getElementById("hostgamenickname");
+elm.hostGameNickname.value = localStorage.getItem("gamenickname") ?? "";
 elm.attemptHost = document.getElementById("attempthost");
 elm.attemptHost.addEventListener("click", () => {
+  localStorage.setItem("gameid", elm.hostGameID.value);
+  localStorage.setItem("gamenickname", elm.hostGameNickname.value);
+  
   socket.checkSocketStatus(200, 20, () => {
     socket.talk(["host", elm.hostGameID.value, elm.hostGameNickname.value])
     swapPages("gamepage", "hostinfopage");
@@ -210,9 +220,14 @@ elm.attemptHost.addEventListener("click", () => {
 
 // attempt to join lobby
 elm.joinGameID = document.getElementById("joingameid");
+elm.joinGameID.value = localStorage.getItem("gameid") ?? "";
 elm.joinGameNickname = document.getElementById("joingamenickname");
+elm.joinGameNickname.value = localStorage.getItem("gamenickname") ?? "";
 elm.attemptJoin = document.getElementById("attemptjoin");
 elm.attemptJoin.addEventListener("click", () => {
+  localStorage.setItem("gameid", elm.joinGameID.value);
+  localStorage.setItem("gamenickname", elm.joinGameNickname.value);
+  
   socket.checkSocketStatus(200, 20, () => {
     socket.talk(["join", elm.joinGameID.value, elm.joinGameNickname.value])
     swapPages("gamepage", "typenamepage");
