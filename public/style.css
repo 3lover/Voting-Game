@@ -5,6 +5,7 @@
   --buttonhover: #dddddd;
   --buttonclick: #aaaaaa;
   --pageselect: #dddddd;
+  --backred: #ff0000
 }
 
 * {
@@ -173,12 +174,31 @@ select {
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
 }
-.spintext {
+
+.spinx {
   position: absolute;
-  top: 47.5vh;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 5vh;
-  background-color: transparent;
+  top: 50vh;
+  left: 50vw;
+  width: 20vh;
+  height: 20vh;
+  /*background-color: var(--border);*/
+  opacity: 0.8;
+}
+.spinx:hover {
+  /*background-color: var(--backred);*/
+  opacity: 1;
+}
+.spinx:before, .close:after {
+  position: absolute;
+  left: 5vh;
+  content: ' ';
+  height: 20vh;
+  width: 2vh;
+  background-color: var(--border);
+}
+.spinx:before {
+  transform: rotate(45deg);
+}
+.spinx:after {
+  transform: rotate(-45deg);
 }
