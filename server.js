@@ -39,7 +39,10 @@ const sockets = {
     message(packet) {
       packet = sockets.protocol.decode(packet);
 			switch (packet.shift()) {
-          
+        case "connectionCheck": {
+          this.talk(["connectionConfirmed"]);
+					break;
+        }
       }
     }
 

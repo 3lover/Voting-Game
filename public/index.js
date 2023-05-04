@@ -137,7 +137,7 @@ class Socket {
   checkSocketStatus(pingtime, intervalsleft, callbackpositive, callbacknegative, first = true) {
     if (first) {
       this.connected = false;
-      this.talk(["you there?"]);
+      this.talk(["connectionCheck"]);
     }
     if (this.connected) {
       callbackpositive();
@@ -161,7 +161,9 @@ class Socket {
 	message(packet) {
 		packet = this.protocol.decode(packet);
 		switch (packet.shift()) {
-			
+      case "connectionConfirmed": {
+        this.connected = true;
+      }
 		}
 	}
 
@@ -186,6 +188,10 @@ let socket = new Socket();
 // attempt to host lobby
 elm.attemptHost = document.getElementById("attempthost");
 elm.attemptHost.addEventListener("click", () => {
-  swapPages("gamepage", "typenamepage");
+  socket.checkSocketStatus(200, 20, () => {
+    swapPages("gamepage", "typenamepage");
+  }, () => {
+    //swapPages("gamepage", "typenamepage");
+  });
 });
 

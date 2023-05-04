@@ -88,6 +88,27 @@ body {
   background-color: transparent;
 }
 
+#gamepagetitle {
+  font-size: 8vmin;
+  text-align: center;
+  width: 60vw;
+  height: 10vh;
+  top: 5vh;
+  border-style: solid;
+  border-color: var(--border);
+  border-width: 0.5vmin;
+}
+#gamepagesettingbox {
+  width: 40vw;
+  height: 80vh;
+  left: 60vw;
+  top: 5vh;
+  border-style: solid;
+  border-color: var(--border);
+  border-width: 0.5vmin;
+  overflow-y: scroll;
+}
+
 h1.titletext {
   font-size: 8vmin;
   width: 100vw;
