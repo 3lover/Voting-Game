@@ -31,7 +31,7 @@ class Lobby {
   }
   
   send(data = []) {
-    for (let p of this.players) p.talk()
+    for (let p of this.players) p.talk(data);
   }
 }
 
@@ -44,7 +44,7 @@ class Player {
   }
   
   talk(data = []) {
-    this.socket.talk
+    this.socket.talk(data);
   }
 }
 
@@ -141,8 +141,7 @@ app.get("", (req, res) => {
 //go through our lobbies
 function update() {
   for (let l of lobbies) {
-    for (let p of l.players) {
-      p.send();
-    }
+    l.send(["gameupdate", l.players])
   }
 }
+setInterval(update, 200);

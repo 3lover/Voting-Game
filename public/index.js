@@ -164,6 +164,10 @@ class Socket {
       case "connectionConfirmed": {
         this.connected = true;
       }
+      case "gameupdate": {
+        
+        break;
+      }
 		}
 	}
 
