@@ -168,8 +168,7 @@ class Socket {
         this.connected = true;
       }
       case "gameupdate": {
-        if (packet[0].players != serverdata.players) {
-          socket.talk(["log", ["recieved", packet[0].players], ["current", serverdata.players]])
+        if (packet[0].players.length != serverdata.players.length) {
           serverdata.players = packet[0].players;
           createNames(serverdata.players);
         }
@@ -203,9 +202,22 @@ elm.attemptHost = document.getElementById("attempthost");
 elm.attemptHost.addEventListener("click", () => {
   socket.checkSocketStatus(200, 20, () => {
     socket.talk(["host", elm.hostGameID.value, elm.hostGameNickname.value])
+    swapPages("gamepage", "hostinfopage");
+  }, () => {
+    
+  });
+});
+
+// attempt to join lobby
+elm.joinGameID = document.getElementById("joingameid");
+elm.joinGameNickname = document.getElementById("joingamenickname");
+elm.attemptJoin = document.getElementById("attemptjoin");
+elm.attemptJoin.addEventListener("click", () => {
+  socket.checkSocketStatus(200, 20, () => {
+    socket.talk(["join", elm.joinGameID.value, elm.joinGameNickname.value])
     swapPages("gamepage", "typenamepage");
   }, () => {
-    //swapPages("gamepage", "typenamepage");
+    
   });
 });
 

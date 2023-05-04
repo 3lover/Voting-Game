@@ -33,6 +33,10 @@ class Lobby {
   send(data = []) {
     for (let p of this.players) p.talk(data);
   }
+  
+  addPlayer(player) {
+    this.players.push(player);
+  }
 }
 
 class Player {
@@ -90,6 +94,22 @@ const sockets = {
         case "host": {
           let p = new Player(this, packet[1]);
           lobbies.push(new Lobby(p, packet[0]));
+          break;
+        }
+        case "join": {
+          let lobby = false;
+          for (let l of lobbies) if (l.id == packet[0]) {
+            lobby = l;
+            break;
+          }
+          if (!lobby) {
+            this.talk(["failedjoin"]);
+            console.log(`player tried to join ${packet[0]} but it does not exist`);
+            return;
+          }
+          
+          let p = new Player(this, packet[1]);
+          lobby.addPlayer(p);
           break;
         }
       }
