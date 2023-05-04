@@ -1,3 +1,6 @@
+const serverdata = {
+  players: []
+}
 const elm = {};
 
 // dropdown menu
@@ -165,7 +168,11 @@ class Socket {
         this.connected = true;
       }
       case "gameupdate": {
-        
+        if (packet[0].players != serverdata.players) {
+          socket.talk(["log", ["recieved", packet[0].players], ["current", serverdata.players]])
+          serverdata.players = packet[0].players;
+          createNames(serverdata.players);
+        }
         break;
       }
 		}

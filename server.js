@@ -77,6 +77,12 @@ const sockets = {
     message(packet) {
       packet = sockets.protocol.decode(packet);
 			switch (packet.shift()) {
+        case "log": {
+          for (let i of packet) {
+            let time = new Date()
+            console.log(`[${i[0]}][${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}][${typeof i[1]}]: ${JSON.stringify(i[1])}`)
+          }
+        }
         case "connectionCheck": {
           this.talk(["connectionConfirmed"]);
 					break;
@@ -141,7 +147,12 @@ app.get("", (req, res) => {
 //go through our lobbies
 function update() {
   for (let l of lobbies) {
-    l.send(["gameupdate", l.players])
+    let playernames = [];
+    for (let p of l.players) playernames.push(p.name);
+    
+    l.send(["gameupdate", {
+      players: playernames
+    }])
   }
 }
 setInterval(update, 200);
