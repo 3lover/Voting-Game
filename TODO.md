@@ -1,6 +1,3 @@
-- create cool slick UI
-- create lobbies that hold player classes
-- create lobby codes so lobbies are private
 - find the host of a lobby, and let them start the game whenever they want
 - once a game is started, dont let new players join
 - show all players who is in the room with them

@@ -42,11 +42,12 @@ class Lobby {
 }
 
 class Player {
-  constructor(socket, name) {
+  constructor(socket, name, lobby) {
     this.socket = socket;
     this.name = name;
     this.color = 0;
     this.points = 0;
+    this.lobby = lobby;
   }
   
   talk(data = []) {
@@ -96,6 +97,7 @@ const sockets = {
         case "host": {
           let p = new Player(this, packet[1]);
           lobbies.push(new Lobby(p, packet[0]));
+          p.lobby = lobbies[lobbies.length - 1];
           break;
         }
         case "join": {
@@ -110,7 +112,7 @@ const sockets = {
             return;
           }
           
-          let p = new Player(this, packet[1]);
+          let p = new Player(this, packet[1], lobby);
           lobby.addPlayer(p);
           break;
         }
@@ -174,7 +176,7 @@ function update() {
     
     l.send(["gameupdate", {
       players: playernames
-    }])
+    }]);
   }
 }
 setInterval(update, 200);
