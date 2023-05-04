@@ -79,6 +79,12 @@ body {
   width: 100%;
 }
 
+.settingdecriptor {
+  font-size: 8vmin;
+  text-align: center;
+  width: 100%;
+}
+
 h1.titletext {
   font-size: 8vmin;
   width: 100vw;
@@ -129,6 +135,12 @@ select {
   display: none;
 }
 #waitingpage {
+  display: none;
+}
+#typenamepage {
+  display: none;
+}
+#hostinfopage {
   display: none;
 }
 
@@ -210,4 +222,28 @@ select {
 }
 #spinx:after {
   transform: rotate(-45deg);
+}
+
+#joingameid {
+  width: 80%;
+  height: 15vh;
+  left: 10%;
+  top: 20vh;
+  text-align: center;
+  font-size: 6vmin;
+  border-width: 0.5vmin;
+  border-color: var(--border);
+  border-style: solid;
+}
+
+#joingamenickname {
+  width: 80%;
+  height: 15vh;
+  left: 10%;
+  top: 40vh;
+  text-align: center;
+  font-size: 6vmin;
+  border-width: 0.5vmin;
+  border-color: var(--border);
+  border-style: solid;
 }

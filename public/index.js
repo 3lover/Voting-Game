@@ -49,9 +49,8 @@ elm.pageTransitions.addEventListener("change", () => {
 elm.leftSlide = document.getElementById("lefttransitionpanel");
 elm.rightSlide = document.getElementById("righttransitionpanel")
 function swapPages(open = "id", close = "id") {
-  if (settingbarDropped) elm.settingbar.style.top = "-40vh";
-  else elm.settingbar.style.top = "0vh";
-  settingbarDropped = !settingbarDropped;
+  elm.settingbar.style.top = "-40vh";
+  settingbarDropped = false;
   
   if (noTransitions) {
     elm.leftSlide.style.transition = "0";
@@ -77,13 +76,13 @@ function swapPages(open = "id", close = "id") {
 // lobby hosting
 elm.hostButton = document.getElementById("hostbutton");
 elm.hostButton.addEventListener("click", () => {
-  swapPages("gamepage", "frontpage");
+  swapPages("hostinfopage", "frontpage");
 });
 
 // lobby joining
 elm.joinButton = document.getElementById("joinbutton");
 elm.joinButton.addEventListener("click", () => {
-  swapPages("gamepage", "frontpage");
+  swapPages("typenamepage", "frontpage");
 });
 
 // lobby finding
