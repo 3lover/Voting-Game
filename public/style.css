@@ -5,7 +5,7 @@
   --buttonhover: #dddddd;
   --buttonclick: #aaaaaa;
   --pageselect: #dddddd;
-  --backred: #ff0000
+  --backred: #ff0000;
 }
 
 * {
@@ -22,6 +22,7 @@
   user-select: none;
   font-family: "Times New Roman", Times, sans-serif;
   color: var(--text);
+  box-sizing: border-box;
 }
 
 body {
@@ -79,10 +80,12 @@ body {
   width: 100%;
 }
 
-.settingdecriptor {
-  font-size: 8vmin;
+.settingdescriptor {
+  font-size: 5vmin;
   text-align: center;
   width: 100%;
+  top: 15vh;
+  background-color: transparent;
 }
 
 h1.titletext {
@@ -235,12 +238,22 @@ select {
   border-color: var(--border);
   border-style: solid;
 }
-
 #joingamenickname {
   width: 80%;
   height: 15vh;
   left: 10%;
   top: 40vh;
+  text-align: center;
+  font-size: 6vmin;
+  border-width: 0.5vmin;
+  border-color: var(--border);
+  border-style: solid;
+}
+#attemptjoin {
+  width: 80%;
+  height: 15vh;
+  left: 10%;
+  top: 60vh;
   text-align: center;
   font-size: 6vmin;
   border-width: 0.5vmin;
