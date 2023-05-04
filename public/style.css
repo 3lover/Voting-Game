@@ -178,7 +178,7 @@ select {
 .spinx {
   position: absolute;
   top: 50vh;
-  left: 50vw;
+  right: 5vh;
   width: 20vh;
   height: 20vh;
   /*background-color: var(--border);*/
@@ -200,5 +200,31 @@ select {
   transform: rotate(45deg);
 }
 .spinx:after {
+  transform: rotate(-45deg);
+}
+
+.close {
+  position: absolute;
+  right: 45vw;
+  top: 40vh;
+  width: 10vh;
+  height: 10vh;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 0;
+  content: ' ';
+  height: 20vh;
+  width: 2vh;
+  background-color: var(--backred);
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
   transform: rotate(-45deg);
 }
