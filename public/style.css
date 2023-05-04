@@ -201,16 +201,37 @@ select {
   will-change: transform;
 }
 
-#spinx {
+.x {
   position: absolute;
+  left: calc(50vw - 2.5vh);
+  top: 40vh;
+  width: 5vh;
+  height: 5vh;
+  opacity: 0.5;
+}
+.x:hover {
+  opacity: 1;
+}
+.x:before, .x:after {
+  position: absolute;
+  left: 2.5vh;
+  content: ' ';
+  height: 5vh;
+  width: 0.5vh;
+  background-color: var(--backred);
+}
+.x:before {
+  transform: rotate(45deg);
+}
+.x:after {
+  transform: rotate(-45deg);
+}
+
+#spinx {
   left: calc(50vw - 10vh);
   top: 40vh;
   width: 20vh;
   height: 20vh;
-  opacity: 0.5;
-}
-#spinx:hover {
-  opacity: 1;
 }
 #spinx:before, #spinx:after {
   position: absolute;
@@ -220,12 +241,12 @@ select {
   width: 2vh;
   background-color: var(--backred);
 }
-#spinx:before {
-  transform: rotate(45deg);
+
+#typex {
+  top: 40vh;
+  left: calc(40vw - 2.5vh);
 }
-#spinx:after {
-  transform: rotate(-45deg);
-}
+
 
 #joingameid {
   width: 80%;
