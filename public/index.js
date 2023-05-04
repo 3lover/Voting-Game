@@ -99,3 +99,15 @@ elm.spinXButton.addEventListener("click", () => {
   waitingForLobby = false;
   swapPages("frontpage", "waitingpage");
 });
+
+// type name page x button
+elm.typeXButton = document.getElementById("typex");
+elm.typeXButton.addEventListener("click", () => {
+  swapPages("frontpage", "typenamepage");
+});
+
+// host info page x button
+elm.hostXButton = document.getElementById("typex");
+elm.hostXButton.addEventListener("click", () => {
+  swapPages("frontpage", "hostinfopage");
+});
