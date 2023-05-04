@@ -100,7 +100,17 @@ body {
 }
 #gamepagesettingbox {
   width: 40vw;
-  height: 80vh;
+  height: 90vh;
+  left: 60vw;
+  top: 5vh;
+  border-style: solid;
+  border-color: var(--border);
+  border-width: 0.5vmin;
+  overflow-y: scroll;
+}
+#gamepagenamebox {
+  width: 40vw;
+  height: 90vh;
   left: 60vw;
   top: 5vh;
   border-style: solid;

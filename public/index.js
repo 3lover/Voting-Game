@@ -115,7 +115,7 @@ elm.hostXButton.addEventListener("click", () => {
 // our websocket
 class Socket {
 	constructor() {
-		this.socket = new WebSocket("wss://votinggame.glitch.me/ws");
+		this.socket = new WebSocket("wss://votegame.glitch.me/ws");
 		this.socket.binaryType = "arraybuffer";
 		this.protocol = (() => {
 			const encoder = new TextEncoder().encode.bind(new TextEncoder());
