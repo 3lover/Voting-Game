@@ -36,6 +36,10 @@ class Lobby {
     for (let p of this.players) p.talk(data);
   }
   
+  sendhost() {
+    for (let p = 0; p < this.players.length; p++) this.players[p].talk(["hoststatus", p === 0]);
+  }
+  
   addPlayer(player) {
     this.players.push(player);
   }
@@ -174,10 +178,10 @@ function update() {
     let playernames = [];
     for (let p of l.players) playernames.push(p.name);
     
+    l.sendhost()
     l.send(["gameupdate", {
       players: playernames,
     }]);
-    l.hd()
   }
 }
 setInterval(update, 200);

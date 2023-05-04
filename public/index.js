@@ -116,6 +116,8 @@ elm.hostXButton.addEventListener("click", () => {
   swapPages("frontpage", "hostinfopage");
 });
 
+elm.startGameButton = document.getElementById("startgamebutton");
+elm.playerCount = document.getElementById("playercount");
 // our websocket
 class Socket {
 	constructor() {
@@ -172,11 +174,15 @@ class Socket {
         if (packet[0].players.length != serverdata.players.length) {
           serverdata.players = packet[0].players;
           createNames(serverdata.players);
+          elm.playerCount.innerHTML = packet[0].players.length;
         }
         break;
       }
       case "hoststatus": {
-        serverdata.host = true;
+        if (serverdata.host == packet[0]) break;
+        serverdata.host = packet[0];
+        if (serverdata.host) 
+          
         break;
       }
 		}

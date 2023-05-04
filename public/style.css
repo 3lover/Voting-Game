@@ -331,3 +331,26 @@ select {
   border-color: var(--border);
   border-style: solid;
 }
+
+#playercount {
+  width: 10vw;
+  height: 15vh;
+  left: 5vw;
+  top: 75vh;
+  padding-top: 6vh;
+  border-width: 1vmin;
+  border-color: var(--border);
+  border-style: solid;
+  font-size: 6vh;
+  text-align: center;
+}
+#startgamebutton {
+  width: 40vw;
+  height: 15vh;
+  left: 15vw;
+  top: 75vh;
+  border-width: 1vmin;
+  border-color: var(--border);
+  border-style: solid;
+  font-size: 8vmin;
+}
