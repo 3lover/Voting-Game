@@ -1,6 +1,6 @@
 const serverdata = {
   players: [],
-  host: false
+  host: true
 }
 const elm = {};
 

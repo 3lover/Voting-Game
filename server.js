@@ -52,16 +52,18 @@ class Lobby {
       }
       return p;
     }
+    return -1;
   }
 }
 
 class Player {
-  constructor(socket, name, lobby) {
+  constructor(socket, name, host, lobby) {
     this.socket = socket;
     this.name = name;
     this.color = 0;
     this.points = 0;
     this.lobby = lobby;
+    this.host = host;
   }
   
   talk(data = []) {
@@ -109,7 +111,7 @@ const sockets = {
 					break;
         }
         case "host": {
-          let p = new Player(this, packet[1]);
+          let p = new Player(this, packet[1], true);
           lobbies.push(new Lobby(p, packet[0]));
           p.lobby = lobbies[lobbies.length - 1];
           break;
@@ -126,8 +128,18 @@ const sockets = {
             return;
           }
           
-          let p = new Player(this, packet[1], lobby);
+          let p = new Player(this, packet[1], false, lobby);
           lobby.addPlayer(p);
+          break;
+        }
+        case "startgame": {
+          let player = false;
+          for (let l of lobbies) if (l.checkfor(this) !== -1) player = l.checkfor(this);
+          if (!player) break;
+          if (!player.host) break;
+          
+          player.lobby.startRound();
+          
           break;
         }
       }
