@@ -17,6 +17,7 @@ class Lobby {
     this.players = [host];
     this.id = this.validId(id);
     this.ingame = false;
+    this.votingdone = false;
     console.log(`lobby created with ID ${this.id}`)
   }
   
@@ -67,6 +68,7 @@ class Lobby {
     this.send(["startingRound"]);
     for (let p of this.players) p.vote = null;
     this.ingame = true;
+    this.votingdone = false;
   }
   
   checkvotes() {
@@ -81,8 +83,7 @@ class Lobby {
     for (let p of this.players) p.vote.votes++;
     let votes = new Array(this.players.length).fill(0);
     for (let p = 0; p < this.players.length; p++) for (let v of this.players) if (this.players[p] == v.vote) votes[p]++;
-    console.log(votes);
-    this.send(["yourvotes", votes]);
+    this.send(["votes", votes]);
   }
 }
 
@@ -251,7 +252,8 @@ function update() {
   for (let l = lobbies.length - 1; l >= 0; l--) if (lobbies[l].players.length < 1) lobbies.splice(l, 1);
   
   for (let l of lobbies) {
-    if (l.ingame && l.checkvotes()) {
+    if (l.ingame && !l.votingdone && l.checkvotes()) {
+      l.votingdone = true;
       l.tallyvotes();
     }
     

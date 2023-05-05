@@ -1,6 +1,7 @@
 const serverdata = {
   players: [],
-  host: true
+  host: true,
+  votes: []
 }
 const elm = {};
 
@@ -211,8 +212,9 @@ class Socket {
         }
         break;
       }
-      case "yourvotes": {
-        
+      case "votes": {
+        serverdata.votes = packet[0];
+        createNameplates(serverdata.players, serverdata.votes);
       } 
 		}
 	}
@@ -292,21 +294,21 @@ function createNames(names = []) {
 
 // create nameplates when votng
 elm.playerHolder = document.getElementById("playerholder");
-function createNameplates(names = []) {
+function createNameplates(names = [], votes = null) {
   let child = elm.playerHolder.lastElementChild; 
   while (child) {
     elm.playerHolder.removeChild(child);
     child = elm.playerHolder.lastElementChild;
   }
-  for (let n of names) {
+  for (let n = 0; n < names.length; n++) {
 		const box = document.createElement("div");
     box.classList.add("playerslide");
-    const text = document.createTextNode(n);
+    const text = document.createTextNode(names[n] + (votes === null ? `` : ` recieved ${votes[n]} votes`));
 
 		box.appendChild(text);
     
     box.addEventListener("click", () => {
-      socket.talk(["vote", n]);
+      socket.talk(["vote", names[n]]);
     });
 
 		elm.playerHolder.appendChild(box);
