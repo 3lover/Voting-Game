@@ -191,6 +191,7 @@ class Socket {
         break;
       }
       case "startinground": {
+        swap
         break;
       }
 		}
