@@ -211,6 +211,9 @@ class Socket {
         }
         break;
       }
+      case "yourvotes": {
+        
+      } 
 		}
 	}
 

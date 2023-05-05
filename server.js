@@ -71,8 +71,15 @@ class Lobby {
   
   checkvotes() {
     for (let p of this.players) {
-      if (p.vote == null return)
+      if (p.vote == null) return false;
     }
+    return true;
+  }
+  
+  tallyvotes() {
+    for (let p of this.players) p.votes = 0;
+    for (let p of this.players) p.vote.votes++;
+    for (let p of this.players) p.talk(["yourvotes", p.votes]);
   }
 }
 
@@ -85,6 +92,7 @@ class Player {
     this.lobby = lobby;
     this.host = host;
     this.vote = null;
+    this.votes = 0;
   }
   
   talk(data = []) {
@@ -240,7 +248,9 @@ function update() {
   for (let l = lobbies.length - 1; l >= 0; l--) if (lobbies[l].players.length < 1) lobbies.splice(l, 1);
   
   for (let l of lobbies) {
-    if (l.ingame) l.checkvotes();
+    if (l.ingame && l.checkvotes()) {
+      l.tallyvotes();
+    }
     
     let playernames = [];
     for (let p of l.players) playernames.push(p.name);
