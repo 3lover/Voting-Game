@@ -54,6 +54,10 @@ class Lobby {
     }
     return -1;
   }
+  
+  startRound() {
+    this.send(["startingRound"]);
+  }
 }
 
 class Player {

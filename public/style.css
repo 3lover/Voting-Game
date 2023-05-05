@@ -188,6 +188,9 @@ select {
 #hostinfopage {
   display: none;
 }
+#playpage {
+  display: none;
+}
 
 .centralcontainer {
   width: 50vw;
@@ -353,4 +356,14 @@ select {
   border-color: var(--border);
   border-style: solid;
   font-size: 8vmin;
+}
+
+#playerholder {
+  width: 100vw;
+  height: 90vh;
+  left: 0;
+  top: 10vh;
+  border-width: 0.5vmin;
+  border-color: var(--border);
+  border-style: solid;
 }
