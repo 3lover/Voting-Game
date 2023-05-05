@@ -16,6 +16,7 @@ class Lobby {
   constructor(host, id) {
     this.players = [host];
     this.id = this.validId(id);
+    this.ingame = false;
     console.log(`lobby created with ID ${this.id}`)
   }
   
@@ -55,8 +56,23 @@ class Lobby {
     return -1;
   }
   
+  matchname(name) {
+    for (let p of this.players) if (p.name == name) {
+      return p;
+    }
+    return -1;
+  }
+  
   startRound() {
     this.send(["startingRound"]);
+    for (let p of this.players) p.vote = null;
+    this.ingame = true;
+  }
+  
+  checkvotes() {
+    for (let p of this.players) {
+      if (p.vote == null return)
+    }
   }
 }
 
@@ -68,6 +84,7 @@ class Player {
     this.points = 0;
     this.lobby = lobby;
     this.host = host;
+    this.vote = null;
   }
   
   talk(data = []) {
@@ -146,6 +163,25 @@ const sockets = {
           
           break;
         }
+        case "vote": {
+          let lobby = false;
+          let voter = false;
+          for (let l of lobbies) if (l.checkfor(this) !== -1) {
+            lobby = l;
+            voter = l.checkfor(this);
+          }
+          if (!lobby) break;
+          
+          let voted = lobby.matchname(packet[0]);
+          if (voted == -1) break;
+          
+          if (voter.vote != null) break;
+          voter.vote = voted;
+          
+          this.talk(["voted", packet[0]]);
+          
+          break;
+        }
       }
     }
 
@@ -204,6 +240,8 @@ function update() {
   for (let l = lobbies.length - 1; l >= 0; l--) if (lobbies[l].players.length < 1) lobbies.splice(l, 1);
   
   for (let l of lobbies) {
+    if (l.ingame) l.checkvotes();
+    
     let playernames = [];
     for (let p of l.players) playernames.push(p.name);
     

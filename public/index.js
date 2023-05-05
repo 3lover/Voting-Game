@@ -202,6 +202,15 @@ class Socket {
         swapPages("playpage", "gamepage");
         break;
       }
+      case "voted": {
+        for (let c of elm.playerHolder.children) {
+          if (c.innerHTML == packet[0]) {
+            c.style.backgroundColor = "var(--backred)";
+            break;
+          }
+        }
+        break;
+      }
 		}
 	}
 
@@ -294,7 +303,6 @@ function createNameplates(names = []) {
 		box.appendChild(text);
     
     box.addEventListener("click", () => {
-      box.
       socket.talk(["vote", n]);
     });
 
