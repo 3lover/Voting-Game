@@ -66,7 +66,11 @@ class Lobby {
   
   startRound() {
     this.send(["startingRound"]);
-    for (let p of this.players) p.vote = null;
+    for (let p of this.players) {
+      p.vote = null;
+      p.votes = 0;
+      p.guesses = [];
+    }
     this.ingame = true;
     this.votingdone = false;
   }
@@ -97,6 +101,7 @@ class Player {
     this.host = host;
     this.vote = null;
     this.votes = 0;
+    this.guesses = [];
   }
   
   talk(data = []) {
@@ -191,6 +196,27 @@ const sockets = {
           voter.vote = voted;
           
           this.talk(["voted", packet[0]]);
+          
+          break;
+        }
+        case "guessvoter": {
+          let lobby = false;
+          let guesser = false;
+          for (let l of lobbies) if (l.checkfor(this) !== -1) {
+            lobby = l;
+            guesser = l.checkfor(this);
+          }
+          if (!lobby) break;
+          
+          let guessed = lobby.matchname(packet[0]);
+          if (guessed == -1) break;
+          
+          if (guesser === guessed) break;
+          console.log(JSON.stringify(guesser.guesses))
+          if (guesser.guesses.length > guesser.votes) break;
+          guesser.guesses.push(guessed);
+          
+          this.talk(["guessed", packet[0]]);
           
           break;
         }

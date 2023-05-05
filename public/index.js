@@ -125,6 +125,7 @@ elm.startGameButton.addEventListener("click", () => {
 });
 
 elm.playerCount = document.getElementById("playercount");
+elm.voteText = document.getElementById("votetext");
 // our websocket
 class Socket {
 	constructor() {
@@ -215,7 +216,18 @@ class Socket {
       case "votes": {
         serverdata.votes = packet[0];
         createNameplates(serverdata.players, serverdata.votes);
-      } 
+        elm.voteText.innerHTML = "Guess Who Voted You!";
+        break;
+      }
+      case "guessed": {
+        for (let c = 0; c < serverdata.players.length; c++) {
+          if (serverdata.players[c] == packet[0]) {
+            elm.playerHolder.children[c].style.backgroundColor = "var(--backred)";
+            break;
+          }
+        }
+        break;
+      }
 		}
 	}
 
@@ -307,8 +319,13 @@ function createNameplates(names = [], votes = null) {
 
 		box.appendChild(text);
     
+    if (votes === null)
     box.addEventListener("click", () => {
       socket.talk(["vote", names[n]]);
+    });
+    else
+    box.addEventListener("click", () => {
+      socket.talk(["guessvoter", names[n]]);
     });
 
 		elm.playerHolder.appendChild(box);
