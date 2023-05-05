@@ -50,9 +50,11 @@ elm.pageTransitions.addEventListener("change", () => {
 });
 
 // page transitions
+let currentpage = "frontpage";
 elm.leftSlide = document.getElementById("lefttransitionpanel");
-elm.rightSlide = document.getElementById("righttransitionpanel")
+elm.rightSlide = document.getElementById("righttransitionpanel");
 function swapPages(open = "id", close = "id") {
+  currentpage = open;
   elm.settingbar.style.top = "-40vh";
   settingbarDropped = false;
   
@@ -117,11 +119,15 @@ elm.hostXButton.addEventListener("click", () => {
 });
 
 elm.startGameButton = document.getElementById("startgamebutton");
+elm.startGameButton.addEventListener("click", () => {
+  if (currentpage == "gamepage") socket.talk(["startgame"]);
+});
+
 elm.playerCount = document.getElementById("playercount");
 // our websocket
 class Socket {
 	constructor() {
-		this.socket = new WebSocket("wss://votegame.glitch.me/ws");
+		this.socket = new WebSocket("wss://vote-game.glitch.me/ws");
 		this.socket.binaryType = "arraybuffer";
 		this.protocol = (() => {
 			const encoder = new TextEncoder().encode.bind(new TextEncoder());
@@ -190,8 +196,9 @@ class Socket {
           
         break;
       }
-      case "startinground": {
-        swap
+      case "startingRound": {
+        if (currentpage == "gamepage");
+        swapPages("playpage", "gamepage");
         break;
       }
 		}
