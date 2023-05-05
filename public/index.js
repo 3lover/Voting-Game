@@ -200,8 +200,11 @@ class Socket {
         break;
       }
       case "startingRound": {
-        if (currentpage == "gamepage");
-        swapPages("playpage", "gamepage");
+        if (currentpage == "gamepage") swapPages("playpage", "gamepage");
+        else if (currentpage == "playpage") {
+          swapPages("gamepage", "playpage");
+          elm.voteText.innerHTML = "Place Your Votes!";
+        }
         break;
       }
       case "voted": {

@@ -89,6 +89,14 @@ class Lobby {
     for (let p = 0; p < this.players.length; p++) for (let v of this.players) if (this.players[p] == v.vote) votes[p]++;
     this.send(["votes", votes]);
   }
+  
+  checkguesses() {
+    let totalGuesses = 0;
+    for (let p of this.players) {
+      totalGuesses += p.guesses.length;
+    }
+    return totalGuesses >= this.players.length;
+  }
 }
 
 class Player {
@@ -193,6 +201,7 @@ const sockets = {
           if (voted == -1) break;
           
           if (voter.vote != null) break;
+          if (voter == voted) break;
           voter.vote = voted;
           
           this.talk(["voted", packet[0]]);
@@ -212,8 +221,7 @@ const sockets = {
           if (guessed == -1) break;
           
           if (guesser === guessed) break;
-          console.log(JSON.stringify(guesser.guesses))
-          if (guesser.guesses.length > guesser.votes) break;
+          if (guesser.guesses.length >= guesser.votes) break;
           guesser.guesses.push(guessed);
           
           this.talk(["guessed", packet[0]]);
@@ -281,6 +289,9 @@ function update() {
     if (l.ingame && !l.votingdone && l.checkvotes()) {
       l.votingdone = true;
       l.tallyvotes();
+    }
+    if (l.ingame && l.votingdone && l.checkguesses()) {
+      l.startRound();
     }
     
     let playernames = [];
