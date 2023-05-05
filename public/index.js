@@ -180,6 +180,7 @@ class Socket {
         if (packet[0].players.length != serverdata.players.length) {
           serverdata.players = packet[0].players;
           createNames(serverdata.players);
+          createNameplates(serverdata.players);
           elm.playerCount.innerHTML = packet[0].players.length;
         }
         break;
@@ -274,5 +275,29 @@ function createNames(names = []) {
 		box.appendChild(text);
 
 		elm.gamePageNameBox.appendChild(box);
+  }
+}
+
+// create nameplates when votng
+elm.playerHolder = document.getElementById("playerholder");
+function createNameplates(names = []) {
+  let child = elm.playerHolder.lastElementChild; 
+  while (child) {
+    elm.playerHolder.removeChild(child);
+    child = elm.playerHolder.lastElementChild;
+  }
+  for (let n of names) {
+		const box = document.createElement("div");
+    box.classList.add("playerslide");
+    const text = document.createTextNode(n);
+
+		box.appendChild(text);
+    
+    box.addEventListener("click", () => {
+      box.
+      socket.talk(["vote", n]);
+    });
+
+		elm.playerHolder.appendChild(box);
   }
 }
