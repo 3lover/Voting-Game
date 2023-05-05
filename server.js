@@ -79,7 +79,10 @@ class Lobby {
   tallyvotes() {
     for (let p of this.players) p.votes = 0;
     for (let p of this.players) p.vote.votes++;
-    for (let p of this.players) p.talk(["yourvotes", p.votes]);
+    let votes = new Array(this.players.length).fill(0);
+    for (let p = 0; p < this.players.length; p++) for (let v of this.players) if (this.players[p] == v.vote) votes[p]++;
+    console.log(votes);
+    this.send(["yourvotes", votes]);
   }
 }
 

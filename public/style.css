@@ -358,11 +358,20 @@ select {
   font-size: 8vmin;
 }
 
+#votetext {
+  font-size: 8vh;
+  width: 100vw;
+  top: 10vh;
+  height: 10vh;
+  border-width: 0.5vmin;
+  border-color: var(--border);
+  border-style: solid;
+}
 #playerholder {
   width: 100vw;
-  height: 90vh;
+  height: 80vh;
   left: 0;
-  top: 10vh;
+  top: 20vh;
   border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;
