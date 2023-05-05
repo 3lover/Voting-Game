@@ -204,6 +204,8 @@ class Socket {
         else if (currentpage == "playpage") {
           swapPages("gamepage", "playpage");
           elm.voteText.innerHTML = "Place Your Votes!";
+          createNames(serverdata.players);
+          createNameplates(serverdata.players);
         }
         break;
       }
