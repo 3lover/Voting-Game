@@ -110,15 +110,13 @@ class Lobby {
     let finalvotes = new Array(this.players.length).fill("");
     for (let i in finalvotes) finalvotes[i] = [];
     
-    for (let p = 0; p > this.players.length; p++) {
+    for (let p = 0; p < this.players.length; p++) {
       for (let v = 0; v < this.players.length; v++) {
         if (this.players[p] == this.players[v].vote) {
           finalvotes[p].push(v);
         }
-        else console.log()
       }
     }
-    console.log(JSON.stringify(finalvotes));
     this.send(["finalvotes", finalvotes]);
   }
 }

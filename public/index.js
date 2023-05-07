@@ -182,7 +182,7 @@ class Socket {
         if (packet[0].players.length != serverdata.players.length) {
           serverdata.players = packet[0].players;
           createNames(serverdata.players);
-          createNameplates(serverdata.players);
+          createNameplates(0, serverdata.players);
           elm.playerCount.innerHTML = packet[0].players.length;
         }
         break;
@@ -205,7 +205,7 @@ class Socket {
           swapPages("gamepage", "playpage");
           elm.voteText.innerHTML = "Place Your Votes!";
           createNames(serverdata.players);
-          createNameplates(serverdata.players);
+          createNameplates(0, serverdata.players);
         }
         break;
       }
@@ -220,7 +220,7 @@ class Socket {
       }
       case "votes": {
         serverdata.votes = packet[0];
-        createNameplates(serverdata.players, serverdata.votes);
+        createNameplates(1, serverdata.players, serverdata.votes);
         elm.voteText.innerHTML = "Guess Who Voted You!";
         break;
       }
@@ -232,6 +232,9 @@ class Socket {
           }
         }
         break;
+      }
+      case "finalvotes": {
+        createNameplates(2, serverdata.players, packet[0]);
       }
 		}
 	}
@@ -311,7 +314,7 @@ function createNames(names = []) {
 
 // create nameplates when votng
 elm.playerHolder = document.getElementById("playerholder");
-function createNameplates(names = [], votes = null) {
+function createNameplates(type = 0, names = [], votes = null) {
   let child = elm.playerHolder.lastElementChild; 
   while (child) {
     elm.playerHolder.removeChild(child);
@@ -320,15 +323,15 @@ function createNameplates(names = [], votes = null) {
   for (let n = 0; n < names.length; n++) {
 		const box = document.createElement("div");
     box.classList.add("playerslide");
-    const text = document.createTextNode(names[n] + (votes === null ? `` : ` recieved ${votes[n]} votes`));
+    const text = document.createTextNode(names[n] + (type === 0 ? `` : type === 1 ? ` recieved ${votes[n]} votes` : ` voted `));
 
 		box.appendChild(text);
     
-    if (votes === null)
+    if (type === 0)
     box.addEventListener("click", () => {
       socket.talk(["vote", names[n]]);
     });
-    else
+    else if (type === 1)
     box.addEventListener("click", () => {
       socket.talk(["guessvoter", names[n]]);
     });
