@@ -97,6 +97,17 @@ class Lobby {
     }
     return totalGuesses >= this.players.length;
   }
+  
+  endRound() {
+    for (let p of this.players) {
+      for (let v = 0; v < this.players.length; v++) {
+        const voter = this.players[v];
+        if (voter == p) continue;
+        if (voter.vote == p && !p.guesses.includes(voter)) break;
+        if (v == this.players.length - 1) p.points++;
+      }
+    }
+  }
 }
 
 class Player {
@@ -110,6 +121,7 @@ class Player {
     this.vote = null;
     this.votes = 0;
     this.guesses = [];
+    this.points = 0;
   }
   
   talk(data = []) {
@@ -286,12 +298,12 @@ function update() {
   for (let l = lobbies.length - 1; l >= 0; l--) if (lobbies[l].players.length < 1) lobbies.splice(l, 1);
   
   for (let l of lobbies) {
-    if (l.ingame && !l.votingdone && l.checkvotes()) {
-      l.votingdone = true;
+    if (l.ingame && l.gamestage === 0 && l.checkvotes()) {
+      l.gamestage = 1;
       l.tallyvotes();
     }
-    if (l.ingame && l.votingdone && l.checkguesses()) {
-      l.startRound();
+    if (l.ingame && l.gamestage === 1 && l.checkguesses()) {
+      l.endRound();
     }
     
     let playernames = [];
