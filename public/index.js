@@ -323,7 +323,7 @@ function createNameplates(type = 0, names = [], votes = null) {
   for (let n = 0; n < names.length; n++) {
 		const box = document.createElement("div");
     box.classList.add("playerslide");
-    const text = document.createTextNode(names[n] + (type === 0 ? `` : type === 1 ? ` recieved ${votes[n]} votes` : ` voted `));
+    const text = document.createTextNode(names[n] + (type === 0 ? `` : type === 1 ? ` recieved ${votes[n]} votes` : ` voted for ${serverdata.players[votes[n]]}`));
 
 		box.appendChild(text);
     

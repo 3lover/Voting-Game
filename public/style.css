@@ -159,6 +159,7 @@ select {
   left: 5vw;
   top: 10vh;
   background-color: var(--background);
+  font-size: 6vmin;
 }
 #adjustcolor:hover {
   background-color: var(--buttonhover);
@@ -170,6 +171,7 @@ select {
   left: 55vw;
   top: 10vh;
   background-color: var(--background);
+  font-size: 6vmin;
 }
 #pagetransitions:hover {
   background-color: var(--buttonhover);
