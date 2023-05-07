@@ -17,7 +17,7 @@ class Lobby {
     this.players = [host];
     this.id = this.validId(id);
     this.ingame = false;
-    this.votingdone = false;
+    this.gamestage = 0;
     console.log(`lobby created with ID ${this.id}`)
   }
   
@@ -72,7 +72,7 @@ class Lobby {
       p.guesses = [];
     }
     this.ingame = true;
-    this.votingdone = false;
+    this.gamestage = 0;
   }
   
   checkvotes() {
@@ -107,6 +107,19 @@ class Lobby {
         if (v == this.players.length - 1) p.points++;
       }
     }
+    let finalvotes = new Array(this.players.length).fill("");
+    for (let i in finalvotes) finalvotes[i] = [];
+    
+    for (let p = 0; p > this.players.length; p++) {
+      for (let v = 0; v < this.players.length; v++) {
+        if (this.players[p] == this.players[v].vote) {
+          finalvotes[p].push(v);
+        }
+        else console.log()
+      }
+    }
+    console.log(JSON.stringify(finalvotes));
+    this.send(["finalvotes", finalvotes]);
   }
 }
 
@@ -303,6 +316,7 @@ function update() {
       l.tallyvotes();
     }
     if (l.ingame && l.gamestage === 1 && l.checkguesses()) {
+      l.gamestage = 2;
       l.endRound();
     }
     
