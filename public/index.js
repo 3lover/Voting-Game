@@ -234,7 +234,8 @@ class Socket {
         break;
       }
       case "finalvotes": {
-        createNameplates(2, serverdata.players, packet[0]);
+        elm.voteText.innerHTML = "Final Vote Tally:";
+        createNameplates(2, serverdata.players, packet[0], packet[1]);
       }
 		}
 	}
@@ -323,7 +324,14 @@ function createNameplates(type = 0, names = [], votes = null) {
   for (let n = 0; n < names.length; n++) {
 		const box = document.createElement("div");
     box.classList.add("playerslide");
-    const text = document.createTextNode(names[n] + (type === 0 ? `` : type === 1 ? ` recieved ${votes[n]} votes` : ` voted for ${serverdata.players[votes[n]]}`));
+    const text = document.createTextNode(names[n] + 
+      (
+        type === 0 ? `` : 
+        type === 1 ? ` recieved ${votes[n]} votes` : 
+        type === 2 ? ` voted for ${serverdata.players[votes[n]]}` :
+        ``
+      )
+    );
 
 		box.appendChild(text);
     

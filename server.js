@@ -109,6 +109,8 @@ class Lobby {
     }
     let finalvotes = new Array(this.players.length).fill("");
     for (let i in finalvotes) finalvotes[i] = [];
+    let scores = new Array(this.players.length).fill(0);
+    for (let p = 0; p < this.players; p++) scores[p] = this.players[p].points;
     
     for (let p = 0; p < this.players.length; p++) {
       for (let v = 0; v < this.players.length; v++) {
@@ -117,7 +119,7 @@ class Lobby {
         }
       }
     }
-    this.send(["finalvotes", finalvotes]);
+    this.send(["finalvotes", finalvotes, scores]);
   }
 }
 
