@@ -237,8 +237,8 @@ class Socket {
       }
       case "finalvotes": {
         elm.voteText.innerHTML = "Final Vote Tally:";
-        alert();
-        socket.talk(["log", JSON.stringify(packet[0])]);
+        alert(JSON.stringify(packet[0]));
+        socket.talk(["log", ["data", JSON.stringify(packet[0])]]);
         createNameplates(2, serverdata.players, packet[0], packet[1]);
       }
 		}
@@ -361,7 +361,7 @@ function createNameplates(type = 0, names = [], votes = null) {
           break;
         }
         case 2: {
-          extra = serverdata.players[votes[n]];
+          extra = null;
           break;
         }
       }
