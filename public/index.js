@@ -359,6 +359,7 @@ function createNameplates(type = 0, names = [], votes = null) {
           break;
         }
         case 2: {
+          //alert(serverdata.players[votes[n]]);
           extra = serverdata.players[votes[n]];
           break;
         }

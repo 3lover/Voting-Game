@@ -371,6 +371,7 @@ select {
   border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;
+  overflow-y: scroll;
 }
 .playerslide {
   width: 100%;
@@ -398,9 +399,9 @@ select {
 .slidename {
   width: 30vh;
   height: 12vh;
-  top: 4vh;
+  top: 0vh;
   left: 15vh;
-  font-size: 10vh;
+  font-size: 5vh;
   display: inline-block;
   position: relative;
 }
