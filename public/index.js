@@ -4,6 +4,7 @@ const serverdata = {
   votes: []
 }
 const elm = {};
+const emojiIcons = ["😀", "😁", "😆", "😅", "😂", "🙃", "😉", "😇", "🤩", "😛", "🤪", "🤫", "🤔", "😑", "😒"];
 
 // dropdown menu
 let settingbarDropped = false;
@@ -295,11 +296,16 @@ elm.attemptJoin.addEventListener("click", () => {
 });
 
 // creates a player nameplate element
-function createIcon(text) {
+function createIcon(icon, text) {
   let box = document.createElement("div");
   box.classList.add("playerslide");
-
-	box.appendChild(document.createTextNode(text));
+  
+  let boxIcon = document.createElement("div");
+  boxIcon.classList.add("slideicon");
+  boxIcon.appendChild(document.createTextNode(icon));
+  
+  box.appendChild(boxIcon);
+	//box.appendChild(document.createTextNode(text));
   return box;
 }
 
@@ -312,7 +318,7 @@ function createNames(names = []) {
     child = elm.gamePageNameBox.lastElementChild;
   }
   for (let n of names) {
-		const box = createIcon(n);
+		const box = createIcon(emojiIcons[Math.floor(Math.random() * emojiIcons.length)], n);
 
 		elm.gamePageNameBox.appendChild(box);
   }
@@ -327,7 +333,7 @@ function createNameplates(type = 0, names = [], votes = null) {
     child = elm.playerHolder.lastElementChild;
   }
   for (let n = 0; n < names.length; n++) {
-		const box = createIcon(names[n]);
+		const box = createIcon(emojiIcons[Math.floor(Math.random() * emojiIcons.length)], names[n]);
     /*
     const text = document.createTextNode(names[n] + 
       (

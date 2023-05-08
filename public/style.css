@@ -84,7 +84,6 @@ body {
   font-size: 8vmin;
   text-align: center;
   width: 100%;
-  font-family: 'Noto Emoji', sans-serif;
 }
 
 .settingdescriptor {
@@ -388,4 +387,8 @@ select {
 
 .slideicon {
   font-family: 'Noto Emoji', sans-serif;
+  width: 8vh;
+  height: 8vh;
+  top: 4vh;
+  left: 4vh;
 }

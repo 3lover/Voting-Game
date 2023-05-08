@@ -8,7 +8,9 @@ const compression = require("compression");
 const app = express();
 const http = require('http');
 const server = http.createServer();
+
 const port = 3000;
+const availableEmojis = 15;
 
 let lobbies = [];
 
