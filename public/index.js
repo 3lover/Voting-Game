@@ -1,7 +1,8 @@
 const serverdata = {
   players: [],
   host: true,
-  votes: []
+  votes: [],
+  scores: []
 }
 const elm = {};
 const emojiIcons = ["😀", "😁", "😆", "😅", "😂", "🙃", "😉", "😇", "🤩", "😛", "🤪", "🤫", "🤔", "😑", "😒"];
@@ -307,10 +308,18 @@ function createIcon(icon, text, extra) {
   box.appendChild(boxIcon);
   
   let boxName = document.createElement("div");
-  boxName.classList.add("slideextra");
+  boxName.classList.add("slidename");
   boxName.appendChild(document.createTextNode(text));
   
 	box.appendChild(boxName);
+  
+  if (extra != null) {
+    let boxExtra = document.createElement("div");
+    boxExtra.classList.add("slideextra");
+    boxExtra.appendChild(document.createTextNode(extra));
+
+    box.appendChild(boxExtra);
+  }
   return box;
 }
 
@@ -322,8 +331,8 @@ function createNames(names = []) {
     elm.gamePageNameBox.removeChild(child);
     child = elm.gamePageNameBox.lastElementChild;
   }
-  for (let n of names) {
-		let box = createIcon(emojiIcons[Math.floor(Math.random() * emojiIcons.length)], n);
+  for (let n = 0; n < names.length; n++) {
+		let box = createIcon(emojiIcons[Math.floor(Math.random() * emojiIcons.length)], names[n], serverdata.scores[n]);
 
 		elm.gamePageNameBox.appendChild(box);
   }
@@ -338,32 +347,24 @@ function createNameplates(type = 0, names = [], votes = null) {
     child = elm.playerHolder.lastElementChild;
   }
   for (let n = 0; n < names.length; n++) {
-		let box = createIcon(emojiIcons[Math.floor(Math.random() * emojiIcons.length)], names[n], () => {
+    let extra = null
+    {
       switch (type) {
         case 0: {
-          return "";
+          extra = null;
           break;
         }
         case 1: {
-          return votes[n];
+          extra = votes[n];
           break;
         }
         case 2: {
-          return serverdata.players[votes[n]];
+          extra = serverdata.players[votes[n]];
           break;
         }
       }
-    });
-    /*
-    const text = document.createTextNode(names[n] + 
-      (
-        type === 0 ? `` : 
-        type === 1 ? ` recieved ${votes[n]} votes` : 
-        type === 2 ? ` voted for ${serverdata.players[votes[n]]}` :
-        ``
-      )
-    );*/
-
+    }
+		let box = createIcon(emojiIcons[Math.floor(Math.random() * emojiIcons.length)], names[n], extra);
     
     if (type === 0)
     box.addEventListener("click", () => {

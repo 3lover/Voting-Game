@@ -321,6 +321,10 @@ function update() {
       l.gamestage = 2;
       l.endRound();
     }
+    if (l.ingame && l.gamestage === 2 && l.checkguesses()) {
+      l.gamestage = 2;
+      l.endRound();
+    }
     
     let playernames = [];
     for (let p of l.players) playernames.push(p.name);

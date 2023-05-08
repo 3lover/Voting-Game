@@ -373,7 +373,7 @@ select {
   border-style: solid;
 }
 .playerslide {
-  width: 60vw;
+  width: 100%;
   height: 20vh;
   border-width: 0.5vmin;
   border-color: var(--border);
@@ -405,10 +405,10 @@ select {
   position: relative;
 }
 .slideextra {
-  width: calc(100% - 50vh);
+  width: 20vh;
   height: 12vh;
   top: 4vh;
-  left: 50vh;
+  left: 40vh;
   font-size: 10vh;
   display: inline-block;
   position: relative;
