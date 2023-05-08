@@ -321,9 +321,12 @@ function update() {
       l.gamestage = 2;
       l.endRound();
     }
-    if (l.ingame && l.gamestage === 2 && l.checkguesses()) {
-      l.gamestage = 2;
-      l.endRound();
+    if (l.gamestage === 2) {
+      l.gamestage = -1;
+      setTimeout(() => {
+        l.gamestage = 0;
+        l.startRound();
+      }, 10000);
     }
     
     let playernames = [];

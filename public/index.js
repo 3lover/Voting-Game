@@ -347,7 +347,7 @@ function createNameplates(type = 0, names = [], votes = null) {
     child = elm.playerHolder.lastElementChild;
   }
   for (let n = 0; n < names.length; n++) {
-    let extra = null
+    let extra = null;
     {
       switch (type) {
         case 0: {
