@@ -294,6 +294,15 @@ elm.attemptJoin.addEventListener("click", () => {
   });
 });
 
+// creates a player nameplate element
+function createIcon(text) {
+  let box = document.createElement("div");
+  box.classList.add("playerslide");
+
+	box.appendChild(document.createTextNode(text));
+  return box;
+}
+
 // add the name icons when in lobby
 elm.gamePageNameBox = document.getElementById("gamepagenamebox");
 function createNames(names = []) {
@@ -303,11 +312,7 @@ function createNames(names = []) {
     child = elm.gamePageNameBox.lastElementChild;
   }
   for (let n of names) {
-		const box = document.createElement("div");
-    box.classList.add("nameicon");
-    const text = document.createTextNode(n);
-
-		box.appendChild(text);
+		const box = createIcon(n);
 
 		elm.gamePageNameBox.appendChild(box);
   }
@@ -322,8 +327,8 @@ function createNameplates(type = 0, names = [], votes = null) {
     child = elm.playerHolder.lastElementChild;
   }
   for (let n = 0; n < names.length; n++) {
-		const box = document.createElement("div");
-    box.classList.add("playerslide");
+		const box = createIcon(names[n]);
+    /*
     const text = document.createTextNode(names[n] + 
       (
         type === 0 ? `` : 
@@ -331,9 +336,8 @@ function createNameplates(type = 0, names = [], votes = null) {
         type === 2 ? ` voted for ${serverdata.players[votes[n]]}` :
         ``
       )
-    );
+    );*/
 
-		box.appendChild(text);
     
     if (type === 0)
     box.addEventListener("click", () => {
