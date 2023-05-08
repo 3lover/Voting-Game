@@ -211,9 +211,9 @@ class Socket {
         break;
       }
       case "voted": {
-        for (let c of elm.playerHolder.children) {
-          if (c.innerHTML == packet[0]) {
-            c.style.backgroundColor = "var(--backred)";
+        for (let c = 0; c < serverdata.players.length; c++) {
+          if (serverdata.players[c] == packet[0]) {
+            elm.playerHolder.children[c].style.backgroundColor = "var(--backred)";
             break;
           }
         }
@@ -306,11 +306,11 @@ function createIcon(icon, text) {
   
   box.appendChild(boxIcon);
   
-  let boxIcon = document.createElement("div");
-  boxIcon.classList.add("slideicon");
-  boxIcon.appendChild(document.createTextNode(icon));
+  let boxName = document.createElement("div");
+  boxName.classList.add("slidename");
+  boxName.appendChild(document.createTextNode(text));
   
-	box.appendChild(document.createTextNode(text));
+	box.appendChild(boxName);
   return box;
 }
 

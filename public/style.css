@@ -373,7 +373,7 @@ select {
   border-style: solid;
 }
 .playerslide {
-  width: 100%;
+  width: 60vw;
   height: 20vh;
   border-width: 0.5vmin;
   border-color: var(--border);
@@ -392,15 +392,24 @@ select {
   top: 4vh;
   left: 4vh;
   font-size: 10vh;
-  display: block;
+  display: inline-block;
   position: relative;
 }
 .slidename {
-  width: calc(100% - 20vh);
+  width: calc(60vw - 40vh);
+  height: 12vh;
+  top: 4vh;
+  left: 15vh;
+  font-size: 10vh;
+  display: inline-block;
+  position: relative;
+}
+.slideextra {
+  width: calc(100% - 50vh);
   height: 12vh;
   top: 4vh;
   left: 20vh;
   font-size: 10vh;
-  display: block;
+  display: inline-block;
   position: relative;
 }
