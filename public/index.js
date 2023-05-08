@@ -296,7 +296,7 @@ elm.attemptJoin.addEventListener("click", () => {
 });
 
 // creates a player nameplate element
-function createIcon(icon, text) {
+function createIcon(icon, text, extra) {
   let box = document.createElement("div");
   box.classList.add("playerslide");
   
@@ -307,7 +307,7 @@ function createIcon(icon, text) {
   box.appendChild(boxIcon);
   
   let boxName = document.createElement("div");
-  boxName.classList.add("slidename");
+  boxName.classList.add("slideextra");
   boxName.appendChild(document.createTextNode(text));
   
 	box.appendChild(boxName);
@@ -338,7 +338,22 @@ function createNameplates(type = 0, names = [], votes = null) {
     child = elm.playerHolder.lastElementChild;
   }
   for (let n = 0; n < names.length; n++) {
-		let box = createIcon(emojiIcons[Math.floor(Math.random() * emojiIcons.length)], names[n]);
+		let box = createIcon(emojiIcons[Math.floor(Math.random() * emojiIcons.length)], names[n], () => {
+      switch (type) {
+        case 0: {
+          return "";
+          break;
+        }
+        case 1: {
+          return votes[n];
+          break;
+        }
+        case 2: {
+          return serverdata.players[votes[n]];
+          break;
+        }
+      }
+    });
     /*
     const text = document.createTextNode(names[n] + 
       (

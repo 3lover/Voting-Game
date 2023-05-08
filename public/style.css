@@ -396,7 +396,7 @@ select {
   position: relative;
 }
 .slidename {
-  width: calc(60vw - 40vh);
+  width: 30vh;
   height: 12vh;
   top: 4vh;
   left: 15vh;
@@ -408,7 +408,7 @@ select {
   width: calc(100% - 50vh);
   height: 12vh;
   top: 4vh;
-  left: 20vh;
+  left: 50vh;
   font-size: 10vh;
   display: inline-block;
   position: relative;
