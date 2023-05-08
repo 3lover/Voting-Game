@@ -396,5 +396,11 @@ select {
   position: relative;
 }
 .slidename {
-  
+  width: calc(100% - 20vh);
+  height: 12vh;
+  top: 4vh;
+  left: 20vh;
+  font-size: 10vh;
+  display: block;
+  position: relative;
 }

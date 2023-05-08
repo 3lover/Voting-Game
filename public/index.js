@@ -305,7 +305,12 @@ function createIcon(icon, text) {
   boxIcon.appendChild(document.createTextNode(icon));
   
   box.appendChild(boxIcon);
-	//box.appendChild(document.createTextNode(text));
+  
+  let boxIcon = document.createElement("div");
+  boxIcon.classList.add("slideicon");
+  boxIcon.appendChild(document.createTextNode(icon));
+  
+	box.appendChild(document.createTextNode(text));
   return box;
 }
 
