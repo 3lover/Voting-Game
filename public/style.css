@@ -125,16 +125,16 @@ body {
   text-align: center;
 }
 #GPTsetting {
-  left: 10vw;
+  left: 0vw;
 }
 #GPTcards {
   left: 10vw;
 }
-#GPTemji {
-  left: 10vw;
+#GPTemoji {
+  left: 20vw;
 }
-#GPTsetting {
-  left: 10vw;
+#GPTchat {
+  left: 30vw;
 }
 
 #gamepagenamebox {
@@ -398,7 +398,7 @@ select {
 }
 .playerslide {
   width: 100%;
-  height: 20vh;
+  height: 15vh;
   border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;
@@ -411,27 +411,31 @@ select {
 
 .slideicon {
   font-family: 'Noto Emoji', sans-serif;
-  width: 12vh;
-  height: 12vh;
-  top: 4vh;
-  left: 4vh;
-  font-size: 10vh;
+  width: 10vh;
+  height: 10vh;
+  top: 2.5vh;
+  left: 2.5vh;
+  font-size: 8vh;
   display: inline-block;
-  position: relative;
+  position: absolute;
   text-align: center;
 }
 .slidename {
-  width: 30vh;
-  height: 12vh;
-  top: 0vh;
+  width: 50vh;
+  height: 13vh;
   left: 15vh;
-  font-size: 5vh;
-  display: inline-block;
-  position: relative;
+  top: 1vh;
+  font-size: 6vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  position: absolute;
+  background: transparent;
 }
 .slideextra {
   width: 20vh;
-  height: 12vh;
+  height: 10vh;
   top: 4vh;
   left: 40vh;
   font-size: 10vh;
