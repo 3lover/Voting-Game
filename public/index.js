@@ -245,7 +245,7 @@ class Socket {
         for (let c = 0; c < serverdata.players.length; c++) {
           for (let e of elm.playerHolder.children[c].children) {
             if (e.classList.contains("slideicon")) {
-              e.
+              e.innerHTML
             }
           }
         }
