@@ -1,4 +1,3 @@
-try {
 const serverdata = {
   players: [],
   icons: [],
@@ -237,14 +236,19 @@ class Socket {
         this.connected = true;
       }
       case "newicons": {
+        if (packet[0] == undefined) break;
+        try {
         serverdata.icons = packet[0];
         serverdata.myicon = packet[1];
         updateEmojis(serverdata.icons, serverdata.myicon);
         for (let c = 0; c < serverdata.players.length; c++) {
-          if (serverdata.players[c] == packet[0]) {
-            elm.playerHolder.children[c].style.backgroundColor = "var(--backred)";
-            break;
+          if ()
+          for (let elm of elm.playerHolder.children[c].children) {
+            if (elm.classList.contains("slideicon")) elm.innerHTML = "t";
           }
+        }
+        } catch(err) {
+          alert(err);
         }
       }
       case "gameupdate": {
@@ -449,7 +453,4 @@ function createNameplates(type = 0, names = [], icons = [], votes = null) {
 
 		elm.playerHolder.appendChild(box);
   }
-}
-} catch(err) {
-  alert(err);
 }
