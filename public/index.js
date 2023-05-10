@@ -89,13 +89,20 @@ elm.GPTcards = document.getElementById("GPTcards");
 elm.GPTemoji = document.getElementById("GPTemoji");
 elm.GPTchat = document.getElementById("GPTchat");
 const GPTs = [elm.GPTsetting, elm.GPTcards, elm.GPTemoji, elm.GPTchat];
+const contents = [
+  document.getElementById("GPTsetting"),
+  document.getElementById("GPTcards"),
+  document.getElementById("GPTemoji"),
+  document.getElementById("GPTchat"),
+];
 function highlightGPT(tab) {
-  for (let i of GPTs) {
-    if (i === tab) {
-      i.style.backgroundColor = "var(--backred)";
+  for (let i = 0; i < GPTs.length; i++) {
+    if (GPTs[i] === tab) {
+      GPTs[i].style.backgroundColor = "var(--backred)";
+      
     }
     else {
-      i.style.backgroundColor = "var(--background)";
+      GPTs[i].style.backgroundColor = "var(--background)";
     }
   }
 }

@@ -125,12 +125,17 @@ body {
   text-align: center;
 }
 .tabcontent {
+  top: 10vh;
   width: 100%;
-  height: 100%;
+  height: 85vh;
+  overflow-y: scroll;
 }
 
 #GPTsetting {
   background-color: var(--backred);
+}
+#settingtabcontent {
+  display: block;
 }
 
 #GPTcards {
