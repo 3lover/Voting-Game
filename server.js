@@ -10,7 +10,7 @@ const http = require('http');
 const server = http.createServer();
 
 const port = 3000;
-const availableEmojis = 15;
+const availableEmojis = 3;
 
 let lobbies = [];
 
@@ -132,6 +132,13 @@ class Lobby {
     }
     this.send(["finalvotes", finalvotes, scores]);
   }
+  
+  findIcon(finder) {
+    let availableIcons = [];
+    for (let i = 0; i < availableEmojis; i++) availableIcons.push(i);
+    for (let p of this.players) if (p != finder) availableIcons.splice(availableIcons.indexOf(p.icon), 1);
+    return availableIcons[Math.floor(Math.random() * availableIcons.length)];
+  }
 }
 
 class Player {
@@ -146,7 +153,7 @@ class Player {
     this.votes = 0;
     this.guesses = [];
     this.points = 0;
-    this.icon = Math.floor(Math.random() * 15);
+    this.icon = Math.floor(Math.random() * availableEmojis);
   }
   
   talk(data = []) {
@@ -210,11 +217,16 @@ const sockets = {
           if (!lobby) {
             this.talk(["failedjoin"]);
             console.log(`player tried to join ${packet[0]} but it does not exist`);
-            return;
+            break;
+          }
+          if (lobby.players.length >= availableEmojis - 1) {
+            this.talk(["lobbyfull"]);
+            break;
           }
           
           let p = new Player(this, packet[1], false, lobby);
           lobby.addPlayer(p);
+          p.icon = lobby.findIcon(p);
           break;
         }
         case "startgame": {
