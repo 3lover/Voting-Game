@@ -10,7 +10,7 @@ const http = require('http');
 const server = http.createServer();
 
 const port = 3000;
-const availableEmojis = 3;
+const availableEmojis = 15;
 
 let lobbies = [];
 
@@ -219,7 +219,7 @@ const sockets = {
             console.log(`player tried to join ${packet[0]} but it does not exist`);
             break;
           }
-          if (lobby.players.length >= availableEmojis - 1) {
+          if (lobby.players.length >= availableEmojis) {
             this.talk(["lobbyfull"]);
             break;
           }

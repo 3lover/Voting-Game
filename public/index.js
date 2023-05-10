@@ -7,7 +7,6 @@ const serverdata = {
   scores: []
 }
 const elm = {};
-const emojiIcons = ["😀", "😁", "😆", "😅", "😂", "🙃", "😉", "😇", "🤩", "😛", "🤪", "🤫", "🤔", "😑", "😒"];
 
 // dropdown menu
 let settingbarDropped = false;
@@ -25,6 +24,13 @@ async function getcolors() {
 	colors = await (await fetch("./json/colors.json")).json();
 }
 getcolors();
+
+// load icons
+let emojiIcons = "not ready";
+async function geticons() {
+	emojiIcons = Object.values(await (await fetch("./json/emojis.json")).json());
+}
+geticons();
 
 // color scheme settings
 elm.root = document.querySelector(':root')
