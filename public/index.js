@@ -245,8 +245,14 @@ class Socket {
         for (let c = 0; c < serverdata.players.length; c++) {
           for (let e of elm.playerHolder.children[c].children) {
             if (e.classList.contains("slideicon")) {
-              e.style.backgroundColor = "red";
-              alert("found one at child " + e.innerText);
+              elm.playerHolder.removeChild(c);
+              
+              let boxIcon = document.createElement("div");
+              boxIcon.classList.add("slideicon");
+              boxIcon.appendChild(document.createTextNode(icon));
+              boxIcon.style.top = (2.5 + num * 15) + "vh";
+
+              box.appendChild(boxIcon);
             }
           }
         }
