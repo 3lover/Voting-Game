@@ -126,12 +126,12 @@ function updateEmojis(emojis, myemoji) {
     let selector = document.createElement("div");
     selector.classList.add("emojiselector");
     let text = emojiIcons[i];
-    if (emojis.includes(i)) text = "❌";
-    if (myemoji == i) selector.backgroundColor = "var(--backred)";
+    if (emojis.includes(i)) text = "?";
+    if (myemoji == i) text = "❌";
     selector.appendChild(document.createTextNode(text));
 
     selector.addEventListener("click", () => {
-      alert("choosing emoji " + i);
+      socket.talk(["switchicon", i]);
     });
 
     elm.emojitabcontent.appendChild(selector);
@@ -240,6 +240,12 @@ class Socket {
         serverdata.icons = packet[0];
         serverdata.myicon = packet[1];
         updateEmojis(serverdata.icons, serverdata.myicon);
+        for (let c = 0; c < serverdata.players.length; c++) {
+          if (serverdata.players[c] == packet[0]) {
+            elm.playerHolder.children[c].style.backgroundColor = "var(--backred)";
+            break;
+          }
+        }
       }
       case "gameupdate": {
         if (packet[0].players.length != serverdata.players.length) {

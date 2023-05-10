@@ -264,6 +264,25 @@ const sockets = {
           
           break;
         }
+        case "switchicon": {
+          let player = false;
+          for (let l of lobbies) if (l.checkfor(this) !== -1) player = l.checkfor(this);
+          if (!player) break;
+          
+          let valid = true;
+          for (let p of player.lobby.players) {
+            if (p == player) continue;
+            if (p.icon == packet[0]) valid = false;
+            
+            if (!valid) break;
+          }
+          console.log("validating")
+          if (!valid) break;
+          player.icon = packet[0];
+          console.log("icon selected");
+          player.lobby.newicons();
+          break;
+        }
       }
     }
 
