@@ -89,12 +89,12 @@ elm.GPTcards = document.getElementById("GPTcards");
 elm.GPTemoji = document.getElementById("GPTemoji");
 elm.GPTchat = document.getElementById("GPTchat");
 const GPTs = [elm.GPTsetting, elm.GPTcards, elm.GPTemoji, elm.GPTchat];
-const contents = [
-  document.getElementById("settingtabcontent"),
-  document.getElementById("cardstabcontent"),
-  document.getElementById("emojitabcontent"),
-  document.getElementById("chattabcontent"),
-];
+elm.settingtabcontent = document.getElementById("settingtabcontent");
+elm.cardstabcontent = document.getElementById("cardstabcontent");
+elm.emojitabcontent = document.getElementById("emojitabcontent");
+elm.chattabcontent = document.getElementById("chattabcontent");
+const contents = [elm.settingtabcontent, elm.cardstabcontent, elm.emojitabcontent, elm.chattabcontent];
+
 function highlightGPT(tab) {
   for (let i = 0; i < GPTs.length; i++) {
     if (GPTs[i] === tab) {
@@ -111,6 +111,21 @@ for (let i of GPTs) {
   i.addEventListener("click", () => {
     highlightGPT(i);
   });
+}
+
+// create the emoji tabs
+function updateEmojis(myEmoji, usedEmojis) { 
+  for (let i = 0; i < emojiIcons.length; i++) {
+    let selector = document.createElement("div");
+    selector.classList.add("emojiselector");
+    selector.appendChild(document.createTextNode(emojiIcons[i]));
+
+    selector.addEventListener("click", () => {
+      alert("choosing emoji " + i);
+    });
+
+    elm.emojitabcontent.appendChild(selector);
+  }
 }
 
 // lobby hosting
@@ -211,10 +226,15 @@ class Socket {
       case "connectionConfirmed": {
         this.connected = true;
       }
+      case "newicons": {
+        serverdata.icons = packet[0]
+        updateEmojis(serverdata.icons);
+      }
       case "gameupdate": {
         if (packet[0].players.length != serverdata.players.length) {
           serverdata.players = packet[0].players;
           serverdata.icons = packet[0].icons;
+          updateEmojis(serverdata.icons);
           createNames(serverdata.players, serverdata.icons);
           createNameplates(0, serverdata.players, serverdata.icons);
           elm.playerCount.innerHTML = packet[0].players.length;

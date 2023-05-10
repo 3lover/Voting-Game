@@ -151,6 +151,19 @@ body {
 #emojitabcontent {
   display: none;
 }
+.emojiselector {
+  width: 10vh;
+  height: 10vh;
+  font-family: 'Noto Emoji', sans-serif;
+  font-size: 8vh;
+  border-style: solid;
+  border-color: var(--border);
+  border-width: 0.5vmin;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  margin: 1vh;
+}
 
 #GPTchat {
   left: 30vw;
