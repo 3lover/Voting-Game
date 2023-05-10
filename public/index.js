@@ -247,7 +247,7 @@ class Socket {
             if (e.classList.contains("slideicon")) {
               //e.innerHTML = "t";
               e.backgroundColor = "red";
-              alert("found one at child " + e.innerHTML);
+              alert("found one at child " + e.innerText);
             }
           }
         }
