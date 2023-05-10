@@ -2,6 +2,7 @@ try {
 const serverdata = {
   players: [],
   icons: [],
+  myicon: [],
   host: true,
   votes: [],
   scores: []
@@ -115,7 +116,7 @@ for (let i of GPTs) {
 }
 
 // create the emoji tabs
-function updateEmojis(emojis) {
+function updateEmojis(emojis, myemoji) {
   let child = elm.emojitabcontent.lastElementChild;
   while (child) {
     elm.emojitabcontent.removeChild(child);
@@ -124,7 +125,10 @@ function updateEmojis(emojis) {
   for (let i = 0; i < emojiIcons.length; i++) {
     let selector = document.createElement("div");
     selector.classList.add("emojiselector");
-    selector.appendChild(document.createTextNode(emojis.includes(i) ? "❌" : emojiIcons[i]));
+    let text = emojiIcons[i];
+    if (emojis.includes(i)) text = "❌";
+    if (myemoji == i) selector.color = "var(--backred)";
+    selector.appendChild(document.createTextNode(text));
 
     selector.addEventListener("click", () => {
       alert("choosing emoji " + i);
@@ -234,7 +238,8 @@ class Socket {
       }
       case "newicons": {
         serverdata.icons = packet[0];
-        updateEmojis(serverdata.icons);
+        serverdata.myicon = packet[1];
+        updateEmojis(serverdata.icons, serverdata.myicon);
       }
       case "gameupdate": {
         if (packet[0].players.length != serverdata.players.length) {

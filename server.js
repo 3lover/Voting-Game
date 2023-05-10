@@ -101,8 +101,10 @@ class Lobby {
   }
   
   newicons() {
+    let icons = [];
+    for (let p of this.players) icons.push(p.icon);
     for (let p of this.players) {
-      p.s
+      p.talk(["newicons", icons, p.icon]);
     }
   }
   
