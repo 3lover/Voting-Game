@@ -15,8 +15,8 @@ const availableEmojis = 15;
 let lobbies = [];
 
 class Lobby {
-  constructor(host, id) {
-    this.players = [host];
+  constructor(id) {
+    this.players = [];
     this.id = this.validId(id);
     this.ingame = false;
     this.gamestage = 0;
@@ -46,6 +46,7 @@ class Lobby {
   
   addPlayer(player) {
     this.players.push(player);
+    this.newicons();
   }
   
   checkfor(playersocket, removing) {
@@ -194,8 +195,10 @@ const sockets = {
         }
         case "host": {
           let p = new Player(this, packet[1], true);
-          lobbies.push(new Lobby(p, packet[0]));
-          p.lobby = lobbies[lobbies.length - 1];
+          let lobby = new Lobby(p, packet[0]);
+          lobbies.push(lobby);
+          lobby.addPlayer(p);
+          p.lobby = lobby;
           break;
         }
         case "join": {
@@ -356,8 +359,6 @@ function update() {
         l.startRound();
       }, 10000);
     }
-    
-    l.newicons();
     
     let playernames = [];
     let playericons = [];

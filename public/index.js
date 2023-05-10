@@ -183,6 +183,7 @@ elm.startGameButton.addEventListener("click", () => {
 
 elm.playerCount = document.getElementById("playercount");
 elm.voteText = document.getElementById("votetext");
+elm.playerHolder = document.getElementById("playerholder");
 // our websocket
 class Socket {
 	constructor() {
@@ -242,9 +243,12 @@ class Socket {
         serverdata.myicon = packet[1];
         updateEmojis(serverdata.icons, serverdata.myicon);
         for (let c = 0; c < serverdata.players.length; c++) {
-          if ()
-          for (let elm of elm.playerHolder.children[c].children) {
-            if (elm.classList.contains("slideicon")) elm.innerHTML = "t";
+          for (let e of elm.playerHolder.children[c].children) {
+            if (e.classList.contains("slideicon")) {
+              //e.innerHTML = "t";
+              e.backgroundColor = "red";
+              alert("found one at child " + e.innerHTML);
+            }
           }
         }
         } catch(err) {
@@ -415,7 +419,6 @@ function createNames(names = [], icons = []) {
 }
 
 // create nameplates when votng
-elm.playerHolder = document.getElementById("playerholder");
 function createNameplates(type = 0, names = [], icons = [], votes = null) {
   let child = elm.playerHolder.lastElementChild; 
   while (child) {
