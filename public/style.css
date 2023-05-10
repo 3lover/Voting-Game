@@ -155,16 +155,15 @@ body {
   width: 25%;
   height: 10vw;
   font-family: 'Noto Emoji', sans-serif;
-  font-size: 8vh;
+  font-size: 6vw;
+  padding-top: 1vw;
   border-style: solid;
   border-color: var(--border);
   border-width: 0.5vmin;
   text-align: center;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: colu;
+  display: inline-block;
+  
 }
 
 #GPTchat {
