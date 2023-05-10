@@ -169,6 +169,29 @@ body {
   overflow-y: scroll;
 }
 
+.GPTtext {
+  font-size: 6vh;
+  text-align: center;
+  width: 100%;
+  margin-top: 3vh;
+  background-color: transparent;
+  display: block;
+  position: relative;
+}
+.settinginput {
+  width: 80%;
+  height: 15vh;
+  left: 10%;
+  margin-top: 1vh;
+  text-align: center;
+  font-size: 6vh;
+  border-width: 0.5vmin;
+  border-color: var(--border);
+  border-style: solid;
+  display: block;
+  position: relative;
+}
+
 h1.titletext {
   font-size: 8vmin;
   width: 100vw;

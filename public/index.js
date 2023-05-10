@@ -90,19 +90,20 @@ elm.GPTemoji = document.getElementById("GPTemoji");
 elm.GPTchat = document.getElementById("GPTchat");
 const GPTs = [elm.GPTsetting, elm.GPTcards, elm.GPTemoji, elm.GPTchat];
 const contents = [
-  document.getElementById("GPTsetting"),
-  document.getElementById("GPTcards"),
-  document.getElementById("GPTemoji"),
-  document.getElementById("GPTchat"),
+  document.getElementById("settingtabcontent"),
+  document.getElementById("cardstabcontent"),
+  document.getElementById("emojitabcontent"),
+  document.getElementById("chattabcontent"),
 ];
 function highlightGPT(tab) {
   for (let i = 0; i < GPTs.length; i++) {
     if (GPTs[i] === tab) {
       GPTs[i].style.backgroundColor = "var(--backred)";
-      
+      contents[i].style.display = "block";
     }
     else {
       GPTs[i].style.backgroundColor = "var(--background)";
+      contents[i].style.display = "none";
     }
   }
 }
