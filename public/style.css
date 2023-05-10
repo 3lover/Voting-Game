@@ -114,6 +114,29 @@ body {
   border-width: 0.5vmin;
   overflow-y: scroll;
 }
+.gamepagesettingtab {
+  width: 10vw;
+  height: 10vh;
+  font-family: 'Noto Emoji', sans-serif;
+  font-size: 8vh;
+  border-style: solid;
+  border-color: var(--border);
+  border-width: 0.5vmin;
+  text-align: center;
+}
+#GPTsetting {
+  left: 10vw;
+}
+#GPTcards {
+  left: 10vw;
+}
+#GPTemji {
+  left: 10vw;
+}
+#GPTsetting {
+  left: 10vw;
+}
+
 #gamepagenamebox {
   width: 60vw;
   height: 90vh;
@@ -395,6 +418,7 @@ select {
   font-size: 10vh;
   display: inline-block;
   position: relative;
+  text-align: center;
 }
 .slidename {
   width: 30vh;
