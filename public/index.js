@@ -83,6 +83,30 @@ function swapPages(open = "id", close = "id") {
   }, 1000);
 }
 
+// when a game page tab is clicked, color it in and view the content
+elm.GPTsetting = document.getElementById("GPTsetting");
+elm.GPTcards = document.getElementById("GPTcards");
+elm.GPTemoji = document.getElementById("GPTemoji");
+elm.GPTchat = document.getElementById("GPTchat");
+const GPTs = [elm.GPTsettings, elm.GPTcards, elm.GPTemoji, elm.GPTchat];
+function highlightGPT(tab) {
+  for (let i of GPTs) {
+    if (i === tab) i.style.backgroundcolor = "backred";
+    else i.style.backgroundcolor = "background";
+  }
+}
+for (let i of GPTs) {
+  alert()
+  elm.GPTsettings.addEventListener("click", () => {
+    
+  });
+  alert()
+  i.addEventListener("click", () => {
+    highlightGPT(i);
+  });
+}
+alert()
+
 // lobby hosting
 elm.hostButton = document.getElementById("hostbutton");
 elm.hostButton.addEventListener("click", () => {
