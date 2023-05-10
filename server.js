@@ -341,10 +341,16 @@ function update() {
     l.newicons();
     
     let playernames = [];
+    let playericons = [];
+    for (let p of l.players) {
+      playernames.push(p.name);
+      playericons.push(p.icon);
+    }
     
     l.sendhost()
     l.send(["gameupdate", {
       players: playernames,
+      icons: playericons
     }]);
   }
 }

@@ -2,7 +2,7 @@ try {
 const serverdata = {
   players: [],
   icons: [],
-  myicon: [],
+  myicon: 0,
   host: true,
   votes: [],
   scores: []
@@ -127,7 +127,7 @@ function updateEmojis(emojis, myemoji) {
     selector.classList.add("emojiselector");
     let text = emojiIcons[i];
     if (emojis.includes(i)) text = "❌";
-    if (myemoji == i) selector.color = "var(--backred)";
+    if (myemoji == i) selector.backgroundColor = "var(--backred)";
     selector.appendChild(document.createTextNode(text));
 
     selector.addEventListener("click", () => {
@@ -245,7 +245,6 @@ class Socket {
         if (packet[0].players.length != serverdata.players.length) {
           serverdata.players = packet[0].players;
           serverdata.icons = packet[0].icons;
-          updateEmojis(serverdata.icons);
           createNames(serverdata.players, serverdata.icons);
           createNameplates(0, serverdata.players, serverdata.icons);
           elm.playerCount.innerHTML = packet[0].players.length;
