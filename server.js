@@ -195,7 +195,7 @@ const sockets = {
         }
         case "host": {
           let p = new Player(this, packet[1], true);
-          let lobby = new Lobby(p, packet[0]);
+          let lobby = new Lobby(packet[0]);
           lobbies.push(lobby);
           lobby.addPlayer(p);
           p.lobby = lobby;

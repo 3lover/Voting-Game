@@ -245,7 +245,12 @@ class Socket {
         for (let c = 0; c < serverdata.players.length; c++) {
           for (let e of elm.playerHolder.children[c].children) {
             if (e.classList.contains("slideicon")) {
-              e.innerHTML
+              e.textContent = emojiIcons[serverdata.icons[c]];
+            }
+          }
+          for (let e of elm.gamePageNameBox.children[c].children) {
+            if (e.classList.contains("slideicon")) {
+              e.textContent = emojiIcons[serverdata.icons[c]];
             }
           }
         }
