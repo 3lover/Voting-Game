@@ -1,3 +1,4 @@
+try {
 const serverdata = {
   players: [],
   icons: [],
@@ -114,11 +115,11 @@ for (let i of GPTs) {
 }
 
 // create the emoji tabs
-function updateEmojis(emojis) { 
-  let child = elm.playerHolder.lastElementChild;
+function updateEmojis(emojis) {
+  let child = elm.emojitabcontent.lastElementChild;
   while (child) {
-    elm.playerHolder.removeChild(child);
-    child = elm.playerHolder.lastElementChild;
+    elm.emojitabcontent.removeChild(child);
+    child = elm.emojitabcontent.lastElementChild;
   }
   for (let i = 0; i < emojiIcons.length; i++) {
     let selector = document.createElement("div");
@@ -356,19 +357,21 @@ elm.attemptJoin.addEventListener("click", () => {
 });
 
 // creates a player nameplate element
-function createIcon(icon, text, extra) {
+function createIcon(icon, text, extra, num) {
   let box = document.createElement("div");
   box.classList.add("playerslide");
   
   let boxIcon = document.createElement("div");
   boxIcon.classList.add("slideicon");
   boxIcon.appendChild(document.createTextNode(icon));
+  boxIcon.style.top = (2.5 + num * 15) + "vh";
   
   box.appendChild(boxIcon);
   
   let boxName = document.createElement("div");
   boxName.classList.add("slidename");
   boxName.appendChild(document.createTextNode(text));
+  boxName.style.top = (1 + num * 15) + "vh";
   
 	box.appendChild(boxName);
   
@@ -391,7 +394,7 @@ function createNames(names = [], icons = []) {
     child = elm.gamePageNameBox.lastElementChild;
   }
   for (let n = 0; n < names.length; n++) {
-		let box = createIcon(emojiIcons[icons[n]], names[n], serverdata.scores[n]);
+		let box = createIcon(emojiIcons[icons[n]], names[n], serverdata.scores[n], n);
 
 		elm.gamePageNameBox.appendChild(box);
   }
@@ -423,7 +426,7 @@ function createNameplates(type = 0, names = [], icons = [], votes = null) {
         }
       }
     }
-		let box = createIcon(emojiIcons[icons[n]], names[n], extra);
+		let box = createIcon(emojiIcons[icons[n]], names[n], extra, n);
     
     if (type === 0)
     box.addEventListener("click", () => {
@@ -436,4 +439,7 @@ function createNameplates(type = 0, names = [], icons = [], votes = null) {
 
 		elm.playerHolder.appendChild(box);
   }
+}
+} catch(err) {
+  alert(err);
 }

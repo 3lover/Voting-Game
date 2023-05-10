@@ -100,6 +100,12 @@ class Lobby {
     return totalGuesses >= this.players.length;
   }
   
+  newicons() {
+    for (let p of this.players) {
+      p.s
+    }
+  }
+  
   endRound() {
     for (let p of this.players) {
       for (let v = 0; v < this.players.length; v++) {
@@ -330,17 +336,13 @@ function update() {
       }, 10000);
     }
     
+    l.newicons();
+    
     let playernames = [];
-    let playericons = [];
-    for (let p of l.players) {
-      playernames.push(p.name);
-      playericons.push(p.icon);
-    }
     
     l.sendhost()
     l.send(["gameupdate", {
       players: playernames,
-      icons: playericons
     }]);
   }
 }
