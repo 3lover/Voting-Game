@@ -137,6 +137,7 @@ class Player {
     this.votes = 0;
     this.guesses = [];
     this.points = 0;
+    this.icon = Math.floor(Math.random() * 15);
   }
   
   talk(data = []) {
@@ -330,11 +331,16 @@ function update() {
     }
     
     let playernames = [];
-    for (let p of l.players) playernames.push(p.name);
+    let playericons = [];
+    for (let p of l.players) {
+      playernames.push(p.name);
+      playericons.push(p.icon);
+    }
     
     l.sendhost()
     l.send(["gameupdate", {
       players: playernames,
+      icons: playericons
     }]);
   }
 }

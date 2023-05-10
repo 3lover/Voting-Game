@@ -1,5 +1,6 @@
 const serverdata = {
   players: [],
+  icons: [],
   host: true,
   votes: [],
   scores: []
@@ -183,8 +184,9 @@ class Socket {
       case "gameupdate": {
         if (packet[0].players.length != serverdata.players.length) {
           serverdata.players = packet[0].players;
-          createNames(serverdata.players);
-          createNameplates(0, serverdata.players);
+          serverdata.icons = packet[0].icons;
+          createNames(serverdata.players, serverdata.icons);
+          createNameplates(0, serverdata.players, serverdata.icons);
           elm.playerCount.innerHTML = packet[0].players.length;
         }
         break;
@@ -206,8 +208,8 @@ class Socket {
         else if (currentpage == "playpage") {
           swapPages("gamepage", "playpage");
           elm.voteText.innerHTML = "Place Your Votes!";
-          createNames(serverdata.players);
-          createNameplates(0, serverdata.players);
+          createNames(serverdata.players, serverdata.icons);
+          createNameplates(0, serverdata.players, serverdata.icons);
         }
         break;
       }
@@ -222,7 +224,7 @@ class Socket {
       }
       case "votes": {
         serverdata.votes = packet[0];
-        createNameplates(1, serverdata.players, serverdata.votes);
+        createNameplates(1, serverdata.players, serverdata.icons, serverdata.votes);
         elm.voteText.innerHTML = "Guess Who Voted You!";
         break;
       }
@@ -239,7 +241,7 @@ class Socket {
         elm.voteText.innerHTML = "Final Vote Tally:";
         alert(JSON.stringify(packet[0]));
         socket.talk(["log", ["data", JSON.stringify(packet[0])]]);
-        createNameplates(2, serverdata.players, packet[0], packet[1]);
+        createNameplates(2, serverdata.players, serverdata.icons, packet[0], packet[1]);
       }
 		}
 	}
@@ -327,14 +329,14 @@ function createIcon(icon, text, extra) {
 
 // add the name icons when in lobby
 elm.gamePageNameBox = document.getElementById("gamepagenamebox");
-function createNames(names = []) {
+function createNames(names = [], icons = []) {
   let child = elm.gamePageNameBox.lastElementChild; 
   while (child) {
     elm.gamePageNameBox.removeChild(child);
     child = elm.gamePageNameBox.lastElementChild;
   }
   for (let n = 0; n < names.length; n++) {
-		let box = createIcon(emojiIcons[Math.floor(Math.random() * emojiIcons.length)], names[n], serverdata.scores[n]);
+		let box = createIcon(emojiIcons[icons[n]], names[n], serverdata.scores[n]);
 
 		elm.gamePageNameBox.appendChild(box);
   }
@@ -342,7 +344,7 @@ function createNames(names = []) {
 
 // create nameplates when votng
 elm.playerHolder = document.getElementById("playerholder");
-function createNameplates(type = 0, names = [], votes = null) {
+function createNameplates(type = 0, names = [], icons = [], votes = null) {
   let child = elm.playerHolder.lastElementChild; 
   while (child) {
     elm.playerHolder.removeChild(child);
@@ -366,7 +368,7 @@ function createNameplates(type = 0, names = [], votes = null) {
         }
       }
     }
-		let box = createIcon(emojiIcons[Math.floor(Math.random() * emojiIcons.length)], names[n], extra);
+		let box = createIcon(emojiIcons[icons[n]], names[n], extra);
     
     if (type === 0)
     box.addEventListener("click", () => {
