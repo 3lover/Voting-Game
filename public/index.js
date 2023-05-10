@@ -88,24 +88,22 @@ elm.GPTsetting = document.getElementById("GPTsetting");
 elm.GPTcards = document.getElementById("GPTcards");
 elm.GPTemoji = document.getElementById("GPTemoji");
 elm.GPTchat = document.getElementById("GPTchat");
-const GPTs = [elm.GPTsettings, elm.GPTcards, elm.GPTemoji, elm.GPTchat];
+const GPTs = [elm.GPTsetting, elm.GPTcards, elm.GPTemoji, elm.GPTchat];
 function highlightGPT(tab) {
   for (let i of GPTs) {
-    if (i === tab) i.style.backgroundcolor = "backred";
-    else i.style.backgroundcolor = "background";
+    if (i === tab) {
+      i.style.backgroundColor = "var(--backred)";
+    }
+    else {
+      i.style.backgroundColor = "var(--background)";
+    }
   }
 }
 for (let i of GPTs) {
-  alert()
-  elm.GPTsettings.addEventListener("click", () => {
-    
-  });
-  alert()
   i.addEventListener("click", () => {
     highlightGPT(i);
   });
 }
-alert()
 
 // lobby hosting
 elm.hostButton = document.getElementById("hostbutton");
