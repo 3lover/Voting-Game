@@ -114,11 +114,16 @@ for (let i of GPTs) {
 }
 
 // create the emoji tabs
-function updateEmojis(myEmoji, usedEmojis) { 
+function updateEmojis(emojis) { 
+  let child = elm.playerHolder.lastElementChild;
+  while (child) {
+    elm.playerHolder.removeChild(child);
+    child = elm.playerHolder.lastElementChild;
+  }
   for (let i = 0; i < emojiIcons.length; i++) {
     let selector = document.createElement("div");
     selector.classList.add("emojiselector");
-    selector.appendChild(document.createTextNode(emojiIcons[i]));
+    selector.appendChild(document.createTextNode(emojis.includes(i) ? "❌" : emojiIcons[i]));
 
     selector.addEventListener("click", () => {
       alert("choosing emoji " + i);
@@ -227,7 +232,7 @@ class Socket {
         this.connected = true;
       }
       case "newicons": {
-        serverdata.icons = packet[0]
+        serverdata.icons = packet[0];
         updateEmojis(serverdata.icons);
       }
       case "gameupdate": {
