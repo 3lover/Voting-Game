@@ -21,6 +21,10 @@ class Lobby {
     this.ingame = false;
     this.gamestage = 0;
     this.pointsystem = 3;
+    this.decks = {
+      main: 1,
+      dirty: 0
+    }
     this.currentreview = 0;
     console.log(`lobby created with ID ${this.id}`)
   }
@@ -325,6 +329,10 @@ const sockets = {
               player.lobby.pointsystem = parseInt(packet[1]);
               break;
             }
+            case "maindeck": {
+              player.lobby.decks.main = !!packet[1];
+              break;
+            }
           }
           break;
         }
@@ -418,7 +426,8 @@ function update() {
     }
     
     let hostrules = {
-      pointsystem: l.pointsystem
+      pointsystem: l.pointsystem,
+      
     };
     
     let playernames = [];

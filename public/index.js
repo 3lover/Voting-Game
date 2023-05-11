@@ -125,16 +125,22 @@ function settingchanged(id, value) {
   socket.talk(["changesetting", id, value]);
 }
 const settingids = [
-  ["pointsystem", "select"]
+  ["pointsystem", "select"],
+  ["maindeck", "checkbox", "maindeckmark"]
 ];
 for (let i of settingids) {
   document.getElementById(i[0]).addEventListener(i[1] == "select" ? "change" : "click", (e) => {
     settingchanged(i[0], e.target.value);
+    if (i[1] == "checkbox") {
+      if (e.target.checked) document.getElementById(i[2]).style.backgroundColor = "var(--backred)";
+      else document.getElementById(i[2]).style.backgroundColor = "var(--background)";
+    }
   });
 }
 function adjustsettings(newvalues = {}) {
   for (let i of settingids) {
-    document.getElementById(i[0]).value = newvalues[i[0]];
+    if (i[1] == "select") document.getElementById(i[0]).value = newvalues[i[0]];
+    else if (i[1] == "checkbox") document.getElementById(i[0]).checked = newvalues[i[0]];
   }
 }
 

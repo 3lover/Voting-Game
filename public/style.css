@@ -213,12 +213,6 @@ body {
   position: relative;
   background-color: var(--background);
 }
-.checkmark:hover {
-  background-color: var(--buttonhover);
-}
-/*.main input:checked ~ .checkmark {
-  background-color: var(--backred);
-}*/
 .main {
   width: 30%;
   height: 10vh;
