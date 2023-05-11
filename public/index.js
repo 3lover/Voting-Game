@@ -302,6 +302,7 @@ class Socket {
       }
       case "newscores": {
         serverdata.scores = packet[0];
+        break;
       }
       case "hoststatus": {
         if (serverdata.host == packet[0]) break;
