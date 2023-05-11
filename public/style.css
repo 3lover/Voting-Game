@@ -6,7 +6,6 @@
   --buttonclick: #aaaaaa;
   --pageselect: #dddddd;
   --backred: #ff0000;
-  --backgreen: #00aa00;
 }
 
 * {
@@ -208,13 +207,8 @@ body {
   position: relative;
 }
 .checkmark {
-  width: 30%;
-  height: 10vh;
-  text-align: center;
-  font-size: 4vh;
-  border-width: 0.5vmin;
-  border-color: var(--border);
-  border-style: solid;
+  width: 100%;
+  height: 100%;
   display: inline-block;
   position: relative;
   background-color: var(--background);
@@ -222,13 +216,12 @@ body {
 .checkmark:hover {
   background-color: var(--buttonhover);
 }
-.checkmark:checked {
-  background-color: var(--backgreen);
-}
+/*.main input:checked ~ .checkmark {
+  background-color: var(--backred);
+}*/
 .main {
   width: 30%;
   height: 10vh;
-  text-align: center;
   font-size: 4vh;
   border-width: 0.5vmin;
   border-color: var(--border);

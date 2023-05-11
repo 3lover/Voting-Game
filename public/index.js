@@ -120,6 +120,11 @@ for (let i of GPTs) {
   });
 }
 
+// when a setting is changed, alert the server\
+function settingchanged(id, value) {
+  socket.talk(["changesetting", id, value]);
+}
+
 // create the emoji tabs
 function updateEmojis(emojis, myemoji) {
   let child = elm.emojitabcontent.lastElementChild;
