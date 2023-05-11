@@ -20,7 +20,7 @@ class Lobby {
     this.id = this.validId(id);
     this.ingame = false;
     this.gamestage = 0;
-    this.pointsystem = 2;
+    this.pointsystem = 3;
     this.currentreview = 0;
     console.log(`lobby created with ID ${this.id}`)
   }
