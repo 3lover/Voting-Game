@@ -138,11 +138,7 @@ class Lobby {
         }
       }
     }
-    console.log("sending:")
-    console.log(finalvotes)
-    console.log(scores)
-    console.log(this.currentreview)
-    this.send(["finalvotes", finalvotes, scores, this.currentreview]);
+    this.send(["finalvotes", finalvotes, this.currentreview]);
   }
   
   findIcon(finder) {
@@ -419,10 +415,12 @@ function update() {
     
     let playernames = [];
     let playericons = [];
+    let scores = new Array(this.players.length).fill(0);
     for (let p of l.players) {
       playernames.push(p.name);
       playericons.push(p.icon);
     }
+    for (let p = 0; p < this.players; p++) scores[p] = this.players[p].points;
     
     l.sendhost();
     l.send(["gameupdate", {

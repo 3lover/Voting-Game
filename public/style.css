@@ -524,13 +524,17 @@ select {
   background: transparent;
 }
 .slideextra {
-  width: 20vh;
-  height: 10vh;
-  top: 4vh;
-  left: 40vh;
-  font-size: 10vh;
-  display: inline-block;
-  position: relative;
+  width: 10vh;
+  height: 13vh;
+  right: 15vh;
+  top: 1vh;
+  font-size: 6vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  position: absolute;
+  background: transparent;
 }
 
 #showcaseholder {
@@ -550,4 +554,5 @@ select {
   border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;
+  font-size: 8vh;
 }

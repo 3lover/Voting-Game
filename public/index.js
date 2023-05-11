@@ -305,17 +305,19 @@ class Socket {
         serverdata.host = packet[0];
         if (serverdata.host) {
           elm.startGameButton.innerHTML = "Let's Vote!";
+          elm.nextReviewButton.innerHTML = "Next Player!";
         }
         else {
           elm.startGameButton.innerHTML = "Waiting for Host";
+          elm.nextReviewButton.innerHTML = "Waiting for Host";
         }
           
         break;
       }
       case "startingRound": {
         if (currentpage == "gamepage") swapPages("playpage", "gamepage");
-        else if (currentpage == "playpage") {
-          swapPages("gamepage", "playpage");
+        else if (currentpage == "reviewpage") {
+          swapPages("gamepage", "reviewpage");
           elm.voteText.innerHTML = "Place Your Votes!";
           createNames(serverdata.players, serverdata.icons);
           createNameplates(0, serverdata.players, serverdata.icons);
@@ -347,7 +349,7 @@ class Socket {
         break;
       }
       case "finalvotes": {
-        createReviews(serverdata.players, serverdata.icons, packet[0], packet[2]);
+        createReviews(serverdata.players, serverdata.icons, packet[0], packet[1]);
         swapPages("reviewpage", "playpage");
       }
 		}
@@ -432,6 +434,7 @@ function createIcon(icon, text, extra, num) {
     let boxExtra = document.createElement("div");
     boxExtra.classList.add("slideextra");
     boxExtra.appendChild(document.createTextNode(extra));
+    boxIcon.style.top = (2.5 + num * 15) + "vh";
 
     box.appendChild(boxExtra);
   }
