@@ -20,6 +20,7 @@ class Lobby {
     this.id = this.validId(id);
     this.ingame = false;
     this.gamestage = 0;
+    this.pointsystem = 2;
     console.log(`lobby created with ID ${this.id}`)
   }
   
@@ -298,6 +299,20 @@ const sockets = {
           player.lobby.newicons();
           break;
         }
+        case "changesetting": {
+          let player = false;
+          for (let l of lobbies) if (l.checkfor(this) !== -1) player = l.checkfor(this);
+          if (!player) break;
+          if (!player.host) break;
+          
+          switch(packet[0]) {
+            case "pointsystem": {
+              player.lobby.pointsystem = parseInt(packet[1]);
+              break;
+            }
+          }
+          break;
+        }
       }
     }
 
@@ -372,6 +387,10 @@ function update() {
       }, 10000);
     }
     
+    let hostrules = {
+      pointsystem: l.pointsystem
+    };
+    
     let playernames = [];
     let playericons = [];
     for (let p of l.players) {
@@ -379,10 +398,11 @@ function update() {
       playericons.push(p.icon);
     }
     
-    l.sendhost()
+    l.sendhost();
     l.send(["gameupdate", {
       players: playernames,
-      icons: playericons
+      icons: playericons,
+      hostrules: hostrules
     }]);
   }
 }

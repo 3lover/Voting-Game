@@ -134,7 +134,7 @@ for (let i of settingids) {
 }
 function adjustsettings(newvalues = {}) {
   for (let i of settingids) {
-    document.getElementById(i[0]).value = 
+    document.getElementById(i[0]).value = newvalues[i[0]];
   }
 }
 
@@ -291,6 +291,7 @@ class Socket {
           createNameplates(0, serverdata.players, serverdata.icons);
           elm.playerCount.innerHTML = packet[0].players.length;
         }
+        adjustsettings(packet[0].hostrules);
         break;
       }
       case "hoststatus": {
