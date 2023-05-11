@@ -129,7 +129,6 @@ const settingids = [
 ];
 for (let i of settingids) {
   document.getElementById(i[0]).addEventListener(i[1] == "select" ? "change" : "click", (e) => {
-    if (i[1] == "select")
     settingchanged(i[0], e.target.value);
   });
 }
@@ -485,5 +484,18 @@ function createNameplates(type = 0, names = [], icons = [], votes = null) {
     });
 
 		elm.playerHolder.appendChild(box);
+  }
+}
+
+function createReviews(names = [], icons = []) {
+  let child = elm.gamePageNameBox.lastElementChild; 
+  while (child) {
+    elm.gamePageNameBox.removeChild(child);
+    child = elm.gamePageNameBox.lastElementChild;
+  }
+  for (let n = 0; n < names.length; n++) {
+		let box = createIcon(emojiIcons[icons[n]], names[n], serverdata.scores[n], n);
+
+		elm.gamePageNameBox.appendChild(box);
   }
 }
