@@ -8,17 +8,21 @@
     "Who is most likely to celebrate their golden anniversary?",
     "Who is most likely to get cheated on?",
     "Who is most likely to become very fat witin the next 5 years?",
-    "Who is most likely to "
+    "Who is most likely to give birth twice in one year?"
   ],
   "least": [
     "Who is least likely to ever have sex?",
     "Who is least likely to get a good night's sleep tonight?",
-    "Who is least likely to try spicy food?"
+    "Who is least likely to try spicy food?",
+    "Who is least likely to have kids?",
+    "Who is least likely to have a stable job?"
   ],
   "dirty": [
-    ""
+    "Who is most likely to have sex with someone 10 years younger than them?",
+    "Who is most likely to realize they are gay halfway through sex with the opposite gender?"
   ],
   "expansion": [
-    "this is an example card number 3"
+    "Who is most likely to not be wearing underwear?",
+    "Who is most likely to get offended by this vote?"
   ]
 }
