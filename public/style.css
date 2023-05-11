@@ -544,10 +544,9 @@ select {
   overflow-y: scroll;
 }
 #nextreviewbutton {
-    width: 100vw;
-  height: 80vh;
-  left: 0;
-  top: 20vh;
+  width: 100vw;
+  height: 10vh;
+  top: 10vh;
   border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;

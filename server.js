@@ -21,6 +21,7 @@ class Lobby {
     this.ingame = false;
     this.gamestage = 0;
     this.pointsystem = 2;
+    this.currentreview = 0;
     console.log(`lobby created with ID ${this.id}`)
   }
   
@@ -119,6 +120,11 @@ class Lobby {
         if (v == this.players.length - 1) p.points++;
       }
     }
+    this.currentreview = 0;
+    this.sendReview();
+  }
+  
+  sendReview() {
     let finalvotes = new Array(this.players.length).fill("");
     for (let i in finalvotes) finalvotes[i] = [];
     let scores = new Array(this.players.length).fill(0);
@@ -131,7 +137,7 @@ class Lobby {
         }
       }
     }
-    this.send(["finalvotes", finalvotes, scores]);
+    this.send(["finalvotes", finalvotes, scores, this.currentreview]);
   }
   
   findIcon(finder) {
@@ -311,6 +317,17 @@ const sockets = {
               break;
             }
           }
+          break;
+        }
+        case "nextreview": {
+          let player = false;
+          for (let l of lobbies) if (l.checkfor(this) !== -1) player = l.checkfor(this);
+          if (!player) break;
+          if (!player.host) break;
+          
+          player.lobby.currentreview++;
+          if (player.lobby.players.length < player.lobby.currentreview) player.lobby.sendReview();
+          else player.lobby.startRound();
           break;
         }
       }

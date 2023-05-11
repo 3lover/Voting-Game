@@ -206,6 +206,12 @@ elm.startGameButton.addEventListener("click", () => {
   if (currentpage == "gamepage") socket.talk(["startgame"]);
 });
 
+// next review button
+elm.nextReviewButton = document.getElementById("nextreviewbutton");
+elm.nextReviewButton.addEventListener("click", () => {
+  socket.talk(["nextreview"]);
+});
+
 elm.playerCount = document.getElementById("playercount");
 elm.voteText = document.getElementById("votetext");
 elm.playerHolder = document.getElementById("playerholder");
@@ -341,7 +347,7 @@ class Socket {
         break;
       }
       case "finalvotes": {
-        createReviews(serverdata.players, serverdata.icons, packet[0], 0);
+        createReviews(serverdata.players, serverdata.icons, packet[0], packet[2]);
         swapPages("reviewpage", "playpage");
       }
 		}
