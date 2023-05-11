@@ -218,7 +218,7 @@ elm.playerHolder = document.getElementById("playerholder");
 // our websocket
 class Socket {
 	constructor() {
-		this.socket = new WebSocket("wss://vote-game.glitch.me/ws");
+		this.socket = new WebSocket("wss://voting-game.glitch.me/ws");
 		this.socket.binaryType = "arraybuffer";
 		this.protocol = (() => {
 			const encoder = new TextEncoder().encode.bind(new TextEncoder());
@@ -299,6 +299,9 @@ class Socket {
         }
         adjustsettings(packet[0].hostrules);
         break;
+      }
+      case "newscores": {
+        serverdata.scores = packet[0];
       }
       case "hoststatus": {
         if (serverdata.host == packet[0]) break;

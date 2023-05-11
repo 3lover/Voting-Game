@@ -121,8 +121,16 @@ class Lobby {
         if (v == this.players.length - 1) p.points++;
       }
     }
+    this.sendScores();
+    
     this.currentreview = 0;
     this.sendReview();
+  }
+  
+  sendScores() {
+    let scores = new Array(this.players.length).fill(0);
+    for (let p = 0; p < this.players; p++) scores[p] = this.players[p].points;
+    this.send(["newscores", scores]);
   }
   
   sendReview() {
@@ -415,18 +423,17 @@ function update() {
     
     let playernames = [];
     let playericons = [];
-    let scores = new Array(this.players.length).fill(0);
     for (let p of l.players) {
       playernames.push(p.name);
       playericons.push(p.icon);
     }
-    for (let p = 0; p < this.players; p++) scores[p] = this.players[p].points;
     
+    l.sendScores();
     l.sendhost();
     l.send(["gameupdate", {
       players: playernames,
       icons: playericons,
-      hostrules: hostrules
+      hostrules: hostrules,
     }]);
   }
 }
