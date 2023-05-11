@@ -129,6 +129,7 @@ const settingids = [
 ];
 for (let i of settingids) {
   document.getElementById(i[0]).addEventListener(i[1] == "select" ? "change" : "click", (e) => {
+    if (i[1] == "select")
     settingchanged(i[0], e.target.value);
   });
 }
