@@ -487,15 +487,20 @@ function createNameplates(type = 0, names = [], icons = [], votes = null) {
   }
 }
 
-function createReviews(names = [], icons = []) {
-  let child = elm.gamePageNameBox.lastElementChild; 
+elm.showcaseHolder = document.getElementById("showcaseholder");
+function createReviews(names = [], icons = [], voters = [], voted = 0) {
+  let child = elm.showcaseHolder.lastElementChild; 
   while (child) {
-    elm.gamePageNameBox.removeChild(child);
-    child = elm.gamePageNameBox.lastElementChild;
+    elm.showcaseHolder.removeChild(child);
+    child = elm.showcaseHolder.lastElementChild;
   }
-  for (let n = 0; n < names.length; n++) {
-		let box = createIcon(emojiIcons[icons[n]], names[n], serverdata.scores[n], n);
+  let box = createIcon(emojiIcons[icons[voted]], names[voted], serverdata.scores[voted], 0);
 
-		elm.gamePageNameBox.appendChild(box);
+	elm.showcaseHolder.appendChild(box);
+  for (let n = 0; n < names.length; n++) {
+    if (!voters.includes(n)) continue;
+		box = createIcon(emojiIcons[icons[n]], names[n], serverdata.scores[n], n);
+
+		elm.showcaseHolder.appendChild(box);
   }
 }

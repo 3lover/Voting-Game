@@ -380,11 +380,11 @@ function update() {
       l.endRound();
     }
     if (l.gamestage === 2) {
-      l.gamestage = -1;
+      /*l.gamestage = -1;
       setTimeout(() => {
         l.gamestage = 0;
         l.startRound();
-      }, 10000);
+      }, 2000);*/
     }
     
     let hostrules = {

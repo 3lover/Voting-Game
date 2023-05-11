@@ -529,3 +529,14 @@ select {
   display: inline-block;
   position: relative;
 }
+
+#showcaseholder {
+  width: 100vw;
+  height: 80vh;
+  left: 0;
+  top: 20vh;
+  border-width: 0.5vmin;
+  border-color: var(--border);
+  border-style: solid;
+  overflow-y: scroll;
+}
