@@ -6,6 +6,7 @@
   --buttonclick: #aaaaaa;
   --pageselect: #dddddd;
   --backred: #ff0000;
+  --backgreen: #00aa00;
 }
 
 * {
@@ -187,6 +188,7 @@ body {
   font-size: 6vh;
   text-align: center;
   width: 100%;
+  height: 10vh;
   margin-top: 3vh;
   background-color: transparent;
   display: block;
@@ -206,10 +208,8 @@ body {
   position: relative;
 }
 .checkmark {
-  width: 5vh;
-  height: 5vh;
-  left: 0;
-  margin-top: 1vh;
+  width: 30%;
+  height: 10vh;
   text-align: center;
   font-size: 4vh;
   border-width: 0.5vmin;
@@ -217,6 +217,28 @@ body {
   border-style: solid;
   display: inline-block;
   position: relative;
+  background-color: var(--background);
+}
+.checkmark:hover {
+  background-color: var(--buttonhover);
+}
+.checkmark:checked {
+  background-color: var(--backgreen);
+}
+.main {
+  width: 30%;
+  height: 10vh;
+  text-align: center;
+  font-size: 4vh;
+  border-width: 0.5vmin;
+  border-color: var(--border);
+  border-style: solid;
+  display: inline-block;
+  position: relative;
+  background-color: var(--background);
+}
+input[type=checkbox] {
+  visibility: hidden;
 }
 
 h1.titletext {
