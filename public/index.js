@@ -438,7 +438,7 @@ function createIcon(icon, text, extra, num) {
     let boxExtra = document.createElement("div");
     boxExtra.classList.add("slideextra");
     boxExtra.appendChild(document.createTextNode(extra));
-    boxIcon.style.top = (2.5 + num * 15) + "vh";
+    boxExtra.style.top = (2.5 + num * 15) + "vh";
 
     box.appendChild(boxExtra);
   }
