@@ -132,6 +132,11 @@ for (let i of settingids) {
     settingchanged(i[0], e.target.value);
   });
 }
+function adjustsettings(newvalues = {}) {
+  for (let i of settingids) {
+    document.getElementById(i[0]).value = 
+  }
+}
 
 
 // create the emoji tabs
