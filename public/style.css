@@ -216,6 +216,7 @@ body {
 .main {
   width: 30%;
   height: 10vh;
+  top: 2.5vh
   font-size: 4vh;
   border-width: 0.5vmin;
   border-color: var(--border);

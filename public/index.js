@@ -126,21 +126,24 @@ function settingchanged(id, value) {
 }
 const settingids = [
   ["pointsystem", "select"],
-  ["maindeck", "checkbox", "maindeckmark"]
+  ["maindeck", "checkbox", "maindeckmark"],
+  ["dirtydeck", "checkbox", "dirtydeckmark"],
+  ["expansiondeck", "checkbox", "expansiondeckmark"]
 ];
 for (let i of settingids) {
   document.getElementById(i[0]).addEventListener(i[1] == "select" ? "change" : "click", (e) => {
-    settingchanged(i[0], e.target.value);
-    if (i[1] == "checkbox") {
-      if (e.target.checked) document.getElementById(i[2]).style.backgroundColor = "var(--backred)";
-      else document.getElementById(i[2]).style.backgroundColor = "var(--background)";
-    }
+    settingchanged(i[0], i[1] == "checkbox" ? e.target.checked : e.target.value);
   });
 }
 function adjustsettings(newvalues = {}) {
   for (let i of settingids) {
-    if (i[1] == "select") document.getElementById(i[0]).value = newvalues[i[0]];
-    else if (i[1] == "checkbox") document.getElementById(i[0]).checked = newvalues[i[0]];
+    let currentelement = document.getElementById(i[0]);
+    if (i[1] == "select") currentelement.value = newvalues[i[0]];
+    else if (i[1] == "checkbox") {
+      currentelement.checked = newvalues[i[0]];
+      if (currentelement.checked) document.getElementById(i[2]).style.backgroundColor = "var(--backred)";
+      else document.getElementById(i[2]).style.backgroundColor = "var(--background)";
+    }
   }
 }
 
