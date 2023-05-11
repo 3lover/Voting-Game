@@ -70,6 +70,7 @@ class Lobby {
   }
   
   startRound() {
+    console.log("starting new round")
     this.send(["startingRound"]);
     for (let p of this.players) {
       p.vote = null;
@@ -137,6 +138,10 @@ class Lobby {
         }
       }
     }
+    console.log("sending:")
+    console.log(finalvotes)
+    console.log(scores)
+    console.log(this.currentreview)
     this.send(["finalvotes", finalvotes, scores, this.currentreview]);
   }
   
@@ -326,8 +331,12 @@ const sockets = {
           if (!player.host) break;
           
           player.lobby.currentreview++;
-          if (player.lobby.players.length < player.lobby.currentreview) player.lobby.sendReview();
-          else player.lobby.startRound();
+          if (player.lobby.players.length > player.lobby.currentreview) player.lobby.sendReview();
+          else {
+            console.log("ending because player " + player.lobby.currentreview + " does not exist");
+            player.lobby.gamestage = 0;
+            player.lobby.startRound();
+          }
           break;
         }
       }

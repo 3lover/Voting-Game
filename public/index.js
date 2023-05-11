@@ -509,14 +509,14 @@ function createReviews(names = [], icons = [], voters = [], voted = 0) {
   let boxName = document.createElement("div");
   boxName.classList.add("slidename");
   boxName.appendChild(document.createTextNode("Was voted by:"));
-  boxName.style.top = "31vh";
+  boxName.style.top = "16vh";
   
 	box.appendChild(boxName);
   elm.showcaseHolder.appendChild(box);
 
   for (let n = 0; n < voters[voted].length; n++) {
     let currentvoter = voters[voted][n];
-		box = createIcon(emojiIcons[icons[currentvoter]], names[currentvoter], serverdata.scores[currentvoter], n + 1);
+		box = createIcon(emojiIcons[icons[currentvoter]], names[currentvoter], serverdata.scores[currentvoter], n + 2);
 
 		elm.showcaseHolder.appendChild(box);
   }
