@@ -297,6 +297,9 @@ select {
 #playpage {
   display: none;
 }
+#reviewpage {
+  display: none;
+}
 
 .centralcontainer {
   width: 50vw;

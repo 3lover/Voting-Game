@@ -341,10 +341,8 @@ class Socket {
         break;
       }
       case "finalvotes": {
-        elm.voteText.innerHTML = "Final Vote Tally:";
-        alert(JSON.stringify(packet[0]));
-        socket.talk(["log", ["data", JSON.stringify(packet[0])]]);
-        createNameplates(2, serverdata.players, serverdata.icons, packet[0], packet[1]);
+        createReviews(serverdata.players, serverdata.icons, packet[0], 0);
+        swapPages("reviewpage", "playpage");
       }
 		}
 	}
@@ -374,6 +372,7 @@ elm.hostGameNickname =  document.getElementById("hostgamenickname");
 elm.hostGameNickname.value = localStorage.getItem("gamenickname") ?? "";
 elm.attemptHost = document.getElementById("attempthost");
 elm.attemptHost.addEventListener("click", () => {
+  if (currentpage != "hostinfopage") return;
   localStorage.setItem("gameid", elm.hostGameID.value);
   localStorage.setItem("gamenickname", elm.hostGameNickname.value);
   
@@ -392,6 +391,7 @@ elm.joinGameNickname = document.getElementById("joingamenickname");
 elm.joinGameNickname.value = localStorage.getItem("gamenickname") ?? "";
 elm.attemptJoin = document.getElementById("attemptjoin");
 elm.attemptJoin.addEventListener("click", () => {
+  if (currentpage != "typenamepage") return;
   localStorage.setItem("gameid", elm.joinGameID.value);
   localStorage.setItem("gamenickname", elm.joinGameNickname.value);
   
@@ -497,8 +497,12 @@ function createReviews(names = [], icons = [], voters = [], voted = 0) {
   let box = createIcon(emojiIcons[icons[voted]], names[voted], serverdata.scores[voted], 0);
 
 	elm.showcaseHolder.appendChild(box);
+  alert(JSON.stringify(voters));
   for (let n = 0; n < names.length; n++) {
-    if (!voters.includes(n)) continue;
+    alert(typeof n)
+    alert(typeof voters[0])
+    if (!voters.includes(parseInt(n))) continue;
+    alert("reached")
 		box = createIcon(emojiIcons[icons[n]], names[n], serverdata.scores[n], n);
 
 		elm.showcaseHolder.appendChild(box);
