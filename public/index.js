@@ -124,6 +124,15 @@ for (let i of GPTs) {
 function settingchanged(id, value) {
   socket.talk(["changesetting", id, value]);
 }
+const settingids = [
+  ["pointsystem", "select"]
+];
+for (let i of settingids) {
+  document.getElementById(i[0]).addEventListener(i[1] == "select" ? "change" : "click", (e) => {
+    settingchanged(i[0], e.target.value);
+  });
+}
+
 
 // create the emoji tabs
 function updateEmojis(emojis, myemoji) {
