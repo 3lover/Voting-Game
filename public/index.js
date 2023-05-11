@@ -128,7 +128,8 @@ const settingids = [
   ["pointsystem", "select"],
   ["maindeck", "checkbox", "maindeckmark"],
   ["dirtydeck", "checkbox", "dirtydeckmark"],
-  ["expansiondeck", "checkbox", "expansiondeckmark"]
+  ["expansiondeck", "checkbox", "expansiondeckmark"],
+  ["leastdeck", "checkbox", "leastdeckmark"]
 ];
 for (let i of settingids) {
   document.getElementById(i[0]).addEventListener(i[1] == "select" ? "change" : "click", (e) => {

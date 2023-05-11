@@ -26,7 +26,8 @@ class Lobby {
     this.decks = {
       main: true,
       dirty: false,
-      expansion: false
+      expansion: false,
+      least: true,
     }
     this.currentreview = 0;
     console.log(`lobby created with ID ${this.id}`)
@@ -81,6 +82,7 @@ class Lobby {
     if (this.decks.main) possibleCards = possibleCards.concat(cards.main);
     if (this.decks.dirty) possibleCards = possibleCards.concat(cards.dirty);
     if (this.decks.expansion) possibleCards = possibleCards.concat(cards.expansion);
+    if (this.decks.least) possibleCards = possibleCards.concat(cards.least);
     if (possibleCards.length < 1) return "No Decks Selected";
     return possibleCards[Math.floor(Math.random() * possibleCards.length)];
   }
@@ -357,6 +359,10 @@ const sockets = {
               player.lobby.decks.expansion = !!packet[1];
               break;
             }
+            case "leastdeck": {
+              player.lobby.decks.least = !!packet[1];
+              break;
+            }
           }
           break;
         }
@@ -447,6 +453,7 @@ function update() {
       maindeck: l.decks.main,
       dirtydeck: l.decks.dirty,
       expansiondeck: l.decks.expansion,
+      leastdeck: l.decks.least,
     };
     
     let playernames = [];
