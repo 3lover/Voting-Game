@@ -75,7 +75,6 @@ class Lobby {
   }
   
   startRound() {
-    console.log("starting new round")
     this.send(["startingRound"]);
     for (let p of this.players) {
       p.vote = null;
@@ -84,6 +83,10 @@ class Lobby {
     }
     this.ingame = true;
     this.gamestage = 0;
+  }
+  
+  backInLobby() {
+    this.send(["finalizeRound"]);
   }
   
   checkvotes() {
@@ -356,7 +359,7 @@ const sockets = {
           else {
             console.log("ending because player " + player.lobby.currentreview + " does not exist");
             player.lobby.gamestage = 0;
-            player.lobby.startRound();
+            player.lobby.backInLobby();
           }
           break;
         }
@@ -425,13 +428,6 @@ function update() {
     if (l.ingame && l.gamestage === 1 && l.checkguesses()) {
       l.gamestage = 2;
       l.endRound();
-    }
-    if (l.gamestage === 2) {
-      /*l.gamestage = -1;
-      setTimeout(() => {
-        l.gamestage = 0;
-        l.startRound();
-      }, 2000);*/
     }
     
     let hostrules = {

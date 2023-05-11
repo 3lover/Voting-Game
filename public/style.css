@@ -216,7 +216,7 @@ body {
 .main {
   width: 30%;
   height: 10vh;
-  top: 2.5vh
+  top: 3vh;
   font-size: 4vh;
   border-width: 0.5vmin;
   border-color: var(--border);
@@ -470,6 +470,21 @@ select {
   border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;
+}
+#cardholder {
+  width: 30vw;
+  height: 60vh;
+  left: 65vw;
+  top: 30vh;
+  border-width: 0.5vmin;
+  border-color: var(--border);
+  border-radius: 2vmin;
+  border-style: solid;
+  overflow-y: scroll;
+  padding: 1vh;
+  font-size: 5vh;
+  background-color: black;
+  color: white;
 }
 #playerholder {
   width: 60vw;

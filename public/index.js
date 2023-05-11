@@ -329,13 +329,15 @@ class Socket {
       }
       case "startingRound": {
         if (currentpage == "gamepage") swapPages("playpage", "gamepage");
-        else if (currentpage == "reviewpage") {
+        break;
+      }
+      case "finalizeRound": {
+        if (currentpage == "reviewpage") {
           swapPages("gamepage", "reviewpage");
           elm.voteText.innerHTML = "Place Your Votes!";
           createNames(serverdata.players, serverdata.icons);
           createNameplates(0, serverdata.players, serverdata.icons);
         }
-        break;
       }
       case "voted": {
         for (let c = 0; c < serverdata.players.length; c++) {
