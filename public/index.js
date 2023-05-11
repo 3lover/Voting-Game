@@ -495,15 +495,22 @@ function createReviews(names = [], icons = [], voters = [], voted = 0) {
     child = elm.showcaseHolder.lastElementChild;
   }
   let box = createIcon(emojiIcons[icons[voted]], names[voted], serverdata.scores[voted], 0);
+  elm.showcaseHolder.appendChild(box);
+  
+  box = document.createElement("div");
+  box.classList.add("playerslide");
+  
+  let boxName = document.createElement("div");
+  boxName.classList.add("slidename");
+  boxName.appendChild(document.createTextNode("Was voted by:"));
+  boxName.style.top = "31vh";
+  
+	box.appendChild(boxName);
+  elm.showcaseHolder.appendChild(box);
 
-	elm.showcaseHolder.appendChild(box);
-  alert(JSON.stringify(voters));
-  for (let n = 0; n < names.length; n++) {
-    alert(typeof n)
-    alert(typeof voters[0])
-    if (!voters.includes(parseInt(n))) continue;
-    alert("reached")
-		box = createIcon(emojiIcons[icons[n]], names[n], serverdata.scores[n], n);
+  for (let n = 0; n < voters[voted].length; n++) {
+    let currentvoter = voters[voted][n];
+		box = createIcon(emojiIcons[icons[currentvoter]], names[currentvoter], serverdata.scores[currentvoter], n + 1);
 
 		elm.showcaseHolder.appendChild(box);
   }
