@@ -1,0 +1,16 @@
+{
+  "main": [
+    "Who is most likely to be first to have children?",
+    "Who is most likely to have sex most often?",
+    "Who is most likely to build the biggest house?",
+    "Who is most likely to move to a different country?",
+    "Who is most likely to have the most children?",
+    "Who is most likely to celebrate their golden anniversary?"
+  ],
+  "dirty": [
+    "this is an example card number 2"
+  ],
+  "expansion": [
+    "this is an example card number 3"
+  ]
+}

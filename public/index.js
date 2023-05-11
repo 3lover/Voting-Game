@@ -224,6 +224,7 @@ elm.nextReviewButton.addEventListener("click", () => {
 elm.playerCount = document.getElementById("playercount");
 elm.voteText = document.getElementById("votetext");
 elm.playerHolder = document.getElementById("playerholder");
+elm.card = document.getElementById("cardholder");
 // our websocket
 class Socket {
 	constructor() {
@@ -328,7 +329,10 @@ class Socket {
         break;
       }
       case "startingRound": {
-        if (currentpage == "gamepage") swapPages("playpage", "gamepage");
+        if (currentpage == "gamepage") {
+          swapPages("playpage", "gamepage");
+          elm.card.innerHTML = packet[0];
+        }
         break;
       }
       case "finalizeRound": {

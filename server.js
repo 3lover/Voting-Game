@@ -12,6 +12,8 @@ const server = http.createServer();
 const port = 3000;
 const availableEmojis = 74;
 
+const cards = require("./cards.json");
+
 let lobbies = [];
 
 class Lobby {
@@ -74,8 +76,17 @@ class Lobby {
     return -1;
   }
   
+  getCard() {
+    let possibleCards = [];
+    if (this.decks.main) possibleCards = possibleCards.concat(cards.main);
+    if (this.decks.dirty) possibleCards = possibleCards.concat(cards.dirty);
+    if (this.decks.expansion) possibleCards = possibleCards.concat(cards.expansion);
+    if (possibleCards.length < 1) return "No Decks Selected";
+    return possibleCards[Math.floor(Math.random() * possibleCards.length)];
+  }
+  
   startRound() {
-    this.send(["startingRound"]);
+    this.send(["startingRound", this.getCard()]);
     for (let p of this.players) {
       p.vote = null;
       p.votes = 0;
@@ -87,6 +98,7 @@ class Lobby {
   
   backInLobby() {
     this.send(["finalizeRound"]);
+    this.ingame = false;
   }
   
   checkvotes() {
