@@ -19,7 +19,7 @@ let lobbies = [];
 class Lobby {
   constructor(id) {
     this.players = [];
-    this.id = this.validId(id);
+    this.id = id;
     this.ingame = false;
     this.gamestage = 0;
     this.pointsystem = 3;
@@ -34,17 +34,8 @@ class Lobby {
     console.log(`lobby created with ID ${this.id}`)
   }
   
-  validId(preferance) {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let testedid = preferance;
-    for (let i = 0; i < 999; i++) {
-      for (let l of lobbies) if (l != this && l.id == testedid) {
-	      testedid = "";
-		    for (let i = 0; i < 4; i++) testedid += chars.charAt(Math.floor(Math.random() * chars.length));
-        continue;
-      }
-    }
-    return testedid;
+  matchId(match) {
+    return (this.id === match);
   }
   
   send(data = []) {
@@ -56,6 +47,8 @@ class Lobby {
   }
   
   addPlayer(player) {
+    for (let i = 0;)
+    for (let p of this.players) if (p.name == player.name) 
     this.players.push(player);
     this.newicons();
   }
@@ -247,6 +240,13 @@ const sockets = {
 					break;
         }
         case "host": {
+          let breaker = false;
+          for (let l of lobbies) if (l.matchId(packet[0])) {
+            this.talk(["failedjoin", 3]);
+            breaker = true;
+            break;
+          }
+          if (breaker) break;
           let p = new Player(this, packet[1], true);
           let lobby = new Lobby(packet[0]);
           lobbies.push(lobby);

@@ -219,7 +219,7 @@ elm.startGameButton.addEventListener("click", () => {
 
 elm.alertXButton = document.getElementById("alertx");
 elm.alertXButton.addEventListener("click", () => {
-  swapPages("frontpage", "hostinfopage");
+  swapPages("frontpage", "alertpage");
 });
 
 // next review button
@@ -389,6 +389,25 @@ class Socket {
             elm.alertText.innerHTML = "The lobby code you entered does not exist, ask your host for the correct code.";
             elm.alertTitle.innerHTML = "Lobby Not Found!";
             swapPages("alertpage", "gamepage");
+            break;
+          }
+          case 1: {
+            elm.alertText.innerHTML = "The lobby code you tried to join is really crowded, try joining later.";
+            elm.alertTitle.innerHTML = "Lobby Full!";
+            swapPages("alertpage", "gamepage");
+            break;
+          }
+          case 2: {
+            elm.alertText.innerHTML = "The lobby tried to join is currently in a game, try joining after they finish.";
+            elm.alertTitle.innerHTML = "Lobby In Game!";
+            swapPages("alertpage", "gamepage");
+            break;
+          }
+          case 3: {
+            elm.alertText.innerHTML = "The hosted lobby code is currently active, perhaps you meant to join with that code.";
+            elm.alertTitle.innerHTML = "Lobby Already Exists!";
+            swapPages("alertpage", "gamepage");
+            break;
           }
         }
         break;
