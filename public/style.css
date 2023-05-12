@@ -534,9 +534,9 @@ select {
   background: transparent;
 }
 .slideextra {
-  width: 10vh;
+  width: 20vh;
   height: 13vh;
-  right: 15vh;
+  right: 25vh;
   top: 1vh;
   font-size: 6vh;
   display: flex;

@@ -455,7 +455,7 @@ function createIcon(icon, text, extra, num) {
     let boxExtra = document.createElement("div");
     boxExtra.classList.add("slideextra");
     boxExtra.appendChild(document.createTextNode(extra));
-    boxExtra.style.top = (2.5 + num * 15) + "vh";
+    boxExtra.style.top = (1 + num * 15) + "vh";
 
     box.appendChild(boxExtra);
   }
@@ -471,7 +471,7 @@ function createNames(names = [], icons = []) {
     child = elm.gamePageNameBox.lastElementChild;
   }
   for (let n = 0; n < names.length; n++) {
-		let box = createIcon(emojiIcons[icons[n]], names[n], serverdata.scores[n], n);
+		let box = createIcon(emojiIcons[icons[n]], names[n], serverdata.scores[n] + (serverdata.scores[n] === 1 ? " Point" : " Points"), n);
 
 		elm.gamePageNameBox.appendChild(box);
   }
@@ -493,7 +493,7 @@ function createNameplates(type = 0, names = [], icons = [], votes = null) {
           break;
         }
         case 1: {
-          extra = votes[n];
+          extra = votes[n] + (votes[n] === 1 ? " Vote" : " Votes");
           break;
         }
         case 2: {
@@ -524,7 +524,7 @@ function createReviews(names = [], icons = [], voters = [], voted = 0) {
     elm.showcaseHolder.removeChild(child);
     child = elm.showcaseHolder.lastElementChild;
   }
-  let box = createIcon(emojiIcons[icons[voted]], names[voted], serverdata.scores[voted], 0);
+  let box = createIcon(emojiIcons[icons[voted]], names[voted], serverdata.scores[voted] + (serverdata.scores[voted] === 1 ? " Point" : " Points"), 0);
   elm.showcaseHolder.appendChild(box);
   
   box = document.createElement("div");
@@ -540,7 +540,7 @@ function createReviews(names = [], icons = [], voters = [], voted = 0) {
 
   for (let n = 0; n < voters[voted].length; n++) {
     let currentvoter = voters[voted][n];
-		box = createIcon(emojiIcons[icons[currentvoter]], names[currentvoter], serverdata.scores[currentvoter], n + 2);
+		box = createIcon(emojiIcons[icons[currentvoter]], names[currentvoter], serverdata.scores[currentvoter] + (serverdata.scores[currentvoter] === 1 ? " Point" : " Points"), n + 2);
 
 		elm.showcaseHolder.appendChild(box);
   }
