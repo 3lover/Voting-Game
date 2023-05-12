@@ -39,7 +39,16 @@
     "Who is most likely to be caught watching sexy videos on their computer?",
     "Who is most likely to wear a Darth Vader costume on Halloween?",
     "Who is most likely to be gold-digging someone right now?",
-    "Who is most likely to become an astronaut?",
+    "Who is most likely to become an astronaut and live in space?",
+    "Who is most likely to go to a Justin Bieber concert?",
+    "Who is most likely to marry a rockstar?",
+    "Who is most likely to actually have billionare parents they never talked about?",
+    "Who is most likely to live in a zoo?",
+    "Who is most likely to get lost at Disneyland?",
+    "Who is most likely to become president someday?",
+    "Who is most likely to recieve no birthday gifts?",
+    "Who is most likely to get drunk alone?",
+    "Who is most likely to be scratched from Santa's list for being too mean?"
   ],
   "least": [
     "Who is least likely to ever have sex?",
@@ -50,10 +59,24 @@
   ],
   "dirty": [
     "Who is most likely to have sex with someone 10 years younger than them?",
-    "Who is most likely to realize they are gay halfway through sex with the opposite gender?"
+    "Who is most likely to realize they are gay halfway through sex with the opposite gender?",
+    "Who is most likely to secretly have a 12 inch penis under their pants?",
+    "Who is least likely to be gay?",
+    "Who is most likely to be a closeted gay?",
+    "Who is most likely to secretly be the opposite gender?",
+    "Who is most willing to have sex with every other person here?",
+    "Who is most likely an "
   ],
   "expansion": [
     "Who is most likely to not be wearing underwear?",
-    "Who is most likely to get offended by this vote?"
+    "Who is most likely to get offended by this vote?",
+    "Who is most likely to think 3^2 = 6?",
+    "Who is most likely to die in a car accident?"
+  ],
+  "probably": [
+    "Who probably got high last night?",
+    "Who probably isn't actually real, and is a figment of your imagination?",
+    "Who probably has 3 STD's?",
+    "Who probably hates everyone else here?"
   ]
 }
