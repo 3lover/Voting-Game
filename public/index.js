@@ -230,7 +230,7 @@ elm.card = document.getElementById("cardholder");
 // our websocket
 class Socket {
 	constructor() {
-		this.socket = new WebSocket("wss://voting-game.glitch.me/ws");
+		this.socket = new WebSocket("wss://voting-game-beta.glitch.me/ws");
 		this.socket.binaryType = "arraybuffer";
 		this.protocol = (() => {
 			const encoder = new TextEncoder().encode.bind(new TextEncoder());
@@ -370,7 +370,9 @@ class Socket {
         break;
       }
       case "finalvotes": {
-        createReviews(serverdata.players, serverdata.icons, packet[0], packet[1]);
+        setTimeout(() => {
+          createReviews(serverdata.players, serverdata.icons, packet[0], packet[1]);
+        }, currentpage == "reviewpage" ? 500 : 0);
         swapPages("reviewpage", "playpage");
       }
 		}
