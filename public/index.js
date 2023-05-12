@@ -222,6 +222,12 @@ elm.alertXButton.addEventListener("click", () => {
   swapPages("frontpage", "alertpage");
 });
 
+// cycle card button
+elm.refreshButton = document.getElementById("refreshbutton");
+elm.refreshButton.addEventListener("click", () => {
+  socket.talk(["refreshcard"]);
+});
+
 // next review button
 elm.nextReviewButton = document.getElementById("nextreviewbutton");
 elm.nextReviewButton.addEventListener("click", () => {
@@ -308,6 +314,9 @@ class Socket {
           alert(err);
         }
       }
+      case "cardrefreshed": {
+        createNameplates(0, serverdata.players, serverdata.icons);
+      }
       case "gameupdate": {
         if (packet[0].players.length != serverdata.players.length) {
           serverdata.players = packet[0].players;
@@ -379,7 +388,7 @@ class Socket {
       case "finalvotes": {
         setTimeout(() => {
           createReviews(serverdata.players, serverdata.icons, packet[0], packet[1]);
-        }, currentpage == "reviewpage" ? 500 : 0);
+        }, (currentpage == "reviewpage" && !noTransitions) ? 500 : 0);
         swapPages("reviewpage", "playpage");
         break;
       }

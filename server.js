@@ -47,8 +47,15 @@ class Lobby {
   }
   
   addPlayer(player) {
-    for (let i = 0;)
-    for (let p of this.players) if (p.name == player.name) 
+    for (let i = 0; i < 99; i++) {
+      let retry = false;
+      for (let p of this.players) if (p.name == player.name) {
+        player.name += "*";
+        retry = true;
+        break;
+      }
+      if (!retry) break;
+    }
     this.players.push(player);
     this.newicons();
   }
@@ -305,6 +312,10 @@ const sockets = {
           voter.vote = voted;
           
           this.talk(["voted", packet[0]]);
+          
+          break;
+        }
+        case "refreshcard": {
           
           break;
         }

@@ -580,3 +580,15 @@ select {
   border-style: solid;
   font-size: 8vh;
 }
+
+#refreshbutton {
+  font-family: 'Noto Emoji', sans-serif;
+  width: 10vh;
+  height: 10vh;
+  top: 20vh;
+  left: 60vw;
+  font-size: 8vh;
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
