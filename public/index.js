@@ -315,6 +315,7 @@ class Socket {
         }
       }
       case "cardrefreshed": {
+        elm.card.innerHTML = packet[0];
         createNameplates(0, serverdata.players, serverdata.icons);
       }
       case "gameupdate": {
@@ -338,10 +339,12 @@ class Socket {
         if (serverdata.host) {
           elm.startGameButton.innerHTML = "Let's Vote!";
           elm.nextReviewButton.innerHTML = "Next Player!";
+          elm.refreshButton.style.display = "block";
         }
         else {
           elm.startGameButton.innerHTML = "Waiting for Host";
           elm.nextReviewButton.innerHTML = "Waiting for Host";
+          elm.refreshButton.style.display = "none";
         }
           
         break;

@@ -316,7 +316,14 @@ const sockets = {
           break;
         }
         case "refreshcard": {
+          let player = false;
+          for (let l of lobbies) if (l.checkfor(this) !== -1) player = l.checkfor(this);
+          if (!player) break;
+          if (!player.host) break;
           
+          console.log("new card!")
+          player.lobby.startRound();
+          player.lobby.send(["cardrefreshed", player.lobby.getCard()]);
           break;
         }
         case "guessvoter": {
