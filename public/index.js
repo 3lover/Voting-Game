@@ -334,17 +334,18 @@ class Socket {
         break;
       }
       case "hoststatus": {
+        if (packet[1] === 0 && serverdata.host) elm.refreshButton.style.display = "block";
+        else elm.refreshButton.style.display = "none";
+        
         if (serverdata.host == packet[0]) break;
         serverdata.host = packet[0];
         if (serverdata.host) {
           elm.startGameButton.innerHTML = "Let's Vote!";
           elm.nextReviewButton.innerHTML = "Next Player!";
-          elm.refreshButton.style.display = "block";
         }
         else {
           elm.startGameButton.innerHTML = "Waiting for Host";
           elm.nextReviewButton.innerHTML = "Waiting for Host";
-          elm.refreshButton.style.display = "none";
         }
           
         break;

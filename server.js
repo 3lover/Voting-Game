@@ -43,7 +43,7 @@ class Lobby {
   }
   
   sendhost() {
-    for (let p = 0; p < this.players.length; p++) this.players[p].talk(["hoststatus", p === 0]);
+    for (let p = 0; p < this.players.length; p++) this.players[p].talk(["hoststatus", p === 0, this.gamestage]);
   }
   
   addPlayer(player) {
