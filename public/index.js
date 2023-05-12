@@ -217,6 +217,11 @@ elm.startGameButton.addEventListener("click", () => {
   if (currentpage == "gamepage") socket.talk(["startgame"]);
 });
 
+elm.alertXButton = document.getElementById("alertx");
+elm.alertXButton.addEventListener("click", () => {
+  swapPages("frontpage", "hostinfopage");
+});
+
 // next review button
 elm.nextReviewButton = document.getElementById("nextreviewbutton");
 elm.nextReviewButton.addEventListener("click", () => {
@@ -227,6 +232,8 @@ elm.playerCount = document.getElementById("playercount");
 elm.voteText = document.getElementById("votetext");
 elm.playerHolder = document.getElementById("playerholder");
 elm.card = document.getElementById("cardholder");
+elm.alertText = document.getElementById("alerttext");
+elm.alertTitle = document.getElementById("alerttitle");
 // our websocket
 class Socket {
 	constructor() {
@@ -379,7 +386,9 @@ class Socket {
       case "failedjoin": {
         switch (packet[0]) {
           case 0: {
-            swapPages("")
+            elm.alertText.innerHTML = "The lobby code you entered does not exist, ask your host for the correct code.";
+            elm.alertTitle.innerHTML = "Lobby Not Found!";
+            swapPages("alertpage", "gamepage");
           }
         }
         break;

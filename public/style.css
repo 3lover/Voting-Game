@@ -42,7 +42,7 @@ body {
   height: 100vh;
   border-style: solid;
   border-color: var(--border);
-  border-width: 0 2vmin 0 0;
+  border-width: 0 0.5vmin 0 0;
   z-index: 999;
 }
 #righttransitionpanel {
@@ -52,7 +52,7 @@ body {
   height: 100vh;
   border-style: solid;
   border-color: var(--border);
-  border-width: 0 0 0 2vmin;
+  border-width: 0 0 0 0.5vmin;
   z-index: 999;
 }
 
@@ -81,13 +81,19 @@ body {
 }
 
 .pageheader {
-  font-size: 8vmin;
+  font-size: 8vh;
   text-align: center;
   width: 100%;
 }
+#alerttext {
+  font-size: 6vh;
+  text-align: center;
+  width: 100%;
+  top: 10vh
+}
 
 .settingdescriptor {
-  font-size: 5vmin;
+  font-size: 5vh;
   text-align: center;
   width: 100%;
   top: 15vh;
@@ -95,7 +101,7 @@ body {
 }
 
 #gamepagetitle {
-  font-size: 8vmin;
+  font-size: 8vh;
   text-align: center;
   width: 60vw;
   height: 10vh;
@@ -230,7 +236,7 @@ input[type=checkbox] {
 }
 
 h1.titletext {
-  font-size: 8vmin;
+  font-size: 8vh;
   width: 100vw;
   text-align: center;
   top: 4vh;
@@ -252,7 +258,7 @@ select {
   left: 5vw;
   top: 10vh;
   background-color: var(--background);
-  font-size: 6vmin;
+  font-size: 6vh;
 }
 #adjustcolor:hover {
   background-color: var(--buttonhover);
@@ -264,7 +270,7 @@ select {
   left: 55vw;
   top: 10vh;
   background-color: var(--background);
-  font-size: 6vmin;
+  font-size: 6vh;
 }
 #pagetransitions:hover {
   background-color: var(--buttonhover);
@@ -295,11 +301,14 @@ select {
 #reviewpage {
   display: none;
 }
+#alertpage {
+  display: none;
+}
 
 .centralcontainer {
   width: 50vw;
   height: 80vh;
-  border-width: 1vmin;
+  border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;
   top: 10vh;
@@ -337,12 +346,12 @@ select {
 .spin::before {
   animation: 1.5s linear infinite spinner;
   animation-play-state: inherit;
-  border: solid 1vmin var(--border);
+  border: solid 0.5vmin var(--border);
   border-bottom-color: var(--buttonhover);
   border-radius: 50%;
   content: "";
-  height: 40vmin;
-  width: 40vmin;
+  height: 40vh;
+  width: 40vh;
   position: absolute;
   top: 50vh;
   left: 50vw;
@@ -402,6 +411,11 @@ select {
   left: 0;
   z-index: 1;
 }
+#alertx {
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
 
 .frontinput {
   width: 80%;
@@ -409,7 +423,7 @@ select {
   left: 10%;
   top: 20vh;
   text-align: center;
-  font-size: 6vmin;
+  font-size: 6vh;
   border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;
@@ -433,7 +447,7 @@ select {
   left: 10%;
   top: 60vh;
   text-align: center;
-  font-size: 6vmin;
+  font-size: 6vh;
   border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;
@@ -445,7 +459,7 @@ select {
   left: 5vw;
   top: 75vh;
   padding-top: 3vh;
-  border-width: 1vmin;
+  border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;
   font-size: 6vh;
@@ -456,10 +470,10 @@ select {
   height: 15vh;
   left: 15vw;
   top: 75vh;
-  border-width: 1vmin;
+  border-width: 0.5vmin;
   border-color: var(--border);
   border-style: solid;
-  font-size: 8vmin;
+  font-size: 8vh;
 }
 
 #votetext {
