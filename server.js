@@ -138,11 +138,17 @@ class Lobby {
   
   endRound() {
     for (let p of this.players) {
+      let votersneeded = parseInt(p.votes);
+      if (votersneeded == 0) continue;
       for (let v = 0; v < this.players.length; v++) {
         const voter = this.players[v];
         if (voter == p) continue;
         if (voter.vote == p && !p.guesses.includes(voter)) break;
-        if (v == this.players.length - 1) p.points++;
+        votersneeded--;
+        if (votersneeded <= 0) {
+          p.points++;
+          break;
+        }
       }
     }
     this.sendScores();
@@ -153,7 +159,7 @@ class Lobby {
   
   sendScores() {
     let scores = new Array(this.players.length).fill(0);
-    for (let p = 0; p < this.players; p++) scores[p] = this.players[p].points;
+    for (let p = 0; p < this.players.length; p++) scores[p] = this.players[p].points;
     this.send(["newscores", scores]);
   }
   
@@ -381,7 +387,6 @@ const sockets = {
           player.lobby.currentreview++;
           if (player.lobby.players.length > player.lobby.currentreview) player.lobby.sendReview();
           else {
-            console.log("ending because player " + player.lobby.currentreview + " does not exist");
             player.lobby.gamestage = 0;
             player.lobby.backInLobby();
           }
