@@ -374,6 +374,15 @@ class Socket {
           createReviews(serverdata.players, serverdata.icons, packet[0], packet[1]);
         }, currentpage == "reviewpage" ? 500 : 0);
         swapPages("reviewpage", "playpage");
+        break;
+      }
+      case "failedjoin": {
+        switch (packet[0]) {
+          case 0: {
+            swapPages("")
+          }
+        }
+        break;
       }
 		}
 	}

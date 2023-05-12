@@ -261,12 +261,15 @@ const sockets = {
             break;
           }
           if (!lobby) {
-            this.talk(["failedjoin"]);
-            console.log(`player tried to join ${packet[0]} but it does not exist`);
+            this.talk(["failedjoin", 0]);
             break;
           }
           if (lobby.players.length >= availableEmojis) {
-            this.talk(["lobbyfull"]);
+            this.talk(["failedjoin", 1]);
+            break;
+          }
+          if (lobby.inlobby) {
+            this.talk(["failedjoin", 2]);
             break;
           }
           
