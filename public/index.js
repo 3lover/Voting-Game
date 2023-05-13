@@ -454,9 +454,17 @@ elm.startGameButton.addEventListener("click", () => {
 
 // auto size text areas
 function OnInput(input) {
-  input.style.height = 'auto';
+  let gamepagedisplay = document.getElementById("gamepage").style.display;
+  let GPTdisplay = document.getElementById("GPTcards").style.display;
+  document.getElementById("gamepage").style.display = "block";
+  document.getElementById("GPTcards").style.display = "block";
+  
+  input.style.height = 0;
   input.style.height = (input.scrollHeight) + "px";
   console.log(input.style.height);
+  
+  //document.getElementById("gamepage").style.display = gamepagedisplay;
+  //document.getElementById("GPTcards").style.display = GPTdisplay;
 }
 
 // new custom card button
@@ -474,7 +482,7 @@ for (let i of customcards) {
   });
   
   elm.cardstabcontent.appendChild(textarea);
-  setTimeout(() => {OnInput(textarea)}, 2000);
+  OnInput(textarea);
 }
 getCustomCards();
 

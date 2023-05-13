@@ -604,6 +604,7 @@ textarea {
   position: static;
   display: block;
   font-size: 6vmin;
+  min-height: 10vh;
 }
 #newcardbutton {
   width: 100%;
