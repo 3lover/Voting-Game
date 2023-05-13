@@ -220,6 +220,15 @@ elm.alertXButton.addEventListener("click", () => {
   swapPages("frontpage", "alertpage");
 });
 
+// new custom card button
+elm.newCardButton = document.getElementById("newcardbutton");
+elm.newCardButton.addEventListener("click", () => {
+  let textarea = document.createElement("textarea");
+  textarea.placeholder = "Type your card content here!";
+  
+  elm.cardstabcontent.appendChild(textarea);
+});
+
 // cycle card button
 elm.refreshButton = document.getElementById("refreshbutton");
 elm.refreshButton.addEventListener("click", () => {

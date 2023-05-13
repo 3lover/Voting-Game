@@ -42,7 +42,7 @@ body {
   height: 100vh;
   border-style: solid;
   border-color: var(--border);
-  border-width: 0 0.5vmin 0 0;
+  border-width: 0 2vmin 0 0;
   z-index: 999;
 }
 #righttransitionpanel {
@@ -52,7 +52,7 @@ body {
   height: 100vh;
   border-style: solid;
   border-color: var(--border);
-  border-width: 0 0 0 0.5vmin;
+  border-width: 0 0 0 2vmin;
   z-index: 999;
 }
 
@@ -591,4 +591,27 @@ select {
   display: inline-block;
   position: absolute;
   text-align: center;
+}
+
+textarea {
+  resize: vertical;
+  width: 100%;
+  height: 20vh;
+  transition: 0s ease;
+  border-width: 0.5vmin;
+  border-color: var(--border);
+  border-style: solid;
+  position: static;
+  display: block;
+  font-size: 6vh;
+}
+#newcardbutton {
+  width: 100%;
+  height: 10vh;
+  border-width: 0.5vmin;
+  border-color: var(--border);
+  border-style: solid;
+  position: static;
+  display: block;
+  font-size: 8vh;
 }
