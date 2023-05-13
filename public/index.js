@@ -455,6 +455,7 @@ elm.startGameButton.addEventListener("click", () => {
 // auto size text areas
 function OnInput(input) {
   input.style.height = 0;
+  console.log(input.scrollHeight)
   input.style.height = (input.scrollHeight) + "px";
 }
 
@@ -466,14 +467,14 @@ for (let i of customcards) {
   
   textarea.placeholder = "Type your card content here!";
   textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
-  textarea.addEventListener("input", OnInput(this), false);
+  textarea.addEventListener("input", () => {OnInput(textarea)}, false);
   textarea.addEventListener("change", (e) => {
     if (e.target.value.length < 1) e.target.remove();
     getCustomCards();
   });
   
   elm.cardstabcontent.appendChild(textarea);
-  OnInput(textarea);
+  setTimeout(() => {OnInput(textarea)}, 2000);
 }
 getCustomCards();
 
@@ -492,7 +493,7 @@ elm.newCardButton.addEventListener("click", () => {
   
   textarea.placeholder = "Type your card content here!";
   textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
-  textarea.addEventListener("input", OnInput(this), false);
+  textarea.addEventListener("input", () => {OnInput(textarea)}, false);
   
   textarea.addEventListener("change", (e) => {
     if (e.target.value.length < 1) e.target.remove();
