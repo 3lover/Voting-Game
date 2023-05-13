@@ -83,6 +83,7 @@ class Lobby {
     if (this.decks.dirty) possibleCards = possibleCards.concat(cards.dirty);
     if (this.decks.expansion1) possibleCards = possibleCards.concat(cards.expansion1);
     possibleCards = possibleCards.concat(this.customcards);
+    console.log(this.customcards)
     if (possibleCards.length < 1) return "No Decks Selected";
     return possibleCards[Math.floor(Math.random() * possibleCards.length)];
   }
@@ -289,6 +290,7 @@ const sockets = {
           if (!player) break;
           if (!player.host) break;
           
+          player.lobby.customcards = packet[0];
           player.lobby.startRound();
           
           break;
@@ -330,6 +332,7 @@ const sockets = {
           if (!player.host) break;
           
           player.lobby.customcards = packet[0];
+          console.log("new cards!")
           break;
         }
         case "guessvoter": {

@@ -212,7 +212,9 @@ elm.hostXButton.addEventListener("click", () => {
 
 elm.startGameButton = document.getElementById("startgamebutton");
 elm.startGameButton.addEventListener("click", () => {
-  if (currentpage == "gamepage") socket.talk(["startgame"]);
+  if (currentpage == "gamepage") {
+    socket.talk(["startgame", customcards]);
+  }
 });
 
 elm.alertXButton = document.getElementById("alertx");
@@ -241,7 +243,8 @@ for (let i of customcards) {
     if (e.target.value.length < 1) e.target.remove();
     getCustomCards();
     socket.talk(["customcards", customcards]);
-  })
+    console.log(socket);
+  });
   
   elm.cardstabcontent.appendChild(textarea);
 }
