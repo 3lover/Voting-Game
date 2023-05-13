@@ -317,8 +317,10 @@ class Socket {
       case "cardrefreshed": {
         elm.card.innerHTML = packet[0];
         createNameplates(0, serverdata.players, serverdata.icons);
+        break;
       }
       case "gameupdate": {
+        console.log(JSON.stringify(packet[0]))
         if (packet[0].players.length != serverdata.players.length) {
           serverdata.players = packet[0].players;
           serverdata.icons = packet[0].icons;
