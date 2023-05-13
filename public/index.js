@@ -220,11 +220,22 @@ elm.alertXButton.addEventListener("click", () => {
   swapPages("frontpage", "alertpage");
 });
 
+// auto size text areas
+function OnInput() {
+  this.style.height = 0;
+  this.style.height = (this.scrollHeight) + "px";
+}
+
 // new custom card button
 elm.newCardButton = document.getElementById("newcardbutton");
 elm.newCardButton.addEventListener("click", () => {
   let textarea = document.createElement("textarea");
   textarea.placeholder = "Type your card content here!";
+  textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
+  textarea.addEventListener("input", OnInput, false);
+  textarea.addEventListener("change", (e) => {
+    if (e.target.value.length < 1) elm.cardstabcontent.removeChild(elm.cardstabcontent.children.indexOf(e.target));
+  })
   
   elm.cardstabcontent.appendChild(textarea);
 });

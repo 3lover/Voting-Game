@@ -594,7 +594,7 @@ select {
 }
 
 textarea {
-  resize: vertical;
+  resize: none;
   width: 100%;
   height: 20vh;
   transition: 0s ease;
@@ -604,6 +604,8 @@ textarea {
   position: static;
   display: block;
   font-size: 6vh;
+  max-height: 50vh;
+  min-height: 10vh;
 }
 #newcardbutton {
   width: 100%;
