@@ -455,16 +455,15 @@ elm.startGameButton.addEventListener("click", () => {
 // auto size text areas
 function OnInput(input) {
   let gamepagedisplay = document.getElementById("gamepage").style.display;
-  let GPTdisplay = document.getElementById("GPTcards").style.display;
+  let GPTdisplay = document.getElementById("cardstabcontent").style.display;
   document.getElementById("gamepage").style.display = "block";
-  document.getElementById("GPTcards").style.display = "block";
+  document.getElementById("cardstabcontent").style.display = "block";
   
   input.style.height = 0;
-  input.style.height = (input.scrollHeight) + "px";
-  console.log(input.style.height);
+  input.style.height = `calc(${input.scrollHeight}px + 1vmin)`;
   
-  //document.getElementById("gamepage").style.display = gamepagedisplay;
-  //document.getElementById("GPTcards").style.display = GPTdisplay;
+  document.getElementById("gamepage").style.display = gamepagedisplay;
+  document.getElementById("cardstabcontent").style.display = GPTdisplay;
 }
 
 // new custom card button

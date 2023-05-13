@@ -487,9 +487,9 @@ select {
 }
 #cardholder {
   width: 30vmax;
-  height: 60vmin;
+  height: 80vmin;
   left: 65vmax;
-  top: 30vmin;
+  top: 20vmin;
   border-width: 0.5vmin;
   border-color: var(--border);
   border-radius: 2vmin;
@@ -591,6 +591,7 @@ select {
   display: inline-block;
   position: absolute;
   text-align: center;
+  background-color: transparent;
 }
 
 textarea {
