@@ -211,69 +211,12 @@ elm.hostXButton.addEventListener("click", () => {
   swapPages("frontpage", "hostinfopage");
 });
 
-elm.startGameButton = document.getElementById("startgamebutton");
-elm.startGameButton.addEventListener("click", () => {
-  if (currentpage == "gamepage") {
-    socket.talk(["startgame", customcards]);
-  }
-});
-
+// alert page x
 elm.alertXButton = document.getElementById("alertx");
 elm.alertXButton.addEventListener("click", () => {
   swapPages("frontpage", "alertpage");
 });
 
-// auto size text areas
-function OnInput() {
-  this.style.height = 0;
-  this.style.height = (this.scrollHeight) + "px";
-}
-
-// new custom card button
-let customcards = JSON.parse(localStorage.getItem("customcards") ?? "[]");
-
-for (let i of customcards) {
-  let textarea = document.createElement("textarea");
-  textarea.classList.add("customcardtext");
-  textarea.value = i;
-  
-  textarea.placeholder = "Type your card content here!";
-  textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
-  textarea.addEventListener("input", OnInput, false);
-  textarea.addEventListener("change", (e) => {
-    if (e.target.value.length < 1) e.target.remove();
-    getCustomCards();
-  });
-  
-  elm.cardstabcontent.appendChild(textarea);
-}
-
-function getCustomCards() {
-  let textareas = document.getElementsByClassName("customcardtext");
-  let customcards = [];
-  for (let i of textareas) customcards.push(i.value);
-  localStorage.setItem("customcards", JSON.stringify(customcards));
-  socket.talk(["customcards", customcards]);
-}
-
-elm.newCardButton = document.getElementById("newcardbutton");
-elm.newCardButton.addEventListener("click", () => {
-  let textarea = document.createElement("textarea");
-  textarea.classList.add("customcardtext");
-  
-  textarea.placeholder = "Type your card content here!";
-  textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
-  textarea.addEventListener("input", OnInput, false);
-  
-  textarea.addEventListener("change", (e) => {
-    if (e.target.value.length < 1) e.target.remove();
-    getCustomCards();
-  })
-  
-  elm.cardstabcontent.appendChild(textarea);
-  
-  getCustomCards();
-});
 
 // cycle card button
 elm.refreshButton = document.getElementById("refreshbutton");
@@ -499,6 +442,68 @@ class Socket {
 	}
 }
 let socket = new Socket();
+
+// start the game button
+let customcards = JSON.parse(localStorage.getItem("customcards") ?? "[]");
+elm.startGameButton = document.getElementById("startgamebutton");
+elm.startGameButton.addEventListener("click", () => {
+  if (currentpage == "gamepage") {
+    console.log(customcards)
+    //socket.talk(["startgame", customcards]);
+  }
+});
+
+// auto size text areas
+function OnInput() {
+  this.style.height = 0;
+  this.style.height = (this.scrollHeight) + "px";
+}
+
+// new custom card button
+for (let i of customcards) {
+  let textarea = document.createElement("textarea");
+  textarea.classList.add("customcardtext");
+  textarea.value = i;
+  
+  textarea.placeholder = "Type your card content here!";
+  textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
+  textarea.addEventListener("input", OnInput, false);
+  textarea.addEventListener("change", (e) => {
+    if (e.target.value.length < 1) e.target.remove();
+    getCustomCards();
+  });
+  
+  elm.cardstabcontent.appendChild(textarea);
+}
+getCustomCards();
+document.addEventListener("keydown")
+
+function getCustomCards() {
+  let textareas = document.getElementsByClassName("customcardtext");
+  let customcards = [];
+  for (let i of textareas) customcards.push(i.value);
+  localStorage.setItem("customcards", JSON.stringify(customcards));
+  socket.talk(["customcards", customcards]);
+}
+
+elm.newCardButton = document.getElementById("newcardbutton");
+elm.newCardButton.addEventListener("click", () => {
+  let textarea = document.createElement("textarea");
+  textarea.classList.add("customcardtext");
+  
+  textarea.placeholder = "Type your card content here!";
+  textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
+  textarea.addEventListener("input", OnInput, false);
+  
+  textarea.addEventListener("change", (e) => {
+    if (e.target.value.length < 1) e.target.remove();
+    getCustomCards();
+  })
+  
+  elm.cardstabcontent.appendChild(textarea);
+  
+  getCustomCards();
+});
 
 // attempt to host lobby
 elm.hostGameID = document.getElementById("hostgameid");
