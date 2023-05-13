@@ -26,10 +26,9 @@ class Lobby {
     this.decks = {
       main: true,
       dirty: false,
-      expansion: true,
-      least: true,
-      probably: true,
+      expansion1: true,
     }
+    this.customcards = [];
     this.currentreview = 0;
     console.log(`lobby created with ID ${this.id}`)
   }
@@ -82,9 +81,8 @@ class Lobby {
     let possibleCards = [];
     if (this.decks.main) possibleCards = possibleCards.concat(cards.main);
     if (this.decks.dirty) possibleCards = possibleCards.concat(cards.dirty);
-    if (this.decks.expansion) possibleCards = possibleCards.concat(cards.expansion);
-    if (this.decks.least) possibleCards = possibleCards.concat(cards.least);
-    if (this.decks.probably) possibleCards = possibleCards.concat(cards.probably);
+    if (this.decks.expansion1) possibleCards = possibleCards.concat(cards.expansion1);
+    possibleCards = possibleCards.concat(this.customcards);
     if (possibleCards.length < 1) return "No Decks Selected";
     return possibleCards[Math.floor(Math.random() * possibleCards.length)];
   }
@@ -321,9 +319,17 @@ const sockets = {
           if (!player) break;
           if (!player.host) break;
           
-          console.log("new card!")
           player.lobby.startRound();
           player.lobby.send(["cardrefreshed", player.lobby.getCard()]);
+          break;
+        }
+        case "customcards": {
+          let player = false;
+          for (let l of lobbies) if (l.checkfor(this) !== -1) player = l.checkfor(this);
+          if (!player) break;
+          if (!player.host) break;
+          
+          player.lobby.customcards = packet[0];
           break;
         }
         case "guessvoter": {
@@ -384,8 +390,8 @@ const sockets = {
               player.lobby.decks.dirty = !!packet[1];
               break;
             }
-            case "expansiondeck": {
-              player.lobby.decks.expansion = !!packet[1];
+            case "expansion1deck": {
+              player.lobby.decks.expansion1 = !!packet[1];
               break;
             }
             case "leastdeck": {
@@ -484,9 +490,7 @@ function update() {
       pointsystem: l.pointsystem,
       maindeck: l.decks.main,
       dirtydeck: l.decks.dirty,
-      expansiondeck: l.decks.expansion,
-      leastdeck: l.decks.least,
-      probablydeck: l.decks.probably,
+      expansion1deck: l.decks.expansion1
     };
     
     let playernames = [];

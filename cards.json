@@ -1,12 +1,10 @@
 {
   "main": [
     "Who is most likely to be first to have children?",
-    "Who is most likely to have sex most often?",
     "Who is most likely to build the biggest house?",
     "Who is most likely to move to a different country?",
     "Who is most likely to have the most children?",
     "Who is most likely to celebrate their golden anniversary?",
-    "Who is most likely to get cheated on?",
     "Who is most likely to become very fat witin the next 5 years?",
     "Who is most likely to give birth twice in one year?",
     "Who is most likely to win the lottery and separate?",
@@ -23,7 +21,6 @@
     "Who is most likely to build the next cool gadget?",
     "Who is most likely to secretly work at Microsoft?",
     "Who is most likely to become a millionare off a mobile game?",
-    "Who is most likely to get thrown out by their parents for watching too much porn?",
     "Who is most likely to recieve the highest math grade?",
     "Who is most likely keeping a massive stash of batman comics at home?",
     "Who is most likely to own the highest tech computer in college?",
@@ -48,15 +45,7 @@
     "Who is most likely to become president someday?",
     "Who is most likely to recieve no birthday gifts?",
     "Who is most likely to get drunk alone?",
-    "Who is most likely to be scratched from Santa's list for being too mean?",
-    "Who is most likely to cheat?"
-  ],
-  "least": [
-    "Who is least likely to ever have sex?",
-    "Who is least likely to get a good night's sleep tonight?",
-    "Who is least likely to try spicy food?",
-    "Who is least likely to have kids?",
-    "Who is least likely to have a stable job?"
+    "Who is most likely to be scratched from Santa's list for being too mean?"
   ],
   "dirty": [
     "Who is most likely to have sex with someone 10 years younger than them?",
@@ -95,18 +84,29 @@
     "Who is most likely to own the largest dildo?",
     "Who is most likely to never have sex in their life?",
     "Who is most likely to last less than 2 minutes?",
-    "Who is most likely to flash someone?"
+    "Who is most likely to flash someone?",
+    "Who probably has 3 STD's?",
+    "Who is most likely to get cheated on?",
+    "Who likely watches the most porn?",
+    "Who is most likely to cheat?",
+    "Who is most likely sleeps in the nude?"
   ],
-  "expansion": [
-    "Who is most likely to not be wearing underwear?",
+  "expansion1": [
     "Who is most likely to get offended by this vote?",
     "Who is most likely to think 3^2 = 6?",
-    "Who is most likely to die in a car accident?"
-  ],
-  "probably": [
+    "Who is most likely to die in a car accident?",
+    "Who is least likely to get a good night's sleep tonight?",
+    "Who is least likely to try spicy food?",
+    "Who is least likely to have kids?",
+    "Who is least likely to have a stable job?",
     "Who probably got high last night?",
     "Who probably isn't actually real, and is a figment of your imagination?",
-    "Who probably has 3 STD's?",
-    "Who probably hates everyone else here?"
+    "Who probably hates everyone else here?",
+    "Who is most likely a government agent here for a hit?",
+    "Who is most likely involved in 9-11?",
+    "Who is least likely to guess everyone who voted them correctly?",
+    "Who will never guess you guessed them?",
+    "Who probably owns the most dice",
+    "Who probably is actually a 30 year old with hormone issues?"
   ]
 }
