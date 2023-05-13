@@ -227,14 +227,44 @@ function OnInput() {
 }
 
 // new custom card button
-elm.newCardButton = document.getElementById("newcardbutton");
-elm.newCardButton.addEventListener("click", () => {
+let customcards = JSON.parse(localStorage.getItem("customcards") ?? ""[]");
+
+for (let i of customcards) {
   let textarea = document.createElement("textarea");
+  textarea.classList.add("customcardtext");
+  textarea.value = i;
+  
   textarea.placeholder = "Type your card content here!";
   textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
   textarea.addEventListener("input", OnInput, false);
   textarea.addEventListener("change", (e) => {
-    if (e.target.value.length < 1) elm.cardstabcontent.removeChild(elm.cardstabcontent.children.indexOf(e.target));
+    if (e.target.value.length < 1) e.target.remove();
+    getCustomCards();
+    socket.talk(["customcards", customcards]);
+  })
+  
+  elm.cardstabcontent.appendChild(textarea);
+}
+
+function getCustomCards() {
+  let textareas = document.getElementsByClassName("customcardtext");
+  let customcards = [];
+  for (let i of textareas) customcards.push(i.value);
+  localStorage.setItem("customcards", JSON.stringify(customcards));
+}
+
+elm.newCardButton = document.getElementById("newcardbutton");
+elm.newCardButton.addEventListener("click", () => {
+  let textarea = document.createElement("textarea");
+  textarea.classList.add("customcardtext");
+  
+  textarea.placeholder = "Type your card content here!";
+  textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
+  textarea.addEventListener("input", OnInput, false);
+  textarea.addEventListener("change", (e) => {
+    if (e.target.value.length < 1) e.target.remove();
+    getCustomCards();
+    socket.talk(["customcards", customcards]);
   })
   
   elm.cardstabcontent.appendChild(textarea);
@@ -338,7 +368,6 @@ class Socket {
         break;
       }
       case "gameupdate": {
-        console.log(JSON.stringify(packet[0]))
         if (packet[0].players.length != serverdata.players.length) {
           serverdata.players = packet[0].players;
           serverdata.icons = packet[0].icons;
