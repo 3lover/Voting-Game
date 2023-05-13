@@ -546,6 +546,7 @@ select {
   flex-direction: column;
   position: absolute;
   background: transparent;
+  overflow: hidden;
 }
 .slideextra {
   width: 20vmin;
