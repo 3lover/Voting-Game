@@ -454,9 +454,9 @@ elm.startGameButton.addEventListener("click", () => {
 
 // auto size text areas
 function OnInput(input) {
-  input.style.height = 0;
-  console.log(input.scrollHeight)
+  input.style.height = 'auto';
   input.style.height = (input.scrollHeight) + "px";
+  console.log(input.style.height);
 }
 
 // new custom card button
