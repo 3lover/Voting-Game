@@ -227,7 +227,7 @@ function OnInput() {
 }
 
 // new custom card button
-let customcards = JSON.parse(localStorage.getItem("customcards") ?? ""[]");
+let customcards = JSON.parse(localStorage.getItem("customcards") ?? "[]");
 
 for (let i of customcards) {
   let textarea = document.createElement("textarea");
