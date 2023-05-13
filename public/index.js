@@ -13,8 +13,8 @@ let settingbarDropped = false;
 elm.settingbar = document.getElementById("settingbar");
 elm.settingbardropdown = document.getElementById("settingbardropdown");
 elm.settingbardropdown.addEventListener("click", (e) => {
-  if (settingbarDropped) elm.settingbar.style.top = "-40vh";
-  else elm.settingbar.style.top = "0vh";
+  if (settingbarDropped) elm.settingbar.style.top = "-40vmin";
+  else elm.settingbar.style.top = "0vmin";
   settingbarDropped = !settingbarDropped;
 });
 
@@ -66,7 +66,7 @@ elm.leftSlide = document.getElementById("lefttransitionpanel");
 elm.rightSlide = document.getElementById("righttransitionpanel");
 function swapPages(open = "id", close = "id") {
   currentpage = open;
-  elm.settingbar.style.top = "-40vh";
+  elm.settingbar.style.top = "-40vmin";
   settingbarDropped = false;
   
   if (noTransitions) {
@@ -80,13 +80,13 @@ function swapPages(open = "id", close = "id") {
   elm.leftSlide.style.transition = "0.5s";
   elm.rightSlide.style.transition = "0.5s";
   elm.leftSlide.style.left = "0";
-  elm.rightSlide.style.left = "50vw";
+  elm.rightSlide.style.left = "50vmax";
   
   setTimeout(() => {
     document.getElementById(open).style.display = "block";
     document.getElementById(close).style.display = "none";
-    elm.leftSlide.style.left = "-60vw";
-    elm.rightSlide.style.left = "110vw";
+    elm.leftSlide.style.left = "-60vmax";
+    elm.rightSlide.style.left = "110vmax";
   }, 1000);
 }
 
@@ -129,6 +129,7 @@ const settingids = [
   ["maindeck", "checkbox", "maindeckmark"],
   ["dirtydeck", "checkbox", "dirtydeckmark"],
   ["expansion1deck", "checkbox", "expansion1deckmark"],
+  ["customdeck", "checkbox", "customdeckmark"],
 ];
 for (let i of settingids) {
   document.getElementById(i[0]).addEventListener(i[1] == "select" ? "change" : "click", (e) => {
@@ -242,8 +243,6 @@ for (let i of customcards) {
   textarea.addEventListener("change", (e) => {
     if (e.target.value.length < 1) e.target.remove();
     getCustomCards();
-    socket.talk(["customcards", customcards]);
-    console.log(socket);
   });
   
   elm.cardstabcontent.appendChild(textarea);
@@ -254,6 +253,7 @@ function getCustomCards() {
   let customcards = [];
   for (let i of textareas) customcards.push(i.value);
   localStorage.setItem("customcards", JSON.stringify(customcards));
+  socket.talk(["customcards", customcards]);
 }
 
 elm.newCardButton = document.getElementById("newcardbutton");
@@ -264,13 +264,15 @@ elm.newCardButton.addEventListener("click", () => {
   textarea.placeholder = "Type your card content here!";
   textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
   textarea.addEventListener("input", OnInput, false);
+  
   textarea.addEventListener("change", (e) => {
     if (e.target.value.length < 1) e.target.remove();
     getCustomCards();
-    socket.talk(["customcards", customcards]);
   })
   
   elm.cardstabcontent.appendChild(textarea);
+  
+  getCustomCards();
 });
 
 // cycle card button
@@ -544,14 +546,14 @@ function createIcon(icon, text, extra, num) {
   let boxIcon = document.createElement("div");
   boxIcon.classList.add("slideicon");
   boxIcon.appendChild(document.createTextNode(icon));
-  boxIcon.style.top = (2.5 + num * 15) + "vh";
+  boxIcon.style.top = (2.5 + num * 15) + "vmin";
   
   box.appendChild(boxIcon);
   
   let boxName = document.createElement("div");
   boxName.classList.add("slidename");
   boxName.appendChild(document.createTextNode(text));
-  boxName.style.top = (1 + num * 15) + "vh";
+  boxName.style.top = (1 + num * 15) + "vmin";
   
 	box.appendChild(boxName);
   
@@ -559,7 +561,7 @@ function createIcon(icon, text, extra, num) {
     let boxExtra = document.createElement("div");
     boxExtra.classList.add("slideextra");
     boxExtra.appendChild(document.createTextNode(extra));
-    boxExtra.style.top = (1 + num * 15) + "vh";
+    boxExtra.style.top = (1 + num * 15) + "vmin";
 
     box.appendChild(boxExtra);
   }
@@ -637,7 +639,7 @@ function createReviews(names = [], icons = [], voters = [], voted = 0) {
   let boxName = document.createElement("div");
   boxName.classList.add("slidename");
   boxName.appendChild(document.createTextNode("Was voted by:"));
-  boxName.style.top = "16vh";
+  boxName.style.top = "16vmin";
   
 	box.appendChild(boxName);
   elm.showcaseHolder.appendChild(box);

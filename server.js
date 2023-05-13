@@ -26,6 +26,7 @@ class Lobby {
     this.decks = {
       main: true,
       dirty: false,
+      custom: true,
       expansion1: true,
     }
     this.customcards = [];
@@ -82,7 +83,7 @@ class Lobby {
     if (this.decks.main) possibleCards = possibleCards.concat(cards.main);
     if (this.decks.dirty) possibleCards = possibleCards.concat(cards.dirty);
     if (this.decks.expansion1) possibleCards = possibleCards.concat(cards.expansion1);
-    possibleCards = possibleCards.concat(this.customcards);
+    if (this.decks.custom) possibleCards = possibleCards.concat(this.customcards);
     console.log(this.customcards)
     if (possibleCards.length < 1) return "No Decks Selected";
     return possibleCards[Math.floor(Math.random() * possibleCards.length)];
@@ -332,7 +333,6 @@ const sockets = {
           if (!player.host) break;
           
           player.lobby.customcards = packet[0];
-          console.log("new cards!")
           break;
         }
         case "guessvoter": {
@@ -397,12 +397,8 @@ const sockets = {
               player.lobby.decks.expansion1 = !!packet[1];
               break;
             }
-            case "leastdeck": {
-              player.lobby.decks.least = !!packet[1];
-              break;
-            }
-            case "probablydeck": {
-              player.lobby.decks.probably = !!packet[1];
+            case "customdeck": {
+              player.lobby.decks.custom = !!packet[1];
               break;
             }
           }
@@ -493,7 +489,8 @@ function update() {
       pointsystem: l.pointsystem,
       maindeck: l.decks.main,
       dirtydeck: l.decks.dirty,
-      expansion1deck: l.decks.expansion1
+      expansion1deck: l.decks.expansion1,
+      customdeck: l.decks.custom
     };
     
     let playernames = [];
