@@ -448,15 +448,14 @@ let customcards = JSON.parse(localStorage.getItem("customcards") ?? "[]");
 elm.startGameButton = document.getElementById("startgamebutton");
 elm.startGameButton.addEventListener("click", () => {
   if (currentpage == "gamepage") {
-    console.log(customcards)
-    //socket.talk(["startgame", customcards]);
+    socket.talk(["startgame", customcards]);
   }
 });
 
 // auto size text areas
-function OnInput() {
-  this.style.height = 0;
-  this.style.height = (this.scrollHeight) + "px";
+function OnInput(input) {
+  input.style.height = 0;
+  input.style.height = (input.scrollHeight) + "px";
 }
 
 // new custom card button
@@ -467,20 +466,20 @@ for (let i of customcards) {
   
   textarea.placeholder = "Type your card content here!";
   textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
-  textarea.addEventListener("input", OnInput, false);
+  textarea.addEventListener("input", OnInput(this), false);
   textarea.addEventListener("change", (e) => {
     if (e.target.value.length < 1) e.target.remove();
     getCustomCards();
   });
   
   elm.cardstabcontent.appendChild(textarea);
+  OnInput(textarea);
 }
 getCustomCards();
-document.addEventListener("keydown")
 
 function getCustomCards() {
   let textareas = document.getElementsByClassName("customcardtext");
-  let customcards = [];
+  customcards = [];
   for (let i of textareas) customcards.push(i.value);
   localStorage.setItem("customcards", JSON.stringify(customcards));
   socket.talk(["customcards", customcards]);
@@ -493,7 +492,7 @@ elm.newCardButton.addEventListener("click", () => {
   
   textarea.placeholder = "Type your card content here!";
   textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
-  textarea.addEventListener("input", OnInput, false);
+  textarea.addEventListener("input", OnInput(this), false);
   
   textarea.addEventListener("change", (e) => {
     if (e.target.value.length < 1) e.target.remove();

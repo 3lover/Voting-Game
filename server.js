@@ -84,7 +84,6 @@ class Lobby {
     if (this.decks.dirty) possibleCards = possibleCards.concat(cards.dirty);
     if (this.decks.expansion1) possibleCards = possibleCards.concat(cards.expansion1);
     if (this.decks.custom) possibleCards = possibleCards.concat(this.customcards);
-    console.log(this.customcards)
     if (possibleCards.length < 1) return "No Decks Selected";
     return possibleCards[Math.floor(Math.random() * possibleCards.length)];
   }
@@ -367,10 +366,8 @@ const sockets = {
             
             if (!valid) break;
           }
-          console.log("validating")
           if (!valid) break;
           player.icon = packet[0];
-          console.log("icon selected");
           player.lobby.newicons();
           break;
         }
