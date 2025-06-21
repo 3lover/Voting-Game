@@ -6,26 +6,32 @@
     <meta charset="UTF-8">
     <meta name="description" content="A remake of the voting game">
     <meta name="author" content="3love">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <link rel="icon" href="https://cdn.glitch.global/91c5d8dc-3e25-48ec-b91f-9a0e54c7bf78/518e96a9-a110-4e85-9852-20957b9f11cc.image.png?v=1683081811711">
 		<title>Voting Game</title>
   </head>
-  <body>
+  <body oncontextmenu="return false;">
+    <div id="loadingpanel">Loading Preferences...</div>
     <div id="lefttransitionpanel"></div>
     <div id="righttransitionpanel"></div>
     
     <div id="settingbar">
       <button id="settingbardropdown"></button>
-      <h1 class="pageheader">Preferences</h1>
+      <h1 class="pageheader">Settings</h1>
       <select id="adjustcolor">
         <option value="light" selected>Light</option>
         <option value="dark">Dark</option>
         <option value="contrast">Contrast</option>
+        <option value="console">Console</option>
+        <option value="alert">Alert</option>
+        <option value="gay">Gay</option>
       </select>
       <select id="pagetransitions">
         <option value="1" selected>Enable Transitions</option>
         <option value="0">Disable Transitions</option>
       </select>
+      <button id="leavegamebutton" class="leavegamebutton">Leave Game</button>
+      <button id="howtoplaybutton" class="howtoplaybutton">How To Play</button>
     </div>
     
     <div id="frontpage" class="page">
@@ -61,65 +67,120 @@
       </div>
     </div>
     
+    <div id="greyedpanel"></div>
+    <div id="customcardsinput" class="popupwindow">
+      Please choose an exported deck txt file to import. The deck will be added to your library<br>
+      <button id="customcardfilebtn" onclick="document.getElementById('customcardfile').click()">Select A File</button>
+      <input type="file" id="customcardfile" style="display:none">
+      <button id="confirmcustom" class="confirmpanelbutton">Confirm</button>
+      <button id="cancelcustom" class="cancelpanelbutton">Cancel</button>
+    </div>
+    
+    <div id="carddeletepanel" class="popupwindow">
+      Confirm Deletion<br>
+      <button id="confirmcarddelete" class="confirmpanelbutton">Confirm</button>
+      <button id="cancelcarddelete" class="cancelpanelbutton">Cancel</button>
+    </div>
+    
+    <div id="banwindow" class="popupwindow banwindowpopup">
+      Player Control<br>
+      <button id="banwindowcancel" class="banpanelbutton">Cancel</button>
+      <input id="banwindownameinput" class="banpanelbutton baninput">
+      <button id="banwindowname" class="banpanelbutton">Change Name</button>
+      <input id="banwindowscoreinput" class="banpanelbutton baninput">
+      <button id="banwindowscore" class="banpanelbutton">Change Score</button>
+      <button id="banwindowtransfer" class="banpanelbutton">Transfer Host</button>
+      <button id="banwindowkick" class="banpanelbutton">Kick Player</button>
+      <button id="banwindowban" class="banpanelbutton">Ban Player</button>
+    </div>
+        
+    <div id="titleoptionspanel" class="popupwindow banwindowpopup">
+      Lobby Control<br>
+      <button id="titleoptionscancel" class="banpanelbutton">Done</button>
+      <input id="titleoptionsidinput" class="banpanelbutton baninput">
+      <button id="titleoptionsid" class="banpanelbutton">Change Lobby ID</button>
+      <input id="titleoptionsnameinput" class="banpanelbutton baninput">
+      <button id="titleoptionsname" class="banpanelbutton">Change Lobby Name</button>
+      <button id="titleoptionsban" class="banpanelbutton">Clear Lobby Ban List</button>
+    </div>
+    
     <div id="gamepage" class="page">
-      <h1 id="gamepagetitle">Insert Lobby Name</h1>
-      
+      <h1 id="gamepagetitle">Someone's Lobby</h1>
       
       <div id="gamepagesettingbox">
         <div class="gamepagesettingtab" id="GPTsetting">⚙️</div>
           <div class="tabcontent" id="settingtabcontent">
+            <p class="GPTtext">Lobby Publicity</p>
+            <select id="publiclobby" class="settinginput">
+              <option value="0" selected>Private</option>
+              <option value="1">Public</option>
+            </select>
             <p class="GPTtext">Point System</p>
             <select id="pointsystem" class="settinginput">
-              <option value="0">Disabled</option>
-              <option value="1">Most Votes Only</option>
-              <option value="2">Correct Guesses Only</option>
-              <option value="3">Both</option>
+              <option value="0">No Points</option>
+              <option value="1">Most Votes</option>
+              <option value="2">Correct Guesses</option>
+              <option value="3">Perfect Guesses</option>
             </select>
-            <p class="GPTtext" style="width:60%; display:inline-block">Standard Deck</p>
-            <label class="main">
-              <input type="checkbox" id="maindeck">
-              <span class="checkmark" id="maindeckmark"></span>
-            </label>
-            <p class="GPTtext" style="width:60%; display:inline-block">Dirty Deck</p>
-            <label class="main">
-              <input type="checkbox" id="dirtydeck">
-              <span class="checkmark" id="dirtydeckmark"></span>
-            </label>
-            <p class="GPTtext" style="width:60%; display:inline-block">Expansion Deck 1</p>
-            <label class="main">
-              <input type="checkbox" id="expansion1deck">
-              <span class="checkmark" id="expansion1deckmark"></span>
-            </label>
-            <p class="GPTtext" style="width:60%; display:inline-block">Use Custom Cards</p>
-            <label class="main">
-              <input type="checkbox" id="customdeck">
-              <span class="checkmark" id="customdeckmark"></span>
-            </label>
+            <p class="GPTtext">Card Selection System</p>
+            <select id="cardselectsystem" class="settinginput">
+              <option value="0">Shuffle Decks</option>
+              <option value="1">Shuffle Cards</option>
+              <option value="4">One By One</option>
+              <option value="2">Round Robin</option>
+              <option value="5">Random Writer</option>
+              <option value="3">Host Choice</option>
+            </select>
+            <p class="GPTtext">Custom Card Visibility</p>
+            <select id="customvisibility" class="settinginput">
+              <option value="0">Host Only</option>
+              <option value="1">All</option>
+            </select>
+            <p class="GPTtext">Max Player Limit</p>
+            <input id="maxplayers" class="settinginput">
+            <p class="GPTtext">Pwetty Wainbow</p>
+            <select id="pwetty" class="settinginput">
+              <option value="0">Disabled</option>
+              <option value="1">Enabled</option>
+            </select>
           </div>
         <div class="gamepagesettingtab" id="GPTcards">📄</div>
           <div class="tabcontent" id="cardstabcontent">
-            <button id="newcardbutton">Create Custom Card</button>
+            <div id="deckoptionsholder" class="deckholder" style="height: auto; z-index: 3; transition: 0s">
+              <input class="cardbutton darker" id="decknameinput" style="display:none">
+              <button class="cardbutton darker" id="decktoggle" style="display:none">Unknown State</button>
+              <button class="cardbutton" id="importdeck" style="display:none">Import Deck</button>
+              <button class="cardbutton" id="exportdeck" style="display:none">Export Deck</button>
+              <button class="cardbutton" id="deckback" style="display:none">Back</button>
+              <button class="cardbutton" id="newdeck" style="display:none">New Deck</button>
+              <button class="cardbutton" id="newcard" style="display:none">New Card</button>
+            </div>
+            <hr>
+            <div id="deckholder" class="deckholder"></div>
           </div>
         <div class="gamepagesettingtab" id="GPTemoji">😆</div>
-          <div class="tabcontent" id="emojitabcontent"></div>
-        <div class="gamepagesettingtab" id="GPTchat">💬</div>
-          <div class="tabcontent" id="chattabcontent">
-            you will be able to chat with others
+          <div class="tabcontent" id="emojitabcontent">
+            <button id="changecolorbutton" class="changecolorbutton">Change Color</button>
+            <div id="emojitabholder" class="holderdiv"></div>
           </div>
+        <div class="gamepagesettingtab" id="GPTlogs">💾</div>
+          <div class="tabcontent" id="logstabcontent"></div>
       </div>
       
       <div id="gamepagenamebox"></div>
-      <div id="playercount">1</div>
-      <button id="startgamebutton">Let's Vote!</button>
-    </div>
+        <div id="playercount">1</div>
+        <button id="startgamebutton">Let's Vote!</button>
+      </div>
     
     <div id="playpage">
       <h1 id="votetext">Place Your Votes!</h1>
       <div id="playerholder"></div>
-      <div id="cardholder">
-        Who would you most want as your mom/dad?
-      </div>
+      <div id="cardholder" class="cardholder"></div>
+      <textarea id="cardtypingarea" class="cardholder" placeholder="Type your proposed card here" style="height: 54vmin">Who is most likely to </textarea>
+      <button id="typingsubmit" class="typesubmitbutton">Submit</button>
+      <button id="typingidea" class="typeideabutton">Idea Helper</button>
       <div id="refreshbutton">🔄</div>
+      <div id="backtolobbybutton">↩</div>
     </div>
     
     <div id="reviewpage">
@@ -127,9 +188,10 @@
       <div id="showcaseholder"></div>
     </div>
     
-    <div id="waitingpage" class="page">
-      <div class="spin"></div>
-      <div class="x" id="spinx"></div>
+    <div id="findpage" class="page">
+      <button class="findback" id="findx">Back</button>
+      <button class="findreload" id="findreload">Refresh</button>
+      <div id="findlobbyholder" class="findlobbyholder"></div>
     </div>
     
     <div id="alertpage" class="page">
@@ -140,6 +202,45 @@
       </div>
     </div>
     
+    <div id="changecolorpage" class="popupwindow">
+      Select a color:
+      <select id="colorselect" class="colorselect">
+        <option value="custom" selected>Custom</option>
+        <option value="#ff0000">Red</option>
+        <option value="#00a36c">Green</option>
+        <option value="#0000ff">Blue</option>
+        <option value="#800080">Purple</option>
+        <option value="#ffff00">Yellow</option>
+        <option value="#ffffff">White</option>
+        <option value="#000000">Black</option>
+        <option value="#ffa500">Orange</option>
+        <option value="#00ffff">Cyan</option>
+        <option value="#00ff00">Lime</option>
+        <option value="#ff00ff">Pink</option>
+        <option value="rainbow">Rainbow</option>
+      </select>
+      <input id="customcolorinput" placeholder="ex) #ff0000, or red" class="colorselect" style="top: 20vmin">
+      <button id="colordone" class="colorselect" style="top: 30vmin">Done</button>
+    </div>
+    
+    <button id="closehowtoplay" class="closehowtoplay">OK</button>
+    <div id="howtoplay" class="howtoplay">
+      Welcome to the Voting Game! This is a quick tutorial of how to play.<br>
+      At the start of a round, a card is either drawn from the host's pile, or written by a player. For example, lets say the card<br>
+      "Who is most likely to go to jail?"<br>
+      is drawn.<br>
+      Each player votes the person they think best fits the card by clicking on their name. When everyone is done voting, you move on to the guessing phase.<br>
+      During the guessing phase, each player gets the number of players who voted them, but not who. Players make a guess for every vote they got as to who voted them.<br>
+      For example, say you got 2 votes. During the guessing phase, you would guess two other players as your voters.<br>
+      After everyone with votes guesses, player votes are revealed and players are given points. The point method differs by lobby, but in general the more correct guessed you got the better.<br>
+      After points are assigned the round ends, and new rounds are played until everyone gets bored and leaves.
+    </div>
+    
+    <div id="mobileFSpanel">
+      <h1 id="mobiletext">For the best mobile experience, please go full screen</h1>
+      <button id="goFS">Go Full Screen</button>
+      <button id="refuseFS">Ignore the Developer</button>
+    </div>
   </body>
   <script src="./index.js" type="module" defer></script>
 </html>

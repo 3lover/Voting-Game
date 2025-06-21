@@ -5,7 +5,11 @@
     "--text": "#111111",
     "--buttonhover": "#dddddd",
     "--buttonclick": "#aaaaaa",
-    "--pageselect": "#dddddd"
+    "--pageselect": "#dddddd",
+    "--backred": "#ff0000",
+    "--lightred": "#550000",
+    "--green": "#009900",
+    "--hostedshading": "#aaaaff"
   },
   "dark": {
     "--background": "#111111",
@@ -13,7 +17,11 @@
     "--text": "#eeeeee",
     "--buttonhover": "#444444",
     "--buttonclick": "#777777",
-    "--pageselect": "#444444"
+    "--pageselect": "#444444",
+    "--backred": "#ff0000",
+    "--lightred": "#550000",
+    "--green": "#00ff00",
+    "--hostedshading": "#000044"
   },
   "contrast": {
     "--background": "#000000",
@@ -21,14 +29,58 @@
     "--text": "#ffffff",
     "--buttonhover": "#000000",
     "--buttonclick": "#ffffff",
-    "--pageselect": "#000000"
+    "--pageselect": "#000000",
+    "--backred": "#ff0000",
+    "--lightred": "#ff0000",
+    "--green": "#00ff00",
+    "--hostedshading": "#0000ff"
   },
-  "pwetty": {
+  "gay": {
     "--background": "#ff0000",
     "--border": "#00ff00",
     "--text": "#0000ff",
     "--buttonhover": "#ffff00",
     "--buttonclick": "#ff00ff",
-    "--pageselect": "#00ffff"
+    "--pageselect": "#00ffff",
+    "--backred": "#0ff000",
+    "--lightred": "#000ff0",
+    "--green": "#00ffff",
+    "--hostedshading": "#ffffff"
+  },
+  "console": {
+    "--background": "#003300",
+    "--border": "#00ff00",
+    "--text": "#00ff00",
+    "--buttonhover": "#005500",
+    "--buttonclick": "#007700",
+    "--pageselect": "#005500",
+    "--backred": "#aa5500",
+    "--lightred": "#555500",
+    "--green": "#ffffff",
+    "--hostedshading": "#004444"
+  },
+  "alert": {
+    "--background": "#330000",
+    "--border": "#ff0000",
+    "--text": "#ff0000",
+    "--buttonhover": "#550000",
+    "--buttonclick": "#770000",
+    "--pageselect": "#550000",
+    "--backred": "#555555",
+    "--lightred": "#333333",
+    "--green": "#ffffff",
+    "--hostedshading": "#444400"
+  },
+  "pwetty": {
+    "--background": "",
+    "--border": "",
+    "--text": "",
+    "--buttonhover": "",
+    "--buttonclick": "",
+    "--pageselect": "",
+    "--backred": "",
+    "--lightred": "",
+    "--green": "",
+    "--hostedshading": ""
   }
 }
